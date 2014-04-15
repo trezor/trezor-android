@@ -4,6 +4,8 @@ import java.nio.ByteBuffer;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import com.google.protobuf.GeneratedMessage;
+
 import android.content.Context;
 import android.hardware.usb.UsbConstants;
 import android.hardware.usb.UsbDevice;
@@ -12,6 +14,7 @@ import android.hardware.usb.UsbEndpoint;
 import android.hardware.usb.UsbInterface;
 import android.hardware.usb.UsbManager;
 import android.hardware.usb.UsbRequest;
+import android.util.Log;
 
 public class Trezor {
 
@@ -22,7 +25,12 @@ public class Trezor {
 		while (deviceIterator.hasNext()) {
 			UsbDevice device = deviceIterator.next();
 			// check if the device is TREZOR
-			if (device.getVendorId() != 0x534c || device.getProductId() != 0x0001 || device.getInterfaceCount() < 1) {
+			if (device.getVendorId() != 0x534c || device.getProductId() != 0x0001) {
+				continue;
+			}
+			Log.i("Trezor.getDevice()", "TREZOR device found");
+			if (device.getInterfaceCount() < 1) {
+				Log.e("Trezor", "Wrong interface count");
 				continue;
 			}
 			// use first interface
@@ -31,21 +39,44 @@ public class Trezor {
 			UsbEndpoint epr = null, epw = null;
 			for (int i = 0; i < iface.getEndpointCount(); i++) {
 				UsbEndpoint ep = iface.getEndpoint(i);
-				if (epr == null && ep.getType() == UsbConstants.USB_ENDPOINT_XFER_INT && ep.getDirection() == UsbConstants.USB_DIR_OUT) {
+				if (epr == null && ep.getType() == UsbConstants.USB_ENDPOINT_XFER_INT && ep.getAddress() == 0x01) { // number = 1 ; dir = USB_DIR_OUT
 					epr = ep;
 					continue;
 				}
-				if (epw == null && ep.getType() == UsbConstants.USB_ENDPOINT_XFER_INT && ep.getDirection() == UsbConstants.USB_DIR_IN) {
+				if (epw == null && ep.getType() == UsbConstants.USB_ENDPOINT_XFER_INT && ep.getAddress() == 0x81) { // number = 1 ; dir = USB_DIR_IN
 					epw = ep;
 					continue;
 				}
 			}
-			// if both endpoints are found, open the device and return the class
-			if (epr != null && epw != null) {
-				UsbDeviceConnection conn = manager.openDevice(device);
-				conn.claimInterface(iface,  true);
-				return new Trezor(device, conn, iface, epr, epw);
+			if (epr == null) {
+				Log.e("Trezor.getDevice()", "Could not find read endpoint");
+				continue;
 			}
+			if (epw == null) {
+				Log.e("Trezor.getDevice()", "Could not find write endpoint");
+				continue;
+			}
+			if (epr.getMaxPacketSize() != 64) {
+				Log.e("Trezor.getDevice()", "Wrong packet size for read endpoint");
+				continue;
+			}
+			if (epw.getMaxPacketSize() != 64) {
+				Log.e("Trezor.getDevice()", "Wrong packet size for write endpoint");
+				continue;
+			}
+			// try to open the device
+			UsbDeviceConnection conn = manager.openDevice(device);
+			if (conn == null) {
+				Log.e("Trezor.getDevice()", "Could not open connection");
+				continue;
+			}
+			boolean claimed = conn.claimInterface(iface,  true);
+			if (!claimed) {
+				Log.e("Trezor.getDevice()", "Could not claim interface");
+				continue;
+			}
+			// all OK - return the class
+			return new Trezor(device, conn, iface, epr, epw);
 		}
 		return null;
 	}
@@ -89,4 +120,9 @@ public class Trezor {
 		buffer.get(data);
 		return data;
 	}
+
+	public GeneratedMessage send(GeneratedMessage msg) {
+		return msg; // TODO: proper send/receive mechanism
+	}
+
 }
