@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <selector>
+            <item android:state_checked="true" android:drawable="@color/secondary_light" />
+            <item android:drawable="@android:color/transparent" />
+        </selector>
+    </item>
+    <item android:drawable="@drawable/list_selector_holo_light" />
+</layer-list>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.circlegate.liban.view.ScrimInsetsScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_content"
+    android:layout_width="@dimen/nav_drawer_width"
+    android:layout_height="match_parent"
+    android:layout_gravity="left"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true"
+    app:insetForeground="@drawable/nav_drawer_scrim"
+    >
+
+    <LinearLayout
+        android:id="@+id/root_drawer"
+        style="@style/NavDrawerStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/root_nav_drawer_top"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/nav_drawer_top_height"
+            android:background="@color/primary_normal"
+            >
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/trezor_icon"
+                android:paddingLeft="24dp"
+                android:paddingRight="16dp"
+                />
+
+            <TextView
+                android:id="@+id/txt_nav_drawer_app_title"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/form_hor_padding"
+                android:textColor="@android:color/white"
+                android:text="@string/app_name"
+                android:gravity="center_vertical"
+                />
+
+        </LinearLayout>
+
+        <RadioGroup
+            android:id="@+id/radio_group_trezors"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/card_in_vert_padding"
+            >
+
+            <!--<Button-->
+                <!--android:id="@+id/journeys"-->
+                <!--style="@style/NavDrawerButton"-->
+                <!--android:drawableLeft="@drawable/ic_search_white"-->
+                <!--android:text="@string/journeys"-->
+                <!--/>-->
+
+        </RadioGroup>
+
+        <View
+            android:id="@+id/divider_trezors"
+            style="@style/Divider"
+            android:layout_marginTop="@dimen/card_in_vert_padding"
+            />
+
+        <Button
+            android:id="@+id/btn_help"
+            style="@style/NavDrawerButton.Secondary"
+            android:layout_marginTop="@dimen/card_in_vert_padding"
+            android:text="@string/help_title"
+            />
+
+        <Button
+            android:id="@+id/btn_support"
+            style="@style/NavDrawerButton.Secondary"
+            android:text="@string/support_title"/>
+
+        <Button
+            android:id="@+id/btn_about"
+            style="@style/NavDrawerButton.Secondary"
+            android:text="@string/about_title"/>
+
+    </LinearLayout>
+
+</com.circlegate.liban.view.ScrimInsetsScrollView>

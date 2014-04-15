@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/list_selector_holo_light" />
+
+    <item>
+        <shape>
+            <solid android:color="@android:color/transparent" />
+            <padding
+                android:left="@dimen/homescreen_img_padding_outer_hor"
+                android:right="@dimen/homescreen_img_padding_outer_hor"
+                android:top="@dimen/homescreen_img_padding_outer_vert"
+                android:bottom="@dimen/homescreen_img_padding_outer_vert"
+                />
+        </shape>
+    </item>
+
+    <item>
+        <shape>
+            <solid android:color="@android:color/black" />
+            <padding
+                android:left="@dimen/homescreen_img_padding_inner"
+                android:right="@dimen/homescreen_img_padding_inner"
+                android:top="@dimen/homescreen_img_padding_inner"
+                android:bottom="@dimen/homescreen_img_padding_inner"
+                />
+        </shape>
+    </item>
+</layer-list>

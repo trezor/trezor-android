@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:visibility="visible"
+        />
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/root_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.circlegate.liban.view.PaddedLinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:maxPaddedWidth="@dimen/max_screen_width_narrow"
+            >
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_device_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/form_vert_padding"
+                android:layout_marginLeft="@dimen/form_hor_padding_edit_text"
+                android:layout_marginRight="@dimen/form_hor_padding_edit_text"
+                android:clipToPadding="false"
+                android:textColorHint="@color/text_secondary"
+                >
+
+                <EditText
+                    android:id="@+id/edit_text_device_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/init_trezor_device_label_hint"
+                    android:inputType="textCapWords"
+                    android:textColor="@color/text_primary_selector"
+                    android:text="@string/init_trezor_device_label_default"
+                    />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/form_vert_padding"
+                android:layout_marginLeft="@dimen/form_hor_padding"
+                android:layout_marginRight="@dimen/form_hor_padding"
+                android:textSize="@dimen/text_caption"
+                android:textColor="@color/text_secondary"
+                android:text="@string/trezor_recovery_init_seed_length"
+                />
+
+            <Spinner
+                android:id="@+id/spinner_number_of_words"
+                style="@style/Widget.AppCompat.Spinner.Underlined"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginLeft="@dimen/form_hor_padding_edit_text"
+                android:layout_marginRight="@dimen/form_hor_padding_edit_text"
+                android:textColor="@color/text_primary_selector"
+                />
+
+            <CheckBox
+                android:id="@+id/checkbox_pin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/form_vert_padding_small"
+                android:layout_marginLeft="@dimen/form_hor_padding_check"
+                android:layout_marginRight="@dimen/form_hor_padding"
+                android:text="@string/trezor_recovery_init_enable_pin"
+                android:checked="true"
+                />
+
+            <CheckBox
+                android:id="@+id/checkbox_passphrase"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/form_vert_padding_small"
+                android:layout_marginLeft="@dimen/form_hor_padding_check"
+                android:layout_marginRight="@dimen/form_hor_padding"
+                android:text="@string/trezor_recovery_init_enable_passphrase"
+                />
+
+            <Button
+                android:id="@+id/btn_continue"
+                style="@style/ButtonAppTheme.Primary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/form_vert_padding_small"
+                android:layout_marginLeft="@dimen/form_hor_padding_btn"
+                android:layout_marginRight="@dimen/form_hor_padding_btn"
+                android:text="@string/do_continue"
+                />
+
+        </com.circlegate.liban.view.PaddedLinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</merge>

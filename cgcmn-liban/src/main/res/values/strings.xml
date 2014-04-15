@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="warning">Warning</string>
+    <string name="error">Error</string>
+    <string name="detail">Detail</string>
+
+    <string name="loading">Loading…</string>
+
+    <string name="err_unknown_error">An unknown error has occurred!</string>
+    <string name="err_server_error">Server returned an error</string>
+    <string name="err_connection_error_communication">Error while communicating with the server.\nPlease check your Internet connection.</string>
+    <string name="err_connection_error_unexpected_res">Error while communicating with the server.\nServer returned an unexpected result.</string>
+    <string name="err_file_error">An error occurred with the downloaded file.\nPlease verify you have enough free storage space on your device.</string>
+    <string name="err_login_error">Login error</string>
+</resources>

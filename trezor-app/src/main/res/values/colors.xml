@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary_normal">#79C018</color> <!-- 0E509A #87CE26-->
+    <color name="primary_light">#ABED4A</color> <!-- 0E509A -->
+    <color name="primary_dark">#549B00</color> <!-- 0E509A -->
+
+
+    <color name="accent_normal">@color/primary_normal</color> <!-- #FEE01A FDD835-->
+    <color name="accent2_normal">@color/primary_normal</color> <!-- #00A9FF puvodne #00C5F6  #00B0FF-->
+    <!--<color name="accent_dark">#E0C501</color>-->
+    <!--<color name="accent_light">#FFF18C</color>-->
+
+    <color name="selected_overlay">#2000B0FF</color>
+
+    <color name="secondary_xdark">#0B1B27</color>
+    <color name="secondary_dark">#263642</color> <!-- #32424E -->
+    <color name="secondary_normal">#C6C6C6</color>
+    <color name="secondary_normal_light">#D6D6D6</color>
+    <color name="secondary_light">#E6E6E6</color> <!-- E5E5E5 -->
+    <color name="secondary_xlight">#F5F5F6</color>
+
+    <color name="popup_bg_dark">#DD222222</color>
+
+    <color name="green">#43A047</color>
+    <color name="orange">#FFAB00</color>
+    <color name="red">#E53935</color>
+
+    <color name="orange_bg">#FDD835</color> <!-- #FFCC80 -->
+
+    <color name="green_highlight">#43A047</color>
+    <color name="orange_highlight">#FFAB00</color>
+    <color name="red_highlight">#FF1744</color>
+
+    <color name="ic_color_darker_light">#757575</color>
+    <color name="ic_color_light">#808080</color>
+    <color name="ic_color_light_xdark">#333333</color>
+    <color name="ic_color_light_pressed">#333333</color>
+    <color name="ic_color_dark_theme">#FFFFFF</color>
+    <color name="ic_color_dark_pressed">#AAFFFFFF</color>
+    <color name="ic_color_highlight">@color/accent2_normal</color>
+
+    <color name="state_pressed_dark">#40CCCCCC</color>
+    <color name="state_long_pressed_dark">#81F0F0F0</color>
+    <color name="state_focused_dark">#20CCCCCC</color>
+    <color name="state_disabled_dark">#80000000</color>
+    <color name="state_activated_dark">#55CCCCCC</color>
+
+    <color name="state_pressed_light">#32999999</color>
+    <color name="state_long_pressed_light">#4C4F4F4F</color>
+    <color name="state_focused_light">#18999999</color>
+    <color name="state_disabled_light">#1F000000</color>
+    <color name="state_activated_light">#554F4F4F</color>
+
+    <color name="ripple_material_dark">#40ffffff</color>
+    <color name="ripple_material_light">#40000000</color>
+
+    <color name="text_primary">#333333</color>
+    <color name="text_primary2">#666666</color>
+    <color name="text_secondary">#999999</color>
+    <color name="text_tertiary">#BDBDBD</color>
+    <color name="text_hint">@color/text_tertiary</color>
+    <color name="text_shadow">#13375B</color>
+    <color name="text_loading">@color/primary_light</color>
+    <color name="text_inverse_primary">#FFFFFF</color>
+    <color name="text_problem">@color/red_highlight</color> <!-- FF0707 -->
+    <color name="text_warning">@color/orange_highlight</color> <!-- 449342 -->
+    <color name="text_ok">@color/green_highlight</color>
+
+    <color name="divider">@color/secondary_normal</color>
+    <color name="divider_inverse">#40FFFFFF</color>
+
+    <color name="action_bar_primary">#FFFFFF</color> <!-- puvodne #fff3f3f3 -->
+    <color name="action_bar_secondary">#A0FFFFFF</color>
+    <color name="action_bar_tertiary">#7FFFFFFF</color>
+    <color name="action_bar_action_icon">@color/action_bar_primary</color>
+
+    <color name="btn_flat_text">@color/text_primary</color>
+    <color name="btn_flat_accent_text">@color/accent2_normal</color>
+    <color name="btn_raised_text">@color/accent2_normal</color>
+    <color name="btn_raised_primary_bg">@color/primary_normal</color>
+    <color name="btn_raised_primary_text">@android:color/white</color>
+    <color name="btn_raised_accent_bg">@color/accent2_normal</color>
+    <color name="btn_raised_accent_text">@android:color/white</color>
+
+    <color name="dialog_message_text">@color/text_primary</color>
+    <color name="dialog_title_text">@color/text_primary</color>
+    <color name="dialog_title_separator">@color/divider</color>
+    <color name="dialog_button_text">@color/btn_flat_accent_text_selector</color>
+    <color name="dialog_button_text_primary">@color/btn_flat_accent_text_selector</color>
+    <color name="dialog_button_pressed">@color/state_pressed_light</color>
+    <color name="dialog_button_focused">@color/state_focused_light</color>
+    <color name="dialog_button_separator">@color/divider</color> <!-- 7% opacity -->
+</resources>

@@ -1,0 +1,1 @@
+include ':android-styled-dialog', ':cgcmn-liban', ':trezor-lib', ':trezor-app'

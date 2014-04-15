@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <bool name="nav_drawer_permanent">false</bool>
+    <style name="NavDrawerStyle" >
+        <item name="android:background">@drawable/bg_drawer_hideable</item>
+    </style>
+
+    <style name="AppTheme.NavBar" parent="AppTheme.NavBarHideable" />
+
+    <dimen name="btn_pin_width">80dp</dimen>
+    <dimen name="btn_pin_height">48dp</dimen>
+</resources>

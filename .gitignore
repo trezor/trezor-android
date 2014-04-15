@@ -1,0 +1,15 @@
+.DS_Store
+*.iml
+/.gradle
+/.idea
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+/build
+/captures
+/trezor-app/trezor-app-keystore.jks
+/trezor-app/*.apk
+/android-styled-dialog/build
+/cgcmn-liban/build
+/trezor-app/build
+/trezor-lib/build

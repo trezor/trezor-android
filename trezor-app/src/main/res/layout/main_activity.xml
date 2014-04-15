@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<!--<LinearLayout-->
+    <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:orientation="vertical">-->
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:visibility="visible"
+        />
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nested_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:visibility="visible"
+        >
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/root_disconnected"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="10"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/form_vert_padding"
+                    android:paddingLeft="@dimen/form_hor_padding"
+                    android:paddingRight="@dimen/form_hor_padding"
+                    android:gravity="center"
+                    android:text="@string/main_activity_get_started_title"
+                    android:textSize="@dimen/text_display_1"
+                    android:textColor="@color/text_primary"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/form_vert_padding"
+                    android:layout_marginBottom="@dimen/line_height_small"
+                    android:paddingLeft="@dimen/form_hor_padding"
+                    android:paddingRight="@dimen/form_hor_padding"
+                    android:gravity="center"
+                    android:text="@string/main_activity_get_started_text"
+                    android:textSize="@dimen/text_subhead"
+                    android:textColor="@color/text_primary"
+                    />
+
+                <ImageView
+                    android:id="@+id/logo_trezor"
+                    android:layout_width="120dp"
+                    android:layout_height="108dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/form_vert_padding"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/trezor_icon"
+                    android:tint="@color/text_primary"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="15"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/root_connected"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/btn_launch_mycelium"
+                    layout="@layout/main_activity_button" />
+
+                <View style="@style/Divider" />
+
+                <include
+                    android:id="@+id/btn_change_label"
+                    layout="@layout/main_activity_button" />
+
+                <View style="@style/Divider" />
+
+                <include
+                    android:id="@+id/btn_change_homescreen"
+                    layout="@layout/main_activity_button" />
+
+
+
+                <include
+                    android:id="@+id/txt_security_setup"
+                    layout="@layout/main_activity_section_header" />
+
+                <include
+                    android:id="@+id/switch_pin"
+                    layout="@layout/main_activity_switch" />
+
+                <View style="@style/Divider" />
+
+                <include
+                    android:id="@+id/btn_change_pin"
+                    layout="@layout/main_activity_button" />
+
+                <View style="@style/Divider" />
+
+                <include
+                    android:id="@+id/switch_passphrase"
+                    layout="@layout/main_activity_switch" />
+
+
+
+                <include
+                    android:id="@+id/txt_device_setup"
+                    layout="@layout/main_activity_section_header" />
+
+                <include
+                    android:id="@+id/btn_firmware_version"
+                    layout="@layout/main_activity_button" />
+
+                <!--<View style="@style/Divider" />-->
+
+                <!--<include-->
+                <!--android:id="@+id/btn_forget_device"-->
+                <!--layout="@layout/main_activity_button" />-->
+
+                <View style="@style/Divider" />
+
+                <include
+                    android:id="@+id/btn_wipe_device"
+                    layout="@layout/main_activity_button" />
+
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <include layout="@layout/firmware_upgrade_button" />
+
+</merge>

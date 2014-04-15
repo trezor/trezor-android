@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scroll_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <com.circlegate.liban.view.BoundedLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/form_hor_padding"
+        android:paddingTop="@dimen/form_vert_padding_big"
+        android:paddingRight="@dimen/form_hor_padding"
+        android:paddingBottom="@dimen/form_vert_padding_big"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:maxWidth="260dp"
+        android:minWidth="260dp" >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="16"
+            />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/ic_launcher"
+            tools:ignore="ContentDescription"
+            />
+        <!--app:srcCompat="@drawable/trezor_icon"-->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/form_vert_padding_small"
+            android:text="@string/app_name"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:gravity="center_horizontal"
+            tools:ignore="SpUsage"/>
+
+        <TextView
+            android:id="@+id/txt_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1.0.0"
+            android:textSize="@dimen/text_body_1"
+            android:textColor="@color/text_primary2"
+            android:gravity="center_horizontal"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="38dp"
+            android:text="@string/about_app_by"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_subhead_large"
+            android:gravity="center_horizontal" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/satoshilabs_logo"
+            android:scaleType="centerInside"
+            tools:ignore="ContentDescription" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="30"
+            />
+
+    </com.circlegate.liban.view.BoundedLinearLayout>
+</android.support.v4.widget.NestedScrollView>

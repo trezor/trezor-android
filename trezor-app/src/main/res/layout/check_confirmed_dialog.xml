@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/sdl__text_hor_padding"
+        android:paddingRight="@dimen/sdl__text_hor_padding"
+        android:paddingTop="@dimen/sdl__text_top_padding_small"
+        android:paddingBottom="0dp"
+        android:clipToPadding="false">
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_body_1"
+            android:text="@string/main_activity_disable_pin_prompt"
+            android:textColor="@color/dialog_message_text"
+            android:textColorLink="@color/primary_normal"
+            />
+
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginLeft="-6dp"
+            android:text="@string/i_understand"
+            android:textColor="@color/dialog_message_text"
+            android:textSize="@dimen/text_body_1"
+            />
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

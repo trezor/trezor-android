@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="sdl__text_top_padding_small">8dp</dimen>
+    <dimen name="sdl__text_bottom_padding_small">8dp</dimen>
+    <dimen name="sdl__text_top_padding_big">16dp</dimen>
+    <dimen name="sdl__text_bottom_padding_big">16dp</dimen>
+
+    <dimen name="sdl__title_top_padding">18dp</dimen>
+    <dimen name="sdl__title_bottom_padding">8dp</dimen>
+
+    <dimen name="sdl__button_height">48dp</dimen>
+    <dimen name="sdl__button_panel_vert_padding">10dp</dimen>
+
+</resources>

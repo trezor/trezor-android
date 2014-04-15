@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/TextStyleBody"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="8dp"
+    android:paddingLeft="@dimen/form_hor_padding_bullet"
+    android:text="gn btzu nbrm gbtverzn rctmzgu bdrnitfm g ngzu bdr mg,h, minbd "
+    android:drawableLeft="@drawable/bullet"
+    android:drawablePadding="12dp"
+    />

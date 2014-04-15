@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txt_title"
+        style="@style/SDL.Title"
+        android:text="@string/enter_pin_new_prompt"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:clipChildren="false">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clipChildren="false">
+
+            <TextView
+                android:id="@+id/txt_text"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="@dimen/sdl__text_hor_padding"
+                android:layout_marginRight="@dimen/sdl__text_hor_padding"
+                android:layout_marginTop="@dimen/sdl__text_top_padding_small"
+                android:layout_marginBottom="@dimen/sdl__text_bottom_padding_small"
+                android:minHeight="40dp"
+                android:textColor="@color/dialog_message_text"
+                android:text="@string/enter_pin_text_repeat"
+                />
+
+            <TableLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/sdl__text_hor_padding"
+                android:layout_marginRight="@dimen/sdl__text_hor_padding"
+                >
+
+                <TableRow>
+
+                    <ImageButton
+                        android:id="@+id/button7"
+                        style="@style/ButtonAppTheme.Pin"/>
+
+                    <ImageButton
+                        android:id="@+id/button8"
+                        style="@style/ButtonAppTheme.Pin" />
+
+                    <ImageButton
+                        android:id="@+id/button9"
+                        style="@style/ButtonAppTheme.Pin" />
+                </TableRow>
+
+                <TableRow>
+
+                    <ImageButton
+                        android:id="@+id/button4"
+                        style="@style/ButtonAppTheme.Pin" />
+
+                    <ImageButton
+                        android:id="@+id/button5"
+                        style="@style/ButtonAppTheme.Pin" />
+
+                    <ImageButton
+                        android:id="@+id/button6"
+                        style="@style/ButtonAppTheme.Pin" />
+                </TableRow>
+
+                <TableRow>
+
+                    <ImageButton
+                        android:id="@+id/button1"
+                        style="@style/ButtonAppTheme.Pin" />
+
+                    <ImageButton
+                        android:id="@+id/button2"
+                        style="@style/ButtonAppTheme.Pin" />
+
+                    <ImageButton
+                        android:id="@+id/button3"
+                        style="@style/ButtonAppTheme.Pin" />
+                </TableRow>
+
+            </TableLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:paddingLeft="18dp"
+                android:paddingRight="11dp"
+                android:gravity="center_vertical"
+                >
+
+                <TextView
+                    android:id="@+id/txt_pin_stars"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="123456789"
+                    android:textColor="@color/text_primary"
+                    android:maxLength="9"
+                    android:textSize="36dp"
+                    android:inputType="numberPassword"
+                    android:gravity="center_vertical"
+                    android:freezesText="true"
+                    />
+
+                <ImageButton
+                    android:id="@+id/btn_backspace"
+                    style="@style/ButtonAppTheme.Borderless"
+                    android:layout_width="@dimen/column_width_normal"
+                    android:layout_height="@dimen/line_height_small_normal"
+                    app:srcCompat="@drawable/ic_backspace_black_24dp"
+                    android:scaleType="center"
+                    android:tint="@color/text_primary"
+                    />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txt_pin_strength"
+                style="@style/SDL.Message"
+                android:layout_width="match_parent"
+                android:minHeight="0dp"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
+                android:paddingLeft="24dp"
+                android:text="@string/enter_pin_strength_weak"
+                android:visibility="visible"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingBottom="4dp"
+                android:gravity="right">
+
+                <Button
+                    android:id="@+id/btn_cancel"
+                    style="@style/SDL.Button"
+                    android:text="@string/cancel"
+                    />
+
+                <Button
+                    android:id="@+id/btn_confirm"
+                    style="@style/SDL.Button"
+                    android:layout_marginLeft="8dp"
+                    android:text="@string/confirm"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

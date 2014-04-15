@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <bool name="nav_drawer_permanent">true</bool>
+    <style name="NavDrawerStyle" >
+        <item name="android:background">@drawable/bg_drawer_permanent</item>
+    </style>
+
+    <style name="AppTheme.NavBar" />
+</resources>

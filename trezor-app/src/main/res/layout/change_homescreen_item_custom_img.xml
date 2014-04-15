@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <Button
+        android:id="@+id/btn_pick_custom_img"
+        style="@style/ButtonAppTheme.Primary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/form_hor_padding_btn"
+        android:layout_marginRight="@dimen/form_hor_padding_btn"
+        android:layout_marginTop="@dimen/form_vert_padding_small"
+        android:minWidth="220dp"
+        android:text="@string/change_homescreen_pick_custom_img"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_primary"
+        android:text="@string/change_homescreen_custom_img_advice"
+        android:layout_marginLeft="@dimen/form_hor_padding"
+        android:layout_marginRight="@dimen/form_hor_padding"
+        android:layout_marginTop="@dimen/form_vert_padding_small"
+        />
+
+    <View
+        style="@style/Divider.Medium"
+        android:layout_marginTop="@dimen/form_vert_padding_small"
+        android:layout_marginBottom="@dimen/form_vert_padding_small"
+        />
+
+    <!--<TextView-->
+        <!--style="@style/TextStyleBody"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:paddingTop="@dimen/form_vert_padding_small"-->
+        <!--android:text="@string/change_homescreen_select_image_from_list"-->
+        <!--android:textColor="@color/text_primary"-->
+        <!--android:textSize="@dimen/text_subhead_large"-->
+        <!--/>-->
+
+</LinearLayout>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item >
+        <shape>
+            <solid android:color="@color/orange_bg" />
+
+            <!--<stroke android:color="@color/orange"-->
+                    <!--android:width="2dp" />-->
+        </shape>
+    </item>
+
+    <item android:drawable="@drawable/list_selector_holo_light" />
+</layer-list>

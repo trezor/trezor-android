@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txt_title"
+        style="@style/SDL.Title"
+        android:text="@string/enter_passphrase_title"
+        />
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:clipChildren="false">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipChildren="false">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_pass1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                >
+
+                <EditText
+                    android:id="@+id/edit_text_pass1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/enter_passphrase_hint1"
+                    android:inputType="textPassword"
+                    android:textColor="@color/text_primary_selector"
+                    android:text=""
+                    />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_pass2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                >
+
+                <EditText
+                    android:id="@+id/edit_text_pass2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/enter_passphrase_hint2"
+                    android:inputType="textPassword"
+                    android:textColor="@color/text_primary_selector"
+                    android:text=""
+                    />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingBottom="4dp"
+                android:gravity="right">
+
+                <ImageButton
+                    android:id="@+id/btn_passphrase_visibility"
+                    style="@style/ButtonAppTheme.Borderless"
+                    android:layout_width="@dimen/column_width_normal"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/ic_visibility_black_24dp"
+                    />
+
+                <android.support.v4.widget.Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    />
+
+                <Button
+                    android:id="@+id/btn_cancel"
+                    style="@style/SDL.Button"
+                    android:text="@string/cancel"
+                    />
+
+                <Button
+                    android:id="@+id/btn_confirm"
+                    style="@style/SDL.Button"
+                    android:layout_marginLeft="8dp"
+                    android:text="@string/confirm"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

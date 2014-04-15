@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Button
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/ButtonAppTheme.Borderless"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="@dimen/line_height_large"
+    android:gravity="left|center_vertical"
+    android:text="Show XPUBs"
+    android:textColor="@color/text_primary_selector"
+    android:textSize="@dimen/text_subhead"
+    android:fontFamily="sans-serif"
+    android:paddingLeft="@dimen/form_hor_padding"
+    android:paddingRight="@dimen/form_hor_padding"
+    android:paddingTop="@dimen/form_vert_padding_small"
+    android:paddingBottom="@dimen/form_vert_padding_small"
+    />

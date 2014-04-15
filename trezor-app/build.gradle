@@ -1,0 +1,58 @@
+//buildscript {
+//    repositories {
+//        maven { url 'https://maven.fabric.io/public' }
+//    }
+//
+//    dependencies {
+//        classpath 'io.fabric.tools:gradle:1.+'
+//    }
+//}
+apply plugin: 'com.android.application'
+//apply plugin: 'io.fabric'
+
+//repositories {
+//    maven { url 'https://maven.fabric.io/public' }
+//}
+
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.1"
+
+    defaultConfig {
+        applicationId "io.trezor.app"
+        minSdkVersion 15
+        targetSdkVersion 24
+        versionCode 4
+        versionName "1.0.0"
+        vectorDrawables.useSupportLibrary true
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("trezor-app-keystore.jks")
+            keyAlias "trezor-app"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            zipAlignEnabled true
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:24.0.0'
+    compile 'com.android.support:design:24.0.0'
+    compile project(':trezor-lib')
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha6'
+    compile 'com.google.zxing:core:3.2.1'
+//    compile('com.crashlytics.sdk.android:crashlytics:2.6.1@aar') {
+//        transitive = true;
+//    }
+}

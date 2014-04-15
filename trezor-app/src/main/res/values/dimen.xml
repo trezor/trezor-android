@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_button">14sp</dimen>
+    <dimen name="text_menu">14sp</dimen>
+    <dimen name="text_caption">12sp</dimen>
+    <dimen name="text_body_1">14sp</dimen>
+    <dimen name="text_body_2">14sp</dimen>
+    <dimen name="text_subhead">16sp</dimen>
+    <dimen name="text_subhead_large">18sp</dimen>
+    <dimen name="text_title">20sp</dimen>
+    <dimen name="text_headline">24sp</dimen>
+    <dimen name="text_display_1">34sp</dimen>
+    <dimen name="text_display_2">45sp</dimen>
+
+    <dimen name="line_height_xsmall">24dp</dimen>
+    <dimen name="line_height_small">36dp</dimen>
+    <dimen name="line_height_small_normal">42dp</dimen>
+    <dimen name="line_height_normal">48dp</dimen>
+    <dimen name="line_height_large">56dp</dimen>
+    <dimen name="line_height_xlarge">64dp</dimen>
+    <dimen name="line_height_xxlarge">72dp</dimen>
+    <dimen name="line_height_card_header_small">28dp</dimen>
+    <dimen name="line_height_card_header_big">42dp</dimen>
+    <dimen name="line_height_card_header_big_wt_top_padding">52dp</dimen>
+
+    <dimen name="column_width_xsmall">24dp</dimen>
+    <dimen name="column_width_small">36dp</dimen>
+    <dimen name="column_width_small_normal">42dp</dimen>
+    <dimen name="column_width_normal">48dp</dimen>
+    <dimen name="column_width_large">56dp</dimen>
+    <dimen name="column_width_xlarge">64dp</dimen>
+    <dimen name="column_width_xxlarge">72dp</dimen>
+
+    <dimen name="divider_width_thin">1px</dimen>
+    <dimen name="divider_width_medium">0.5dp</dimen>
+
+    <dimen name="card_out_hor_padding">6dp</dimen>
+    <dimen name="card_out_hor_padding_center">4dp</dimen>
+    <dimen name="card_out_vert_padding_wt_border">8dp</dimen>
+    <dimen name="card_out_vert_padding_top">6dp</dimen>
+    <dimen name="card_out_vert_padding_center">3dp</dimen>
+    <dimen name="card_out_vert_padding_bottom">5dp</dimen>
+
+    <dimen name="card_in_hor_padding">12dp</dimen>
+    <dimen name="card_in_hor_padding_negative">-12dp</dimen>
+    <dimen name="card_in_hor_padding_divider">8dp</dimen>
+    <dimen name="card_in_hor_padding_divider_wt_border">10dp</dimen>
+    <dimen name="card_in_vert_padding">8dp</dimen>
+    <dimen name="card_in_hor_padding_wt_border">14dp</dimen>
+    <dimen name="card_in_vert_padding_top_wt_border">10dp</dimen>
+    <dimen name="card_in_vert_padding_bottom_wt_border">11dp</dimen>
+
+    <dimen name="card_hor_border_padding">2dp</dimen>
+    <dimen name="card_top_border_padding">2dp</dimen>
+    <dimen name="card_bottom_border_padding">3dp</dimen>
+
+
+    <!-- Default insets (outer padding) around buttons -->
+    <dimen name="button_inset_vertical_material">6dp</dimen>
+    <dimen name="button_inset_horizontal_material">@dimen/control_inset_material</dimen>
+    <!-- Default inner padding within buttons -->
+    <dimen name="button_padding_vertical_material">@dimen/control_padding_material</dimen>
+    <dimen name="button_padding_horizontal_material">8dp</dimen>
+
+    <!-- Default insets (outer padding) around controls -->
+    <dimen name="control_inset_material">4dp</dimen>
+    <!-- Default inner padding within controls -->
+    <dimen name="control_padding_material">4dp</dimen>
+    <!-- Default rounded corner for controls -->
+    <dimen name="control_corner_material">2dp</dimen>
+
+
+    <dimen name="nav_drawer_width">260dp</dimen>
+    <dimen name="nav_drawer_top_height">120dp</dimen>
+
+    <dimen name="max_screen_width">600dp</dimen>
+    <dimen name="max_screen_width_narrow">480dp</dimen>
+
+    <dimen name="app_bar_height">168dp</dimen>
+
+    <dimen name="form_hor_padding">20dp</dimen>
+    <dimen name="form_hor_padding_bullet">22dp</dimen>
+    <dimen name="form_hor_padding_btn">18dp</dimen>
+    <dimen name="form_hor_padding_edit_text">16dp</dimen>
+    <dimen name="form_hor_padding_check">13dp</dimen>
+    <dimen name="form_vert_padding">20dp</dimen>
+    <dimen name="form_vert_padding_small">12dp</dimen>
+    <dimen name="form_vert_padding_below_subhead">10dp</dimen>
+    <dimen name="form_vert_padding_min">4dp</dimen>
+    <dimen name="form_vert_padding_big">28dp</dimen>
+
+    <dimen name="homescreen_img_padding_outer_hor">8dp</dimen>
+    <dimen name="homescreen_img_padding_outer_vert">6dp</dimen>
+    <dimen name="homescreen_img_padding_inner">4dp</dimen>
+</resources>

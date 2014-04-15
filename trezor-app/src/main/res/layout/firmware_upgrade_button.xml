@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Button xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/btn_firmware_upgrade_avail"
+        style="@style/ButtonAppTheme.Borderless"
+        android:textAllCaps="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_firmware_upgrade_avail"
+        android:text="@string/firmware_upgrade_avail"
+        android:textSize="@dimen/text_body_1"
+        android:textColor="@color/text_primary"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="@dimen/form_hor_padding"
+        android:paddingRight="@dimen/form_hor_padding"
+        android:paddingTop="@dimen/form_vert_padding_small"
+        android:paddingBottom="@dimen/form_vert_padding_small"
+        android:stateListAnimator="@null"
+        android:elevation="5dp"
+    />
+
+    <!---->

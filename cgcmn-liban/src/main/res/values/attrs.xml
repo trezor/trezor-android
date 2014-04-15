@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>    
+    <declare-styleable name="LibTheme">
+        <attr name="lib_loadingViewStyle" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="BoundedView">
+        <attr name="android:maxWidth" />
+        <attr name="android:maxHeight" />
+    </declare-styleable>
+
+    <declare-styleable name="PaddedView">
+        <attr name="maxPaddedWidth" format="dimension" />
+        <attr name="paddedAlign" format="enum" >
+            <enum name="center" value="0"/>
+            <enum name="left" value="1"/>
+            <enum name="right" value="2"/>
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="LoadingView">
+        <attr name="android:text" />
+        <attr name="android:textColor" />
+        <attr name="android:textSize" />
+        <attr name="progressBarVisible" format="boolean" />
+        <attr name="progressBarMarginTop" format="dimension" />
+        <attr name="progressBarMarginBottom" format="dimension" />
+        <attr name="textMarginFromProgressBar" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="ScrimInsetsView">
+        <attr name="insetForeground" format="reference|color" />
+    </declare-styleable>
+</resources>

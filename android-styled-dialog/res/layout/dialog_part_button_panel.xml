@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialog_button_panel"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="@dimen/sdl__button_panel_vert_padding"
+    android:paddingBottom="@dimen/sdl__button_panel_vert_padding"
+    android:gravity="right"
+    android:orientation="horizontal"
+	>
+
+</LinearLayout>

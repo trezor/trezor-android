@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.RecyclerView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/recycler_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/homescreen_img_padding_outer_hor"
+    android:paddingRight="@dimen/homescreen_img_padding_outer_hor"
+    android:paddingTop="@dimen/homescreen_img_padding_outer_vert"
+    android:paddingBottom="@dimen/homescreen_img_padding_outer_vert"
+    android:clipToPadding="false"
+    />

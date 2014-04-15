@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/sdl__listview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:divider="@drawable/dialog_button_separator"
+    />
+
+    <!--
+    android:fadeScrollbars="true"
+    android:cacheColorHint="@null"
+    android:background="@android:color/transparent"
+    android:listSelector="@android:color/transparent"
+    android:fastScrollEnabled="true"
+    -->

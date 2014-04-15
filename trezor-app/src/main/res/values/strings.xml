@@ -1,0 +1,130 @@
+<resources>
+    <string name="app_name">TREZOR Manager</string>
+
+    <string name="support_email_subject">TREZOR Manager - problem</string>
+
+    <string name="help_title">Help</string>
+    <string name="support_title">Support &amp; feedback</string>
+    <string name="about_title">About TREZOR Manager</string>
+    <string name="trezor_setup">TREZOR Setup</string>
+    <string name="trezor_recovery">TREZOR Recovery</string>
+
+    <string name="do_continue">Continue</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+    <string name="ok">OK</string>
+    <string name="back">Back</string>
+
+    <string name="confirm_action_on_trezor">Please confirm the action on your device</string>
+    <string name="i_understand">I understand</string>
+
+    <!-- TREZOR Errors -->
+    <string name="trezor_err_not_connected">TREZOR device is not connected!</string>
+    <string name="trezor_err_needs_permission">App needs permission to access TREZOR</string>
+    <string name="trezor_err_communication_error">Error while communicating with TREZOR device</string>
+    <string name="trezor_err_unexpected_response">Unexpected response from TREZOR</string>
+
+    <!-- MAIN ACTIVITY -->
+    <string name="main_activity_get_started_title">Get started!</string>
+    <string name="main_activity_get_started_text">Connect your TREZOR\ndevice now</string>
+    <string name="main_activity_launch_mycelium">Launch Mycelium Wallet</string>
+    <string name="main_activity_show_xpubs">Show account public keys (XPUB)</string>
+    <string name="main_activity_change_label">Change label</string>
+    <string name="main_activity_change_label_prompt">Enter new device label:</string>
+    <string name="main_activity_change_homescreen">Change homescreen</string>
+    <string name="main_activity_security_setup">Security setup</string>
+    <string name="main_activity_pin">PIN protection</string>
+    <string name="main_activity_change_pin">Change PIN</string>
+    <string name="main_activity_disable_pin">Disable PIN</string>
+    <string name="main_activity_disable_pin_prompt">Using PIN protection is highly recommended. PIN prevents unauthorized persons from stealing your bitcoins even when they get physical access to your device.</string>
+    <string name="main_activity_passphrase_title">Passphrase encryption</string>
+    <string name="main_activity_passphrase_text">Allows you to access new wallets, each hidden behind a particular passphrase. Your old accounts will be accessible behind an empty passphrase</string>
+    <string name="main_activity_disable_passphrase_prompt">If you disable the passphrase encryption, your current funds will not appear. You will have to enable the passphrase encryption again to see your current wallet</string> <!-- <a href="https://doc.satoshilabs.com/trezor-user/advanced_settings.html#using-passphrase-encrypted-seeds">Learn more</a> -->
+    <string name="main_activity_disable_passphrase">Disable passphrase</string>
+    <string name="main_activity_device_setup">Device setup</string>
+    <string name="main_activity_firmware_version">Firmware version: <b>^d^</b></string>
+    <string name="main_activity_forget_device_title">Forget device</string>
+    <string name="main_activity_forget_device_text">Forgetting only removes the device from this app, your bitcoins are still safe and you can access them by reconnecting your TREZOR again</string>
+    <string name="main_activity_forget_device_prompt">Do you want to forget your device?\n\nForgetting only removes the device from the list on the left, your bitcoins are still safe and you can access them by reconnecting your TREZOR again</string>
+    <string name="main_activity_wipe_device_title">Wipe device</string>
+    <string name="main_activity_wipe_device_text">Wiping the device <b>removes all its information</b>\nUse this feature only if you have your Recovery Seed or you don\'t have any coins on your device</string>
+    <string name="main_activity_wipe_device_prompt_text">All data on your device will be deleted, this action cannot be undone!\n\nNever do this action with TREZOR holding coins unless you have your recovery seed at hand!</string>
+    <string name="main_activity_disconnect_to_apply_setting">Disconnect your TREZOR now to apply changed settings</string>
+    <string name="main_activity_disconnect_now">Disconnect your TREZOR</string>
+
+    <!-- INIT TREZOR -->
+    <string name="init_trezor_title">Welcome to TREZOR Setup!</string>
+    <string name="init_trezor_text">Please take your time to read all of the instructions\n\nSetting up your TREZOR will take only a few minutes. When you\'re done, you can start using your TREZOR.</string>
+    <string name="init_trezor_device_label_hint">Device label</string>
+    <string name="init_trezor_device_label_default">My TREZOR</string>
+    <string name="init_trezor_restore_text">Want to restore your wallet from recovery seed?</string>
+
+    <!-- ENTER PIN -->
+    <string name="enter_pin_current_prompt">Please enter current PIN</string>
+    <string name="enter_pin_new_prompt">Please enter new PIN</string>
+    <string name="enter_pin_repeat_prompt">Please repeat new PIN</string>
+    <string name="enter_pin_text">Look at the device for number positions</string>
+    <string name="enter_pin_text_repeat">Note that the positions of numbers shown on the device have changed!</string>
+    <string name="enter_pin_strength_weak">Weak</string>
+    <string name="enter_pin_strength_fine">Fine</string>
+    <string name="enter_pin_strength_strong">Strong</string>
+    <string name="enter_pin_strength_ultimate">Ultimate</string>
+
+    <!-- RECOVERY SEED SETUP -->
+    <string name="recovery_seed_setup_title">Recovery seed setup</string>
+    <string name="recovery_seed_setup_text_write">We will now show you 24 words that will allow you to recover your accounts in case you lose your device\n\n<b>Please write down all these words carefully</b></string>
+    <string name="recovery_seed_setup_text_check">We will now show you the 24 words again\n\n<b>Please check carefully that you wrote them down correctly</b></string>
+    <string name="recovery_seed_setup_word_num_above_write">Please write down the</string>
+    <string name="recovery_seed_setup_word_num_above_check">Please check the</string>
+    <string name="recovery_seed_setup_word_num_below_write">word of your recovery seed</string>
+    <string name="recovery_seed_setup_word_num_below_check">word of your recovery seed</string>
+
+    <!-- XPUB -->
+    <string name="xpub_activity_title">XPUBs</string>
+    <string name="xpub_title">Account public keys - XPUBs</string>
+    <string name="xpub_text"><b>Be careful with your XPUBs</b>. When you give them to a third party, you allow it to see your whole transaction history. <a href="https://doc.satoshilabs.com/trezor-user/basic_settings.html#viewing-xpubs">Learn more</a></string>
+
+    <!-- CHANGE HOMESCREEN -->
+    <string name="change_homescreen_pick_custom_img">Pick custom image</string>
+    <string name="change_homescreen_custom_img_advice">For best results pick a 124x64 black and white image (not grayscale)</string>
+    <string name="change_homescreen_select_image_from_list">or, select image from a list:</string>
+
+    <!-- ENTER PASSPHRASE -->
+    <string name="enter_passphrase_title">Please enter your passphrase</string>
+    <string name="enter_passphrase_hint1">Passphrase</string>
+    <string name="enter_passphrase_hint2">Re-type for control</string>
+    <string name="enter_passphrase_no_match">Passphrases do not match</string>
+
+    <!-- TREZOR RECOVERY INIT -->
+    <string name="trezor_recovery_init_seed_length">Number of words in you recovery seed</string>
+    <string name="trezor_recovery_init_enable_pin">Enable PIN protection</string>
+    <string name="trezor_recovery_init_enable_passphrase">Additional passphrase encryption</string>
+
+    <!-- TREZOR RECOVERY SEED -->
+    <string name="trezor_recovery_seed_hint">Enter seed word</string>
+    <string name="trezor_recovery_seed_text">Please <b>follow the instructions on your device.</b>\nWords are going to be entered in shuffled order\n\nSeed words entered so far:</string>
+
+    <!-- ABOUT -->
+    <string name="about_app_by">by</string>
+
+    <!-- FIRMWARE UPGRADE -->
+    <string name="firmware_upgrade_avail">Firmware upgrade available\nTap to show details</string>
+    <string name="firmware_upgrade_activity_title">Firmware upgrade</string>
+    <string name="firmware_upgrade_title_outdated">Your device firmware is outdated</string>
+    <string name="firmware_upgrade_title_upgrade">Do you want to update the device firmware?</string>
+    <string name="firmware_upgrade_device_version">Device firmware version:</string>
+    <string name="firmware_upgrade_avail_version">Available version:</string>
+    <string name="firmware_upgrade_instructions_title">To update the firmware:</string>
+    <string name="firmware_upgrade_instructions_text">1. disconnect the device\n2. plug it in while holding both device buttons pressed\n\nFor more information, visit the <a href="https://doc.satoshilabs.com/trezor-user/updatingfirmware.html">user manual</a>\n\nTo enjoy full functionality and security of your device, we strongly recommend you to update</string>
+    <string name="firmware_upgrade_initialized_title">Caution!</string>
+    <string name="firmware_upgrade_initialized_text"><b>Your TREZOR is already initialized. Check that you have your Recovery seed with you before updating the firmware!</b>\n\nIn very rare cases, a firmware update might result in the need to recover the wallet from Recovery seed</string>
+    <string name="firmware_upgrade_yes_update">Yes, update</string>
+    <string name="firmware_upgrade_changelog">Changelog:</string>
+    <string name="firmware_upgrade_progress">Uploading firmware…\nIf asked, please confirm the update on your device</string>
+    <string name="firmware_upgrade_fingerprint_title">Firmware fingerprint</string>
+    <string name="firmware_upgrade_fingerprint_text">Make sure the same fingerprint is displayed on the device screen</string>
+    <string name="firmware_upgrade_success">Update was successful\nPlease unplug the device now</string>
+    <string name="firmware_upgrade_failed">Update failed!\nPlease unplug the device now</string>
+
+
+</resources>

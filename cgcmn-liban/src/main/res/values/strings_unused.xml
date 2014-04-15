@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="voice_recognition_not_available">Rozpoznávání hlasu není dostupné</string>
+
+    <string name="err_google_zero_results">Žádné výsledky</string>
+    <string name="err_google_over_query_limit">Byl vyčerpán limit počtu dotazů na webovou službu</string>
+    <string name="err_google_request_denied">Požadavek na webovou službu byl zamítnut</string>
+    <string name="err_google_invalid_request">Požadavek na webovou službu je chybný</string>
+    <string name="err_google_max_elements_exceeded">Při hledání vzdáleností bodů přes webovou službu byl překročen maximální počet hledaných dvojic</string>
+    <string name="err_google_not_found">Webová služba vrátila výsledek: Nenalezeno</string>
+    <string name="err_google_max_waypoint_exceeded">Při hledání trasy na mapě byl překročen maximální počet průjezdních míst</string>
+</resources>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/sdl__text_hor_padding"
+        android:paddingRight="@dimen/sdl__text_hor_padding"
+        android:paddingTop="@dimen/sdl__text_top_padding_small"
+        android:paddingBottom="0dp"
+        android:clipToPadding="false">
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_body_1"
+            android:text="@string/firmware_upgrade_fingerprint_text"
+            android:textColor="@color/dialog_message_text"
+            android:textColorLink="@color/primary_normal"
+            />
+
+        <TextView
+            android:id="@+id/txt_fingerprint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/form_vert_padding"
+            android:layout_marginBottom="@dimen/form_vert_padding_big"
+            android:textSize="@dimen/text_body_1"
+            android:text="023456789123456\n123456789123456\n123456789123456\n123456789123456"
+            android:textColor="@android:color/white"
+            android:typeface="monospace"
+            android:background="@android:color/black"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            />
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>
