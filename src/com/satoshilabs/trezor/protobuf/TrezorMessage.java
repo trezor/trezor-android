@@ -10830,7 +10830,7 @@ public final class TrezorMessage {
 
       public com.satoshilabs.trezor.protobuf.TrezorMessage.GetPublicKey buildPartial() {
         com.satoshilabs.trezor.protobuf.TrezorMessage.GetPublicKey result = new com.satoshilabs.trezor.protobuf.TrezorMessage.GetPublicKey(this);
-        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+		if (((bitField0_ & 0x00000001) == 0x00000001)) {
           addressN_ = java.util.Collections.unmodifiableList(addressN_);
           bitField0_ = (bitField0_ & ~0x00000001);
         }
@@ -22354,6 +22354,7 @@ public final class TrezorMessage {
    * <pre>
    **
    * Request: Ask device to sign transaction
+   * @next PassphraseRequest
    * @next PinMatrixRequest
    * @next TxRequest
    * @next Failure
@@ -22703,6 +22704,7 @@ public final class TrezorMessage {
      * <pre>
      **
      * Request: Ask device to sign transaction
+     * @next PassphraseRequest
      * @next PinMatrixRequest
      * @next TxRequest
      * @next Failure
@@ -23231,6 +23233,7 @@ public final class TrezorMessage {
    * Request: Simplified transaction signing
    * This method doesn't support streaming, so there are hardware limits in number of inputs and outputs.
    * In case of success, the result is returned using TxRequest message.
+   * @next PassphraseRequest
    * @next PinMatrixRequest
    * @next TxRequest
    * @next Failure
@@ -23744,6 +23747,7 @@ public final class TrezorMessage {
      * Request: Simplified transaction signing
      * This method doesn't support streaming, so there are hardware limits in number of inputs and outputs.
      * In case of success, the result is returned using TxRequest message.
+     * @next PassphraseRequest
      * @next PinMatrixRequest
      * @next TxRequest
      * @next Failure
@@ -25058,27 +25062,9 @@ public final class TrezorMessage {
   public interface TxRequestOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
-    // optional uint32 request_index = 1;
+    // optional .RequestType request_type = 1;
     /**
-     * <code>optional uint32 request_index = 1;</code>
-     *
-     * <pre>
-     * device expects TxAck message from the computer
-     * </pre>
-     */
-    boolean hasRequestIndex();
-    /**
-     * <code>optional uint32 request_index = 1;</code>
-     *
-     * <pre>
-     * device expects TxAck message from the computer
-     * </pre>
-     */
-    int getRequestIndex();
-
-    // optional .RequestType request_type = 2;
-    /**
-     * <code>optional .RequestType request_type = 2;</code>
+     * <code>optional .RequestType request_type = 1;</code>
      *
      * <pre>
      * what should be filled in TxAck message?
@@ -25086,7 +25072,7 @@ public final class TrezorMessage {
      */
     boolean hasRequestType();
     /**
-     * <code>optional .RequestType request_type = 2;</code>
+     * <code>optional .RequestType request_type = 1;</code>
      *
      * <pre>
      * what should be filled in TxAck message?
@@ -25094,95 +25080,57 @@ public final class TrezorMessage {
      */
     com.satoshilabs.trezor.protobuf.TrezorType.RequestType getRequestType();
 
-    // optional uint32 signature_index = 3;
+    // optional .TxRequestDetailsType details = 2;
     /**
-     * <code>optional uint32 signature_index = 3;</code>
+     * <code>optional .TxRequestDetailsType details = 2;</code>
      *
      * <pre>
-     * 'signature' field contains signed input of this index
+     * request for tx details
      * </pre>
      */
-    boolean hasSignatureIndex();
+    boolean hasDetails();
     /**
-     * <code>optional uint32 signature_index = 3;</code>
+     * <code>optional .TxRequestDetailsType details = 2;</code>
      *
      * <pre>
-     * 'signature' field contains signed input of this index
+     * request for tx details
      * </pre>
      */
-    int getSignatureIndex();
+    com.satoshilabs.trezor.protobuf.TrezorType.TxRequestDetailsType getDetails();
+    /**
+     * <code>optional .TxRequestDetailsType details = 2;</code>
+     *
+     * <pre>
+     * request for tx details
+     * </pre>
+     */
+    com.satoshilabs.trezor.protobuf.TrezorType.TxRequestDetailsTypeOrBuilder getDetailsOrBuilder();
 
-    // optional bytes signature = 4;
+    // optional .TxRequestSerializedType serialized = 3;
     /**
-     * <code>optional bytes signature = 4;</code>
+     * <code>optional .TxRequestSerializedType serialized = 3;</code>
      *
      * <pre>
-     * signature of the signature_index input
+     * serialized data and request for next
      * </pre>
      */
-    boolean hasSignature();
+    boolean hasSerialized();
     /**
-     * <code>optional bytes signature = 4;</code>
+     * <code>optional .TxRequestSerializedType serialized = 3;</code>
      *
      * <pre>
-     * signature of the signature_index input
+     * serialized data and request for next
      * </pre>
      */
-    com.google.protobuf.ByteString getSignature();
-
-    // optional bytes serialized_tx = 5;
+    com.satoshilabs.trezor.protobuf.TrezorType.TxRequestSerializedType getSerialized();
     /**
-     * <code>optional bytes serialized_tx = 5;</code>
+     * <code>optional .TxRequestSerializedType serialized = 3;</code>
      *
      * <pre>
-     * part of serialized and signed transaction
+     * serialized data and request for next
      * </pre>
      */
-    boolean hasSerializedTx();
-    /**
-     * <code>optional bytes serialized_tx = 5;</code>
-     *
-     * <pre>
-     * part of serialized and signed transaction
-     * </pre>
-     */
-    com.google.protobuf.ByteString getSerializedTx();
-
-    // optional bytes tx_hash = 6;
-    /**
-     * <code>optional bytes tx_hash = 6;</code>
-     *
-     * <pre>
-     * tx_hash of requested transaction
-     * </pre>
-     */
-    boolean hasTxHash();
-    /**
-     * <code>optional bytes tx_hash = 6;</code>
-     *
-     * <pre>
-     * tx_hash of requested transaction
-     * </pre>
-     */
-    com.google.protobuf.ByteString getTxHash();
-
-    // optional bool finished = 7;
-    /**
-     * <code>optional bool finished = 7;</code>
-     *
-     * <pre>
-     * is this the last TxRequest?
-     * </pre>
-     */
-    boolean hasFinished();
-    /**
-     * <code>optional bool finished = 7;</code>
-     *
-     * <pre>
-     * is this the last TxRequest?
-     * </pre>
-     */
-    boolean getFinished();
+    com.satoshilabs.trezor.protobuf.TrezorType.TxRequestSerializedTypeOrBuilder getSerializedOrBuilder();
   }
   /**
    * Protobuf type {@code TxRequest}
@@ -25245,44 +25193,40 @@ public final class TrezorMessage {
               break;
             }
             case 8: {
-              bitField0_ |= 0x00000001;
-              requestIndex_ = input.readUInt32();
-              break;
-            }
-            case 16: {
               int rawValue = input.readEnum();
               com.satoshilabs.trezor.protobuf.TrezorType.RequestType value = com.satoshilabs.trezor.protobuf.TrezorType.RequestType.valueOf(rawValue);
               if (value == null) {
-                unknownFields.mergeVarintField(2, rawValue);
+                unknownFields.mergeVarintField(1, rawValue);
               } else {
-                bitField0_ |= 0x00000002;
+                bitField0_ |= 0x00000001;
                 requestType_ = value;
               }
               break;
             }
-            case 24: {
+            case 18: {
+              com.satoshilabs.trezor.protobuf.TrezorType.TxRequestDetailsType.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000002) == 0x00000002)) {
+                subBuilder = details_.toBuilder();
+              }
+              details_ = input.readMessage(com.satoshilabs.trezor.protobuf.TrezorType.TxRequestDetailsType.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(details_);
+                details_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000002;
+              break;
+            }
+            case 26: {
+              com.satoshilabs.trezor.protobuf.TrezorType.TxRequestSerializedType.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000004) == 0x00000004)) {
+                subBuilder = serialized_.toBuilder();
+              }
+              serialized_ = input.readMessage(com.satoshilabs.trezor.protobuf.TrezorType.TxRequestSerializedType.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(serialized_);
+                serialized_ = subBuilder.buildPartial();
+              }
               bitField0_ |= 0x00000004;
-              signatureIndex_ = input.readUInt32();
-              break;
-            }
-            case 34: {
-              bitField0_ |= 0x00000008;
-              signature_ = input.readBytes();
-              break;
-            }
-            case 42: {
-              bitField0_ |= 0x00000010;
-              serializedTx_ = input.readBytes();
-              break;
-            }
-            case 50: {
-              bitField0_ |= 0x00000020;
-              txHash_ = input.readBytes();
-              break;
-            }
-            case 56: {
-              bitField0_ |= 0x00000040;
-              finished_ = input.readBool();
               break;
             }
           }
@@ -25325,45 +25269,21 @@ public final class TrezorMessage {
     }
 
     private int bitField0_;
-    // optional uint32 request_index = 1;
-    public static final int REQUEST_INDEX_FIELD_NUMBER = 1;
-    private int requestIndex_;
-    /**
-     * <code>optional uint32 request_index = 1;</code>
-     *
-     * <pre>
-     * device expects TxAck message from the computer
-     * </pre>
-     */
-    public boolean hasRequestIndex() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    /**
-     * <code>optional uint32 request_index = 1;</code>
-     *
-     * <pre>
-     * device expects TxAck message from the computer
-     * </pre>
-     */
-    public int getRequestIndex() {
-      return requestIndex_;
-    }
-
-    // optional .RequestType request_type = 2;
-    public static final int REQUEST_TYPE_FIELD_NUMBER = 2;
+    // optional .RequestType request_type = 1;
+    public static final int REQUEST_TYPE_FIELD_NUMBER = 1;
     private com.satoshilabs.trezor.protobuf.TrezorType.RequestType requestType_;
     /**
-     * <code>optional .RequestType request_type = 2;</code>
+     * <code>optional .RequestType request_type = 1;</code>
      *
      * <pre>
      * what should be filled in TxAck message?
      * </pre>
      */
     public boolean hasRequestType() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
+      return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>optional .RequestType request_type = 2;</code>
+     * <code>optional .RequestType request_type = 1;</code>
      *
      * <pre>
      * what should be filled in TxAck message?
@@ -25373,134 +25293,78 @@ public final class TrezorMessage {
       return requestType_;
     }
 
-    // optional uint32 signature_index = 3;
-    public static final int SIGNATURE_INDEX_FIELD_NUMBER = 3;
-    private int signatureIndex_;
+    // optional .TxRequestDetailsType details = 2;
+    public static final int DETAILS_FIELD_NUMBER = 2;
+    private com.satoshilabs.trezor.protobuf.TrezorType.TxRequestDetailsType details_;
     /**
-     * <code>optional uint32 signature_index = 3;</code>
+     * <code>optional .TxRequestDetailsType details = 2;</code>
      *
      * <pre>
-     * 'signature' field contains signed input of this index
+     * request for tx details
      * </pre>
      */
-    public boolean hasSignatureIndex() {
+    public boolean hasDetails() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional .TxRequestDetailsType details = 2;</code>
+     *
+     * <pre>
+     * request for tx details
+     * </pre>
+     */
+    public com.satoshilabs.trezor.protobuf.TrezorType.TxRequestDetailsType getDetails() {
+      return details_;
+    }
+    /**
+     * <code>optional .TxRequestDetailsType details = 2;</code>
+     *
+     * <pre>
+     * request for tx details
+     * </pre>
+     */
+    public com.satoshilabs.trezor.protobuf.TrezorType.TxRequestDetailsTypeOrBuilder getDetailsOrBuilder() {
+      return details_;
+    }
+
+    // optional .TxRequestSerializedType serialized = 3;
+    public static final int SERIALIZED_FIELD_NUMBER = 3;
+    private com.satoshilabs.trezor.protobuf.TrezorType.TxRequestSerializedType serialized_;
+    /**
+     * <code>optional .TxRequestSerializedType serialized = 3;</code>
+     *
+     * <pre>
+     * serialized data and request for next
+     * </pre>
+     */
+    public boolean hasSerialized() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
-     * <code>optional uint32 signature_index = 3;</code>
+     * <code>optional .TxRequestSerializedType serialized = 3;</code>
      *
      * <pre>
-     * 'signature' field contains signed input of this index
+     * serialized data and request for next
      * </pre>
      */
-    public int getSignatureIndex() {
-      return signatureIndex_;
-    }
-
-    // optional bytes signature = 4;
-    public static final int SIGNATURE_FIELD_NUMBER = 4;
-    private com.google.protobuf.ByteString signature_;
-    /**
-     * <code>optional bytes signature = 4;</code>
-     *
-     * <pre>
-     * signature of the signature_index input
-     * </pre>
-     */
-    public boolean hasSignature() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
+    public com.satoshilabs.trezor.protobuf.TrezorType.TxRequestSerializedType getSerialized() {
+      return serialized_;
     }
     /**
-     * <code>optional bytes signature = 4;</code>
+     * <code>optional .TxRequestSerializedType serialized = 3;</code>
      *
      * <pre>
-     * signature of the signature_index input
+     * serialized data and request for next
      * </pre>
      */
-    public com.google.protobuf.ByteString getSignature() {
-      return signature_;
-    }
-
-    // optional bytes serialized_tx = 5;
-    public static final int SERIALIZED_TX_FIELD_NUMBER = 5;
-    private com.google.protobuf.ByteString serializedTx_;
-    /**
-     * <code>optional bytes serialized_tx = 5;</code>
-     *
-     * <pre>
-     * part of serialized and signed transaction
-     * </pre>
-     */
-    public boolean hasSerializedTx() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
-    }
-    /**
-     * <code>optional bytes serialized_tx = 5;</code>
-     *
-     * <pre>
-     * part of serialized and signed transaction
-     * </pre>
-     */
-    public com.google.protobuf.ByteString getSerializedTx() {
-      return serializedTx_;
-    }
-
-    // optional bytes tx_hash = 6;
-    public static final int TX_HASH_FIELD_NUMBER = 6;
-    private com.google.protobuf.ByteString txHash_;
-    /**
-     * <code>optional bytes tx_hash = 6;</code>
-     *
-     * <pre>
-     * tx_hash of requested transaction
-     * </pre>
-     */
-    public boolean hasTxHash() {
-      return ((bitField0_ & 0x00000020) == 0x00000020);
-    }
-    /**
-     * <code>optional bytes tx_hash = 6;</code>
-     *
-     * <pre>
-     * tx_hash of requested transaction
-     * </pre>
-     */
-    public com.google.protobuf.ByteString getTxHash() {
-      return txHash_;
-    }
-
-    // optional bool finished = 7;
-    public static final int FINISHED_FIELD_NUMBER = 7;
-    private boolean finished_;
-    /**
-     * <code>optional bool finished = 7;</code>
-     *
-     * <pre>
-     * is this the last TxRequest?
-     * </pre>
-     */
-    public boolean hasFinished() {
-      return ((bitField0_ & 0x00000040) == 0x00000040);
-    }
-    /**
-     * <code>optional bool finished = 7;</code>
-     *
-     * <pre>
-     * is this the last TxRequest?
-     * </pre>
-     */
-    public boolean getFinished() {
-      return finished_;
+    public com.satoshilabs.trezor.protobuf.TrezorType.TxRequestSerializedTypeOrBuilder getSerializedOrBuilder() {
+      return serialized_;
     }
 
     private void initFields() {
-      requestIndex_ = 0;
       requestType_ = com.satoshilabs.trezor.protobuf.TrezorType.RequestType.TXINPUT;
-      signatureIndex_ = 0;
-      signature_ = com.google.protobuf.ByteString.EMPTY;
-      serializedTx_ = com.google.protobuf.ByteString.EMPTY;
-      txHash_ = com.google.protobuf.ByteString.EMPTY;
-      finished_ = false;
+      details_ = com.satoshilabs.trezor.protobuf.TrezorType.TxRequestDetailsType.getDefaultInstance();
+      serialized_ = com.satoshilabs.trezor.protobuf.TrezorType.TxRequestSerializedType.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -25515,25 +25379,13 @@ public final class TrezorMessage {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeUInt32(1, requestIndex_);
+        output.writeEnum(1, requestType_.getNumber());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeEnum(2, requestType_.getNumber());
+        output.writeMessage(2, details_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeUInt32(3, signatureIndex_);
-      }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeBytes(4, signature_);
-      }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeBytes(5, serializedTx_);
-      }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        output.writeBytes(6, txHash_);
-      }
-      if (((bitField0_ & 0x00000040) == 0x00000040)) {
-        output.writeBool(7, finished_);
+        output.writeMessage(3, serialized_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -25546,31 +25398,15 @@ public final class TrezorMessage {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(1, requestIndex_);
+          .computeEnumSize(1, requestType_.getNumber());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(2, requestType_.getNumber());
+          .computeMessageSize(2, details_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(3, signatureIndex_);
-      }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(4, signature_);
-      }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(5, serializedTx_);
-      }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(6, txHash_);
-      }
-      if (((bitField0_ & 0x00000040) == 0x00000040)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(7, finished_);
+          .computeMessageSize(3, serialized_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -25690,6 +25526,8 @@ public final class TrezorMessage {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getDetailsFieldBuilder();
+          getSerializedFieldBuilder();
         }
       }
       private static Builder create() {
@@ -25698,20 +25536,20 @@ public final class TrezorMessage {
 
       public Builder clear() {
         super.clear();
-        requestIndex_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
         requestType_ = com.satoshilabs.trezor.protobuf.TrezorType.RequestType.TXINPUT;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        if (detailsBuilder_ == null) {
+          details_ = com.satoshilabs.trezor.protobuf.TrezorType.TxRequestDetailsType.getDefaultInstance();
+        } else {
+          detailsBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000002);
-        signatureIndex_ = 0;
+        if (serializedBuilder_ == null) {
+          serialized_ = com.satoshilabs.trezor.protobuf.TrezorType.TxRequestSerializedType.getDefaultInstance();
+        } else {
+          serializedBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000004);
-        signature_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000008);
-        serializedTx_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000010);
-        txHash_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000020);
-        finished_ = false;
-        bitField0_ = (bitField0_ & ~0x00000040);
         return this;
       }
 
@@ -25743,31 +25581,23 @@ public final class TrezorMessage {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.requestIndex_ = requestIndex_;
+        result.requestType_ = requestType_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.requestType_ = requestType_;
+        if (detailsBuilder_ == null) {
+          result.details_ = details_;
+        } else {
+          result.details_ = detailsBuilder_.build();
+        }
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.signatureIndex_ = signatureIndex_;
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
+        if (serializedBuilder_ == null) {
+          result.serialized_ = serialized_;
+        } else {
+          result.serialized_ = serializedBuilder_.build();
         }
-        result.signature_ = signature_;
-        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
-          to_bitField0_ |= 0x00000010;
-        }
-        result.serializedTx_ = serializedTx_;
-        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
-          to_bitField0_ |= 0x00000020;
-        }
-        result.txHash_ = txHash_;
-        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
-          to_bitField0_ |= 0x00000040;
-        }
-        result.finished_ = finished_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -25784,26 +25614,14 @@ public final class TrezorMessage {
 
       public Builder mergeFrom(com.satoshilabs.trezor.protobuf.TrezorMessage.TxRequest other) {
         if (other == com.satoshilabs.trezor.protobuf.TrezorMessage.TxRequest.getDefaultInstance()) return this;
-        if (other.hasRequestIndex()) {
-          setRequestIndex(other.getRequestIndex());
-        }
         if (other.hasRequestType()) {
           setRequestType(other.getRequestType());
         }
-        if (other.hasSignatureIndex()) {
-          setSignatureIndex(other.getSignatureIndex());
+        if (other.hasDetails()) {
+          mergeDetails(other.getDetails());
         }
-        if (other.hasSignature()) {
-          setSignature(other.getSignature());
-        }
-        if (other.hasSerializedTx()) {
-          setSerializedTx(other.getSerializedTx());
-        }
-        if (other.hasTxHash()) {
-          setTxHash(other.getTxHash());
-        }
-        if (other.hasFinished()) {
-          setFinished(other.getFinished());
+        if (other.hasSerialized()) {
+          mergeSerialized(other.getSerialized());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -25832,69 +25650,20 @@ public final class TrezorMessage {
       }
       private int bitField0_;
 
-      // optional uint32 request_index = 1;
-      private int requestIndex_ ;
-      /**
-       * <code>optional uint32 request_index = 1;</code>
-       *
-       * <pre>
-       * device expects TxAck message from the computer
-       * </pre>
-       */
-      public boolean hasRequestIndex() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
-      /**
-       * <code>optional uint32 request_index = 1;</code>
-       *
-       * <pre>
-       * device expects TxAck message from the computer
-       * </pre>
-       */
-      public int getRequestIndex() {
-        return requestIndex_;
-      }
-      /**
-       * <code>optional uint32 request_index = 1;</code>
-       *
-       * <pre>
-       * device expects TxAck message from the computer
-       * </pre>
-       */
-      public Builder setRequestIndex(int value) {
-        bitField0_ |= 0x00000001;
-        requestIndex_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional uint32 request_index = 1;</code>
-       *
-       * <pre>
-       * device expects TxAck message from the computer
-       * </pre>
-       */
-      public Builder clearRequestIndex() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        requestIndex_ = 0;
-        onChanged();
-        return this;
-      }
-
-      // optional .RequestType request_type = 2;
+      // optional .RequestType request_type = 1;
       private com.satoshilabs.trezor.protobuf.TrezorType.RequestType requestType_ = com.satoshilabs.trezor.protobuf.TrezorType.RequestType.TXINPUT;
       /**
-       * <code>optional .RequestType request_type = 2;</code>
+       * <code>optional .RequestType request_type = 1;</code>
        *
        * <pre>
        * what should be filled in TxAck message?
        * </pre>
        */
       public boolean hasRequestType() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>optional .RequestType request_type = 2;</code>
+       * <code>optional .RequestType request_type = 1;</code>
        *
        * <pre>
        * what should be filled in TxAck message?
@@ -25904,7 +25673,7 @@ public final class TrezorMessage {
         return requestType_;
       }
       /**
-       * <code>optional .RequestType request_type = 2;</code>
+       * <code>optional .RequestType request_type = 1;</code>
        *
        * <pre>
        * what should be filled in TxAck message?
@@ -25914,277 +25683,329 @@ public final class TrezorMessage {
         if (value == null) {
           throw new NullPointerException();
         }
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000001;
         requestType_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional .RequestType request_type = 2;</code>
+       * <code>optional .RequestType request_type = 1;</code>
        *
        * <pre>
        * what should be filled in TxAck message?
        * </pre>
        */
       public Builder clearRequestType() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000001);
         requestType_ = com.satoshilabs.trezor.protobuf.TrezorType.RequestType.TXINPUT;
         onChanged();
         return this;
       }
 
-      // optional uint32 signature_index = 3;
-      private int signatureIndex_ ;
+      // optional .TxRequestDetailsType details = 2;
+      private com.satoshilabs.trezor.protobuf.TrezorType.TxRequestDetailsType details_ = com.satoshilabs.trezor.protobuf.TrezorType.TxRequestDetailsType.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.satoshilabs.trezor.protobuf.TrezorType.TxRequestDetailsType, com.satoshilabs.trezor.protobuf.TrezorType.TxRequestDetailsType.Builder, com.satoshilabs.trezor.protobuf.TrezorType.TxRequestDetailsTypeOrBuilder> detailsBuilder_;
       /**
-       * <code>optional uint32 signature_index = 3;</code>
+       * <code>optional .TxRequestDetailsType details = 2;</code>
        *
        * <pre>
-       * 'signature' field contains signed input of this index
+       * request for tx details
        * </pre>
        */
-      public boolean hasSignatureIndex() {
+      public boolean hasDetails() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional .TxRequestDetailsType details = 2;</code>
+       *
+       * <pre>
+       * request for tx details
+       * </pre>
+       */
+      public com.satoshilabs.trezor.protobuf.TrezorType.TxRequestDetailsType getDetails() {
+        if (detailsBuilder_ == null) {
+          return details_;
+        } else {
+          return detailsBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .TxRequestDetailsType details = 2;</code>
+       *
+       * <pre>
+       * request for tx details
+       * </pre>
+       */
+      public Builder setDetails(com.satoshilabs.trezor.protobuf.TrezorType.TxRequestDetailsType value) {
+        if (detailsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          details_ = value;
+          onChanged();
+        } else {
+          detailsBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .TxRequestDetailsType details = 2;</code>
+       *
+       * <pre>
+       * request for tx details
+       * </pre>
+       */
+      public Builder setDetails(
+          com.satoshilabs.trezor.protobuf.TrezorType.TxRequestDetailsType.Builder builderForValue) {
+        if (detailsBuilder_ == null) {
+          details_ = builderForValue.build();
+          onChanged();
+        } else {
+          detailsBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .TxRequestDetailsType details = 2;</code>
+       *
+       * <pre>
+       * request for tx details
+       * </pre>
+       */
+      public Builder mergeDetails(com.satoshilabs.trezor.protobuf.TrezorType.TxRequestDetailsType value) {
+        if (detailsBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002) &&
+              details_ != com.satoshilabs.trezor.protobuf.TrezorType.TxRequestDetailsType.getDefaultInstance()) {
+            details_ =
+              com.satoshilabs.trezor.protobuf.TrezorType.TxRequestDetailsType.newBuilder(details_).mergeFrom(value).buildPartial();
+          } else {
+            details_ = value;
+          }
+          onChanged();
+        } else {
+          detailsBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .TxRequestDetailsType details = 2;</code>
+       *
+       * <pre>
+       * request for tx details
+       * </pre>
+       */
+      public Builder clearDetails() {
+        if (detailsBuilder_ == null) {
+          details_ = com.satoshilabs.trezor.protobuf.TrezorType.TxRequestDetailsType.getDefaultInstance();
+          onChanged();
+        } else {
+          detailsBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+      /**
+       * <code>optional .TxRequestDetailsType details = 2;</code>
+       *
+       * <pre>
+       * request for tx details
+       * </pre>
+       */
+      public com.satoshilabs.trezor.protobuf.TrezorType.TxRequestDetailsType.Builder getDetailsBuilder() {
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return getDetailsFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .TxRequestDetailsType details = 2;</code>
+       *
+       * <pre>
+       * request for tx details
+       * </pre>
+       */
+      public com.satoshilabs.trezor.protobuf.TrezorType.TxRequestDetailsTypeOrBuilder getDetailsOrBuilder() {
+        if (detailsBuilder_ != null) {
+          return detailsBuilder_.getMessageOrBuilder();
+        } else {
+          return details_;
+        }
+      }
+      /**
+       * <code>optional .TxRequestDetailsType details = 2;</code>
+       *
+       * <pre>
+       * request for tx details
+       * </pre>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.satoshilabs.trezor.protobuf.TrezorType.TxRequestDetailsType, com.satoshilabs.trezor.protobuf.TrezorType.TxRequestDetailsType.Builder, com.satoshilabs.trezor.protobuf.TrezorType.TxRequestDetailsTypeOrBuilder> 
+          getDetailsFieldBuilder() {
+        if (detailsBuilder_ == null) {
+          detailsBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.satoshilabs.trezor.protobuf.TrezorType.TxRequestDetailsType, com.satoshilabs.trezor.protobuf.TrezorType.TxRequestDetailsType.Builder, com.satoshilabs.trezor.protobuf.TrezorType.TxRequestDetailsTypeOrBuilder>(
+                  details_,
+                  getParentForChildren(),
+                  isClean());
+          details_ = null;
+        }
+        return detailsBuilder_;
+      }
+
+      // optional .TxRequestSerializedType serialized = 3;
+      private com.satoshilabs.trezor.protobuf.TrezorType.TxRequestSerializedType serialized_ = com.satoshilabs.trezor.protobuf.TrezorType.TxRequestSerializedType.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.satoshilabs.trezor.protobuf.TrezorType.TxRequestSerializedType, com.satoshilabs.trezor.protobuf.TrezorType.TxRequestSerializedType.Builder, com.satoshilabs.trezor.protobuf.TrezorType.TxRequestSerializedTypeOrBuilder> serializedBuilder_;
+      /**
+       * <code>optional .TxRequestSerializedType serialized = 3;</code>
+       *
+       * <pre>
+       * serialized data and request for next
+       * </pre>
+       */
+      public boolean hasSerialized() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
-       * <code>optional uint32 signature_index = 3;</code>
+       * <code>optional .TxRequestSerializedType serialized = 3;</code>
        *
        * <pre>
-       * 'signature' field contains signed input of this index
+       * serialized data and request for next
        * </pre>
        */
-      public int getSignatureIndex() {
-        return signatureIndex_;
+      public com.satoshilabs.trezor.protobuf.TrezorType.TxRequestSerializedType getSerialized() {
+        if (serializedBuilder_ == null) {
+          return serialized_;
+        } else {
+          return serializedBuilder_.getMessage();
+        }
       }
       /**
-       * <code>optional uint32 signature_index = 3;</code>
+       * <code>optional .TxRequestSerializedType serialized = 3;</code>
        *
        * <pre>
-       * 'signature' field contains signed input of this index
+       * serialized data and request for next
        * </pre>
        */
-      public Builder setSignatureIndex(int value) {
+      public Builder setSerialized(com.satoshilabs.trezor.protobuf.TrezorType.TxRequestSerializedType value) {
+        if (serializedBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          serialized_ = value;
+          onChanged();
+        } else {
+          serializedBuilder_.setMessage(value);
+        }
         bitField0_ |= 0x00000004;
-        signatureIndex_ = value;
-        onChanged();
         return this;
       }
       /**
-       * <code>optional uint32 signature_index = 3;</code>
+       * <code>optional .TxRequestSerializedType serialized = 3;</code>
        *
        * <pre>
-       * 'signature' field contains signed input of this index
+       * serialized data and request for next
        * </pre>
        */
-      public Builder clearSignatureIndex() {
+      public Builder setSerialized(
+          com.satoshilabs.trezor.protobuf.TrezorType.TxRequestSerializedType.Builder builderForValue) {
+        if (serializedBuilder_ == null) {
+          serialized_ = builderForValue.build();
+          onChanged();
+        } else {
+          serializedBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000004;
+        return this;
+      }
+      /**
+       * <code>optional .TxRequestSerializedType serialized = 3;</code>
+       *
+       * <pre>
+       * serialized data and request for next
+       * </pre>
+       */
+      public Builder mergeSerialized(com.satoshilabs.trezor.protobuf.TrezorType.TxRequestSerializedType value) {
+        if (serializedBuilder_ == null) {
+          if (((bitField0_ & 0x00000004) == 0x00000004) &&
+              serialized_ != com.satoshilabs.trezor.protobuf.TrezorType.TxRequestSerializedType.getDefaultInstance()) {
+            serialized_ =
+              com.satoshilabs.trezor.protobuf.TrezorType.TxRequestSerializedType.newBuilder(serialized_).mergeFrom(value).buildPartial();
+          } else {
+            serialized_ = value;
+          }
+          onChanged();
+        } else {
+          serializedBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000004;
+        return this;
+      }
+      /**
+       * <code>optional .TxRequestSerializedType serialized = 3;</code>
+       *
+       * <pre>
+       * serialized data and request for next
+       * </pre>
+       */
+      public Builder clearSerialized() {
+        if (serializedBuilder_ == null) {
+          serialized_ = com.satoshilabs.trezor.protobuf.TrezorType.TxRequestSerializedType.getDefaultInstance();
+          onChanged();
+        } else {
+          serializedBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000004);
-        signatureIndex_ = 0;
-        onChanged();
-        return this;
-      }
-
-      // optional bytes signature = 4;
-      private com.google.protobuf.ByteString signature_ = com.google.protobuf.ByteString.EMPTY;
-      /**
-       * <code>optional bytes signature = 4;</code>
-       *
-       * <pre>
-       * signature of the signature_index input
-       * </pre>
-       */
-      public boolean hasSignature() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
-      }
-      /**
-       * <code>optional bytes signature = 4;</code>
-       *
-       * <pre>
-       * signature of the signature_index input
-       * </pre>
-       */
-      public com.google.protobuf.ByteString getSignature() {
-        return signature_;
-      }
-      /**
-       * <code>optional bytes signature = 4;</code>
-       *
-       * <pre>
-       * signature of the signature_index input
-       * </pre>
-       */
-      public Builder setSignature(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000008;
-        signature_ = value;
-        onChanged();
         return this;
       }
       /**
-       * <code>optional bytes signature = 4;</code>
+       * <code>optional .TxRequestSerializedType serialized = 3;</code>
        *
        * <pre>
-       * signature of the signature_index input
+       * serialized data and request for next
        * </pre>
        */
-      public Builder clearSignature() {
-        bitField0_ = (bitField0_ & ~0x00000008);
-        signature_ = getDefaultInstance().getSignature();
+      public com.satoshilabs.trezor.protobuf.TrezorType.TxRequestSerializedType.Builder getSerializedBuilder() {
+        bitField0_ |= 0x00000004;
         onChanged();
-        return this;
-      }
-
-      // optional bytes serialized_tx = 5;
-      private com.google.protobuf.ByteString serializedTx_ = com.google.protobuf.ByteString.EMPTY;
-      /**
-       * <code>optional bytes serialized_tx = 5;</code>
-       *
-       * <pre>
-       * part of serialized and signed transaction
-       * </pre>
-       */
-      public boolean hasSerializedTx() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+        return getSerializedFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional bytes serialized_tx = 5;</code>
+       * <code>optional .TxRequestSerializedType serialized = 3;</code>
        *
        * <pre>
-       * part of serialized and signed transaction
+       * serialized data and request for next
        * </pre>
        */
-      public com.google.protobuf.ByteString getSerializedTx() {
-        return serializedTx_;
+      public com.satoshilabs.trezor.protobuf.TrezorType.TxRequestSerializedTypeOrBuilder getSerializedOrBuilder() {
+        if (serializedBuilder_ != null) {
+          return serializedBuilder_.getMessageOrBuilder();
+        } else {
+          return serialized_;
+        }
       }
       /**
-       * <code>optional bytes serialized_tx = 5;</code>
+       * <code>optional .TxRequestSerializedType serialized = 3;</code>
        *
        * <pre>
-       * part of serialized and signed transaction
+       * serialized data and request for next
        * </pre>
        */
-      public Builder setSerializedTx(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000010;
-        serializedTx_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional bytes serialized_tx = 5;</code>
-       *
-       * <pre>
-       * part of serialized and signed transaction
-       * </pre>
-       */
-      public Builder clearSerializedTx() {
-        bitField0_ = (bitField0_ & ~0x00000010);
-        serializedTx_ = getDefaultInstance().getSerializedTx();
-        onChanged();
-        return this;
-      }
-
-      // optional bytes tx_hash = 6;
-      private com.google.protobuf.ByteString txHash_ = com.google.protobuf.ByteString.EMPTY;
-      /**
-       * <code>optional bytes tx_hash = 6;</code>
-       *
-       * <pre>
-       * tx_hash of requested transaction
-       * </pre>
-       */
-      public boolean hasTxHash() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
-      }
-      /**
-       * <code>optional bytes tx_hash = 6;</code>
-       *
-       * <pre>
-       * tx_hash of requested transaction
-       * </pre>
-       */
-      public com.google.protobuf.ByteString getTxHash() {
-        return txHash_;
-      }
-      /**
-       * <code>optional bytes tx_hash = 6;</code>
-       *
-       * <pre>
-       * tx_hash of requested transaction
-       * </pre>
-       */
-      public Builder setTxHash(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000020;
-        txHash_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional bytes tx_hash = 6;</code>
-       *
-       * <pre>
-       * tx_hash of requested transaction
-       * </pre>
-       */
-      public Builder clearTxHash() {
-        bitField0_ = (bitField0_ & ~0x00000020);
-        txHash_ = getDefaultInstance().getTxHash();
-        onChanged();
-        return this;
-      }
-
-      // optional bool finished = 7;
-      private boolean finished_ ;
-      /**
-       * <code>optional bool finished = 7;</code>
-       *
-       * <pre>
-       * is this the last TxRequest?
-       * </pre>
-       */
-      public boolean hasFinished() {
-        return ((bitField0_ & 0x00000040) == 0x00000040);
-      }
-      /**
-       * <code>optional bool finished = 7;</code>
-       *
-       * <pre>
-       * is this the last TxRequest?
-       * </pre>
-       */
-      public boolean getFinished() {
-        return finished_;
-      }
-      /**
-       * <code>optional bool finished = 7;</code>
-       *
-       * <pre>
-       * is this the last TxRequest?
-       * </pre>
-       */
-      public Builder setFinished(boolean value) {
-        bitField0_ |= 0x00000040;
-        finished_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional bool finished = 7;</code>
-       *
-       * <pre>
-       * is this the last TxRequest?
-       * </pre>
-       */
-      public Builder clearFinished() {
-        bitField0_ = (bitField0_ & ~0x00000040);
-        finished_ = false;
-        onChanged();
-        return this;
+      private com.google.protobuf.SingleFieldBuilder<
+          com.satoshilabs.trezor.protobuf.TrezorType.TxRequestSerializedType, com.satoshilabs.trezor.protobuf.TrezorType.TxRequestSerializedType.Builder, com.satoshilabs.trezor.protobuf.TrezorType.TxRequestSerializedTypeOrBuilder> 
+          getSerializedFieldBuilder() {
+        if (serializedBuilder_ == null) {
+          serializedBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.satoshilabs.trezor.protobuf.TrezorType.TxRequestSerializedType, com.satoshilabs.trezor.protobuf.TrezorType.TxRequestSerializedType.Builder, com.satoshilabs.trezor.protobuf.TrezorType.TxRequestSerializedTypeOrBuilder>(
+                  serialized_,
+                  getParentForChildren(),
+                  isClean());
+          serialized_ = null;
+        }
+        return serializedBuilder_;
       }
 
       // @@protoc_insertion_point(builder_scope:TxRequest)
@@ -31661,63 +31482,62 @@ public final class TrezorMessage {
       "tcoin\"\220\001\n\014SimpleSignTx\022\034\n\006inputs\030\001 \003(\0132\014" +
       ".TxInputType\022\036\n\007outputs\030\002 \003(\0132\r.TxOutput" +
       "Type\022&\n\014transactions\030\003 \003(\0132\020.Transaction" +
-      "Type\022\032\n\tcoin_name\030\004 \001(\t:\007Bitcoin\"\254\001\n\tTxR" +
-      "equest\022\025\n\rrequest_index\030\001 \001(\r\022\"\n\014request" +
-      "_type\030\002 \001(\0162\014.RequestType\022\027\n\017signature_i" +
-      "ndex\030\003 \001(\r\022\021\n\tsignature\030\004 \001(\014\022\025\n\rseriali" +
-      "zed_tx\030\005 \001(\014\022\017\n\007tx_hash\030\006 \001(\014\022\020\n\010finishe",
-      "d\030\007 \001(\010\"%\n\005TxAck\022\034\n\002tx\030\001 \001(\0132\020.Transacti" +
-      "onType\"\017\n\rFirmwareErase\"!\n\016FirmwareUploa" +
-      "d\022\017\n\007payload\030\001 \002(\014\"#\n\021DebugLinkDecision\022" +
-      "\016\n\006yes_no\030\001 \002(\010\"\023\n\021DebugLinkGetState\"\353\001\n" +
-      "\016DebugLinkState\022\016\n\006layout\030\001 \001(\014\022\013\n\003pin\030\002" +
-      " \001(\t\022\016\n\006matrix\030\003 \001(\t\022\020\n\010mnemonic\030\004 \001(\t\022\031" +
-      "\n\004node\030\005 \001(\0132\013.HDNodeType\022\035\n\025passphrase_" +
-      "protection\030\006 \001(\010\022\022\n\nreset_word\030\007 \001(\t\022\025\n\r" +
-      "reset_entropy\030\010 \001(\014\022\032\n\022recovery_fake_wor" +
-      "d\030\t \001(\t\022\031\n\021recovery_word_pos\030\n \001(\r\"\017\n\rDe",
-      "bugLinkStop\";\n\014DebugLinkLog\022\r\n\005level\030\001 \001" +
-      "(\r\022\016\n\006bucket\030\002 \001(\t\022\014\n\004text\030\003 \001(\t*\213\014\n\013Mes" +
-      "sageType\022 \n\026MessageType_Initialize\020\000\032\004\220\265" +
-      "\030\001\022\032\n\020MessageType_Ping\020\001\032\004\220\265\030\001\022\035\n\023Messag" +
-      "eType_Success\020\002\032\004\230\265\030\001\022\035\n\023MessageType_Fai" +
-      "lure\020\003\032\004\230\265\030\001\022\037\n\025MessageType_ChangePin\020\004\032" +
-      "\004\220\265\030\001\022 \n\026MessageType_WipeDevice\020\005\032\004\220\265\030\001\022" +
-      "#\n\031MessageType_FirmwareErase\020\006\032\004\220\265\030\001\022$\n\032" +
-      "MessageType_FirmwareUpload\020\007\032\004\220\265\030\001\022 \n\026Me" +
-      "ssageType_GetEntropy\020\t\032\004\220\265\030\001\022\035\n\023MessageT",
-      "ype_Entropy\020\n\032\004\230\265\030\001\022\"\n\030MessageType_GetPu" +
-      "blicKey\020\013\032\004\220\265\030\001\022\037\n\025MessageType_PublicKey" +
-      "\020\014\032\004\230\265\030\001\022 \n\026MessageType_LoadDevice\020\r\032\004\220\265" +
-      "\030\001\022!\n\027MessageType_ResetDevice\020\016\032\004\220\265\030\001\022\034\n" +
-      "\022MessageType_SignTx\020\017\032\004\220\265\030\001\022\"\n\030MessageTy" +
-      "pe_SimpleSignTx\020\020\032\004\220\265\030\001\022\036\n\024MessageType_F" +
-      "eatures\020\021\032\004\230\265\030\001\022&\n\034MessageType_PinMatrix" +
-      "Request\020\022\032\004\230\265\030\001\022\"\n\030MessageType_PinMatrix" +
-      "Ack\020\023\032\004\220\265\030\001\022\034\n\022MessageType_Cancel\020\024\032\004\220\265\030" +
-      "\001\022\037\n\025MessageType_TxRequest\020\025\032\004\230\265\030\001\022\033\n\021Me",
-      "ssageType_TxAck\020\026\032\004\220\265\030\001\022#\n\031MessageType_A" +
-      "pplySettings\020\031\032\004\220\265\030\001\022#\n\031MessageType_Butt" +
-      "onRequest\020\032\032\004\230\265\030\001\022\037\n\025MessageType_ButtonA" +
-      "ck\020\033\032\004\220\265\030\001\022 \n\026MessageType_GetAddress\020\035\032\004" +
-      "\220\265\030\001\022\035\n\023MessageType_Address\020\036\032\004\230\265\030\001\022$\n\032M" +
-      "essageType_EntropyRequest\020#\032\004\230\265\030\001\022 \n\026Mes" +
-      "sageType_EntropyAck\020$\032\004\220\265\030\001\022!\n\027MessageTy" +
-      "pe_SignMessage\020&\032\004\220\265\030\001\022#\n\031MessageType_Ve" +
-      "rifyMessage\020\'\032\004\220\265\030\001\022&\n\034MessageType_Messa" +
-      "geSignature\020(\032\004\230\265\030\001\022\'\n\035MessageType_Passp",
-      "hraseRequest\020)\032\004\230\265\030\001\022#\n\031MessageType_Pass" +
-      "phraseAck\020*\032\004\220\265\030\001\022$\n\032MessageType_Estimat" +
-      "eTxSize\020+\032\004\220\265\030\001\022\034\n\022MessageType_TxSize\020,\032" +
-      "\004\230\265\030\001\022$\n\032MessageType_RecoveryDevice\020-\032\004\220" +
-      "\265\030\001\022!\n\027MessageType_WordRequest\020.\032\004\230\265\030\001\022\035" +
-      "\n\023MessageType_WordAck\020/\032\004\220\265\030\001\022\'\n\035Message" +
-      "Type_DebugLinkDecision\020d\032\004\240\265\030\001\022\'\n\035Messag" +
-      "eType_DebugLinkGetState\020e\032\004\240\265\030\001\022$\n\032Messa" +
-      "geType_DebugLinkState\020f\032\004\250\265\030\001\022#\n\031Message" +
-      "Type_DebugLinkStop\020g\032\004\240\265\030\001\022\"\n\030MessageTyp",
-      "e_DebugLinkLog\020h\032\004\250\265\030\001B0\n\037com.satoshilab" +
-      "s.trezor.protobufB\rTrezorMessage"
+      "Type\022\032\n\tcoin_name\030\004 \001(\t:\007Bitcoin\"\205\001\n\tTxR" +
+      "equest\022\"\n\014request_type\030\001 \001(\0162\014.RequestTy" +
+      "pe\022&\n\007details\030\002 \001(\0132\025.TxRequestDetailsTy" +
+      "pe\022,\n\nserialized\030\003 \001(\0132\030.TxRequestSerial" +
+      "izedType\"%\n\005TxAck\022\034\n\002tx\030\001 \001(\0132\020.Transact",
+      "ionType\"\017\n\rFirmwareErase\"!\n\016FirmwareUplo" +
+      "ad\022\017\n\007payload\030\001 \002(\014\"#\n\021DebugLinkDecision" +
+      "\022\016\n\006yes_no\030\001 \002(\010\"\023\n\021DebugLinkGetState\"\353\001" +
+      "\n\016DebugLinkState\022\016\n\006layout\030\001 \001(\014\022\013\n\003pin\030" +
+      "\002 \001(\t\022\016\n\006matrix\030\003 \001(\t\022\020\n\010mnemonic\030\004 \001(\t\022" +
+      "\031\n\004node\030\005 \001(\0132\013.HDNodeType\022\035\n\025passphrase" +
+      "_protection\030\006 \001(\010\022\022\n\nreset_word\030\007 \001(\t\022\025\n" +
+      "\rreset_entropy\030\010 \001(\014\022\032\n\022recovery_fake_wo" +
+      "rd\030\t \001(\t\022\031\n\021recovery_word_pos\030\n \001(\r\"\017\n\rD" +
+      "ebugLinkStop\";\n\014DebugLinkLog\022\r\n\005level\030\001 ",
+      "\001(\r\022\016\n\006bucket\030\002 \001(\t\022\014\n\004text\030\003 \001(\t*\213\014\n\013Me" +
+      "ssageType\022 \n\026MessageType_Initialize\020\000\032\004\220" +
+      "\265\030\001\022\032\n\020MessageType_Ping\020\001\032\004\220\265\030\001\022\035\n\023Messa" +
+      "geType_Success\020\002\032\004\230\265\030\001\022\035\n\023MessageType_Fa" +
+      "ilure\020\003\032\004\230\265\030\001\022\037\n\025MessageType_ChangePin\020\004" +
+      "\032\004\220\265\030\001\022 \n\026MessageType_WipeDevice\020\005\032\004\220\265\030\001" +
+      "\022#\n\031MessageType_FirmwareErase\020\006\032\004\220\265\030\001\022$\n" +
+      "\032MessageType_FirmwareUpload\020\007\032\004\220\265\030\001\022 \n\026M" +
+      "essageType_GetEntropy\020\t\032\004\220\265\030\001\022\035\n\023Message" +
+      "Type_Entropy\020\n\032\004\230\265\030\001\022\"\n\030MessageType_GetP",
+      "ublicKey\020\013\032\004\220\265\030\001\022\037\n\025MessageType_PublicKe" +
+      "y\020\014\032\004\230\265\030\001\022 \n\026MessageType_LoadDevice\020\r\032\004\220" +
+      "\265\030\001\022!\n\027MessageType_ResetDevice\020\016\032\004\220\265\030\001\022\034" +
+      "\n\022MessageType_SignTx\020\017\032\004\220\265\030\001\022\"\n\030MessageT" +
+      "ype_SimpleSignTx\020\020\032\004\220\265\030\001\022\036\n\024MessageType_" +
+      "Features\020\021\032\004\230\265\030\001\022&\n\034MessageType_PinMatri" +
+      "xRequest\020\022\032\004\230\265\030\001\022\"\n\030MessageType_PinMatri" +
+      "xAck\020\023\032\004\220\265\030\001\022\034\n\022MessageType_Cancel\020\024\032\004\220\265" +
+      "\030\001\022\037\n\025MessageType_TxRequest\020\025\032\004\230\265\030\001\022\033\n\021M" +
+      "essageType_TxAck\020\026\032\004\220\265\030\001\022#\n\031MessageType_",
+      "ApplySettings\020\031\032\004\220\265\030\001\022#\n\031MessageType_But" +
+      "tonRequest\020\032\032\004\230\265\030\001\022\037\n\025MessageType_Button" +
+      "Ack\020\033\032\004\220\265\030\001\022 \n\026MessageType_GetAddress\020\035\032" +
+      "\004\220\265\030\001\022\035\n\023MessageType_Address\020\036\032\004\230\265\030\001\022$\n\032" +
+      "MessageType_EntropyRequest\020#\032\004\230\265\030\001\022 \n\026Me" +
+      "ssageType_EntropyAck\020$\032\004\220\265\030\001\022!\n\027MessageT" +
+      "ype_SignMessage\020&\032\004\220\265\030\001\022#\n\031MessageType_V" +
+      "erifyMessage\020\'\032\004\220\265\030\001\022&\n\034MessageType_Mess" +
+      "ageSignature\020(\032\004\230\265\030\001\022\'\n\035MessageType_Pass" +
+      "phraseRequest\020)\032\004\230\265\030\001\022#\n\031MessageType_Pas",
+      "sphraseAck\020*\032\004\220\265\030\001\022$\n\032MessageType_Estima" +
+      "teTxSize\020+\032\004\220\265\030\001\022\034\n\022MessageType_TxSize\020," +
+      "\032\004\230\265\030\001\022$\n\032MessageType_RecoveryDevice\020-\032\004" +
+      "\220\265\030\001\022!\n\027MessageType_WordRequest\020.\032\004\230\265\030\001\022" +
+      "\035\n\023MessageType_WordAck\020/\032\004\220\265\030\001\022\'\n\035Messag" +
+      "eType_DebugLinkDecision\020d\032\004\240\265\030\001\022\'\n\035Messa" +
+      "geType_DebugLinkGetState\020e\032\004\240\265\030\001\022$\n\032Mess" +
+      "ageType_DebugLinkState\020f\032\004\250\265\030\001\022#\n\031Messag" +
+      "eType_DebugLinkStop\020g\032\004\240\265\030\001\022\"\n\030MessageTy" +
+      "pe_DebugLinkLog\020h\032\004\250\265\030\001B0\n\037com.satoshila",
+      "bs.trezor.protobufB\rTrezorMessage"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -31939,7 +31759,7 @@ public final class TrezorMessage {
           internal_static_TxRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_TxRequest_descriptor,
-              new java.lang.String[] { "RequestIndex", "RequestType", "SignatureIndex", "Signature", "SerializedTx", "TxHash", "Finished", });
+              new java.lang.String[] { "RequestType", "Details", "Serialized", });
           internal_static_TxAck_descriptor =
             getDescriptor().getMessageTypes().get(36);
           internal_static_TxAck_fieldAccessorTable = new
