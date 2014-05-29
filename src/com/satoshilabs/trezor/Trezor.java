@@ -122,7 +122,8 @@ public class Trezor {
 	}
 
 	public GeneratedMessage send(GeneratedMessage msg) {
-		return msg; // TODO: proper send/receive mechanism
+		// TODO: proper send/receive mechanism intrWrite and intrRead
+		return msg;
 	}
 
 }
