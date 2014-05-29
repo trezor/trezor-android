@@ -1,5 +1,7 @@
 package com.satoshilabs.trezor;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -99,31 +101,53 @@ public class Trezor {
 		return "TREZOR(#" + this.serial + ")";
 	}
 
-	private void intrWrite(byte[] data) {
+	private void messageWrite(GeneratedMessage msg) throws IOException {
+		// prepare serialized message
+		int size = msg.getSerializedSize();
+		int id = 0;
+		ByteArrayOutputStream stream = new ByteArrayOutputStream(3 + 2 + 4 + size);
+		stream.write('?');
+		stream.write('#');
+		stream.write('#');
+		// message id (2 bytes big endian)
+		stream.write((id >> 8) & 0xFF);
+		stream.write(id & 0xFF);
+		// message size (4 bytes big endian)
+		stream.write((size >> 24) & 0xFF);
+		stream.write((size >> 16) & 0xFF);
+		stream.write((size >> 8) & 0xFF);
+		stream.write(size & 0xFF);
+		msg.writeTo(stream);
+		// send it via usb
 		int len = epw.getMaxPacketSize();
-		ByteBuffer buffer = ByteBuffer.allocate(len + 1);
-		buffer.put(data);
+		ByteBuffer buffer = ByteBuffer.allocate(len);
 		UsbRequest request = new UsbRequest();
 		request.initialize(conn, epw);
+		buffer.put(stream.toByteArray());
 		request.queue(buffer, len);
 		conn.requestWait();
 	}
 
-	private byte[] intrRead() {
+	private GeneratedMessage messageRead() {
 		int len = epr.getMaxPacketSize();
-		ByteBuffer buffer = ByteBuffer.allocate(len + 1);
+		ByteBuffer buffer = ByteBuffer.allocate(len);
 		UsbRequest request = new UsbRequest();
 		request.initialize(conn, epr);
 		request.queue(buffer, len);
 		conn.requestWait();
 		byte[] data = new byte[len];
 		buffer.get(data);
-		return data;
+		// TODO: parse data
+		return null;
 	}
 
 	public GeneratedMessage send(GeneratedMessage msg) {
-		// TODO: proper send/receive mechanism intrWrite and intrRead
-		return msg;
+		try {
+			messageWrite(msg);
+			return messageRead();
+		} catch (IOException e) {
+			return null;
+		}
 	}
 
 }
