@@ -24,6 +24,7 @@ public class Trezor {
 		UsbManager manager = (UsbManager)context.getSystemService(Context.USB_SERVICE);
 		HashMap<String, UsbDevice> deviceList = manager.getDeviceList();
 		Iterator<UsbDevice> deviceIterator = deviceList.values().iterator();
+
 		while (deviceIterator.hasNext()) {
 			UsbDevice device = deviceIterator.next();
 			// check if the device is TREZOR
@@ -41,11 +42,11 @@ public class Trezor {
 			UsbEndpoint epr = null, epw = null;
 			for (int i = 0; i < iface.getEndpointCount(); i++) {
 				UsbEndpoint ep = iface.getEndpoint(i);
-				if (epr == null && ep.getType() == UsbConstants.USB_ENDPOINT_XFER_INT && ep.getAddress() == 0x01) { // number = 1 ; dir = USB_DIR_OUT
+				if (epr == null && ep.getType() == UsbConstants.USB_ENDPOINT_XFER_INT && ep.getAddress() == 0x81) { // number = 1 ; dir = USB_DIR_IN
 					epr = ep;
 					continue;
 				}
-				if (epw == null && ep.getType() == UsbConstants.USB_ENDPOINT_XFER_INT && ep.getAddress() == 0x81) { // number = 1 ; dir = USB_DIR_IN
+				if (epw == null && ep.getType() == UsbConstants.USB_ENDPOINT_XFER_INT && ep.getAddress() == 0x01) { // number = 1 ; dir = USB_DIR_OUT
 					epw = ep;
 					continue;
 				}
@@ -103,9 +104,9 @@ public class Trezor {
 
 	private void messageWrite(GeneratedMessage msg) throws IOException {
 		// prepare serialized message
-		int size = msg.getSerializedSize();
-		int id = 0;
-		ByteArrayOutputStream stream = new ByteArrayOutputStream(3 + 2 + 4 + size);
+		int size = 3 + 2 + 4 + msg.getSerializedSize();
+		int id = 4; // TODO: assign correct msg_id
+		ByteArrayOutputStream stream = new ByteArrayOutputStream(size);
 		stream.write('?');
 		stream.write('#');
 		stream.write('#');
@@ -118,6 +119,10 @@ public class Trezor {
 		stream.write((size >> 8) & 0xFF);
 		stream.write(size & 0xFF);
 		msg.writeTo(stream);
+		while (size < 64) {
+			stream.write(0);
+			size++;
+		}
 		// send it via usb
 		int len = epw.getMaxPacketSize();
 		ByteBuffer buffer = ByteBuffer.allocate(len);
