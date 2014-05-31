@@ -1,12 +1,13 @@
 package com.satoshilabs.trezor;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.HashMap;
 import java.util.Iterator;
 
 import com.google.protobuf.GeneratedMessage;
+import com.satoshilabs.trezor.protobuf.TrezorMessage;
+import com.satoshilabs.trezor.protobuf.TrezorMessage.MessageType;
 
 import android.content.Context;
 import android.hardware.usb.UsbConstants;
@@ -33,7 +34,7 @@ public class Trezor {
 			}
 			Log.i("Trezor.getDevice()", "TREZOR device found");
 			if (device.getInterfaceCount() < 1) {
-				Log.e("Trezor", "Wrong interface count");
+				Log.e("Trezor.getDevice()", "Wrong interface count");
 				continue;
 			}
 			// use first interface
@@ -103,50 +104,75 @@ public class Trezor {
 	}
 
 	private void messageWrite(GeneratedMessage msg) throws IOException {
-		// prepare serialized message
-		int size = 3 + 2 + 4 + msg.getSerializedSize();
-		int id = 4; // TODO: assign correct msg_id
-		ByteArrayOutputStream stream = new ByteArrayOutputStream(size);
-		stream.write('?');
-		stream.write('#');
-		stream.write('#');
-		// message id (2 bytes big endian)
-		stream.write((id >> 8) & 0xFF);
-		stream.write(id & 0xFF);
-		// message size (4 bytes big endian)
-		stream.write((size >> 24) & 0xFF);
-		stream.write((size >> 16) & 0xFF);
-		stream.write((size >> 8) & 0xFF);
-		stream.write(size & 0xFF);
-		msg.writeTo(stream);
-		while (size < 64) {
-			stream.write(0);
-			size++;
+		int msg_size = msg.getSerializedSize();
+		String msg_name = msg.getClass().getSimpleName();
+		int msg_id = MessageType.valueOf("MessageType_" + msg_name).getNumber();
+		Log.i("Trezor.messageWrite()", String.format("Got message: %s (%d bytes)", msg_name, msg_size));
+		ByteBuffer data = ByteBuffer.allocate(32768);
+		data.put((byte)'#');
+		data.put((byte)'#');
+		data.put((byte)((msg_id >> 8) & 0xFF));
+		data.put((byte)(msg_id & 0xFF));
+		data.put((byte)((msg_size >> 24) & 0xFF));
+		data.put((byte)((msg_size >> 16) & 0xFF));
+		data.put((byte)((msg_size >> 8) & 0xFF));
+		data.put((byte)(msg_size & 0xFF));
+		data.put(msg.toByteArray());
+		while (data.position() % 63 > 0) {
+			data.put((byte)0);
 		}
-		// send it via usb
-		int len = epw.getMaxPacketSize();
-		ByteBuffer buffer = ByteBuffer.allocate(len);
 		UsbRequest request = new UsbRequest();
 		request.initialize(conn, epw);
-		buffer.put(stream.toByteArray());
-		request.queue(buffer, len);
-		conn.requestWait();
+		int chunks = data.position() / 63;
+		Log.i("Trezor.messageWrite()", String.format("Writing %d chunks", chunks));
+		data.rewind();
+		for (int i = 0; i < chunks; i++) {
+			byte[] buffer = new byte[64];
+			buffer[0] = (byte)'?';
+			data.get(buffer, 1, 63);
+			String s = "chunk:";
+			for (int j = 0; j < 64; j++) {
+				s += String.format(" %02x", buffer[j]);
+			}
+			Log.i("Trezor.messageWrite()", s);
+			request.queue(ByteBuffer.wrap(buffer), 64);
+			conn.requestWait();
+		}
 	}
 
-	private GeneratedMessage messageRead() {
-		int len = epr.getMaxPacketSize();
-		ByteBuffer buffer = ByteBuffer.allocate(len);
+	private String messageRead() {
+		ByteBuffer data = ByteBuffer.allocate(32768);
+		ByteBuffer buffer = ByteBuffer.allocate(64);
 		UsbRequest request = new UsbRequest();
 		request.initialize(conn, epr);
-		request.queue(buffer, len);
-		conn.requestWait();
-		byte[] data = new byte[len];
-		buffer.get(data);
-		// TODO: parse data
-		return null;
+		MessageType type;
+		int msg_size;
+		for (;;) {
+			request.queue(buffer, 64);
+			conn.requestWait();
+			int read = buffer.limit();
+			Log.i("Trezor.messageRead()", String.format("Read %d bytes", read));
+			if (read < 9) continue;
+			byte[] b = new byte[64];
+			buffer.get(b, 0, buffer.limit());
+			if (b[0] != (byte)'?' || b[1] != (byte)'#' || b[2] != (byte)'#') continue;
+			type = MessageType.valueOf((b[3] << 8) + b[4]);
+			msg_size = (b[5] << 8) + (b[6] << 8) + (b[7] << 8) + b[8];
+			data.put(b, 9, 64 - 9);
+			break;
+		}
+		while (data.position() < msg_size) {
+			request.queue(buffer, 64);
+			conn.requestWait();
+			byte[] b = new byte[64];
+			buffer.get(b);
+			if (b[0] != (byte)'?') continue;
+			data.put(b, 1, 64 - 1);
+		}
+		return type.toString();
 	}
 
-	public GeneratedMessage send(GeneratedMessage msg) {
+	public String send(GeneratedMessage msg) {
 		try {
 			messageWrite(msg);
 			return messageRead();
