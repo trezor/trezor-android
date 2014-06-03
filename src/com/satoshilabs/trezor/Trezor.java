@@ -1,13 +1,13 @@
 package com.satoshilabs.trezor;
 
-import java.io.IOException;
-import java.lang.reflect.Method;
 import java.nio.ByteBuffer;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import com.google.protobuf.GeneratedMessage;
-import com.satoshilabs.trezor.protobuf.TrezorMessage.MessageType;
+import com.google.protobuf.InvalidProtocolBufferException;
+import com.google.protobuf.Message;
+import com.satoshilabs.trezor.protobuf.TrezorMessage.*;
 
 import android.content.Context;
 import android.hardware.usb.UsbConstants;
@@ -103,7 +103,7 @@ public class Trezor {
 		return "TREZOR(#" + this.serial + ")";
 	}
 
-	private void messageWrite(GeneratedMessage msg) throws IOException {
+	private void messageWrite(Message msg) {
 		int msg_size = msg.getSerializedSize();
 		String msg_name = msg.getClass().getSimpleName();
 		int msg_id = MessageType.valueOf("MessageType_" + msg_name).getNumber();
@@ -140,12 +140,42 @@ public class Trezor {
 		}
 	}
 
-	private GeneratedMessage messageRead() {
+	private Message parseMessageFromBytes(MessageType type, byte[] data) {
+		Message msg = null;
+		Log.i("Trezor.parseMessageFromBytes()", String.format("Parsing %s (%d bytes):", type, data.length));
+		String s = "data:";
+		for (int i = 0; i < data.length; i++) {
+			s += String.format(" %02x", data[i]);
+		}
+		Log.i("Trezor.parseMessageFromBytes()", s);
+		try {
+			if (type.getNumber() == MessageType.MessageType_Success_VALUE) msg = Success.parseFrom(data);
+			if (type.getNumber() == MessageType.MessageType_Failure_VALUE) msg = Failure.parseFrom(data);
+			if (type.getNumber() == MessageType.MessageType_Entropy_VALUE) msg = Entropy.parseFrom(data);
+			if (type.getNumber() == MessageType.MessageType_PublicKey_VALUE) msg = PublicKey.parseFrom(data);
+			if (type.getNumber() == MessageType.MessageType_Features_VALUE) msg = Features.parseFrom(data);
+			if (type.getNumber() == MessageType.MessageType_PinMatrixRequest_VALUE) msg = PinMatrixRequest.parseFrom(data);
+			if (type.getNumber() == MessageType.MessageType_TxRequest_VALUE) msg = TxRequest.parseFrom(data);
+			if (type.getNumber() == MessageType.MessageType_ButtonRequest_VALUE) msg = ButtonRequest.parseFrom(data);
+			if (type.getNumber() == MessageType.MessageType_Address_VALUE) msg = Address.parseFrom(data);
+			if (type.getNumber() == MessageType.MessageType_EntropyRequest_VALUE) msg = EntropyRequest.parseFrom(data);
+			if (type.getNumber() == MessageType.MessageType_MessageSignature_VALUE) msg = MessageSignature.parseFrom(data);
+			if (type.getNumber() == MessageType.MessageType_PassphraseRequest_VALUE) msg = PassphraseRequest.parseFrom(data);
+			if (type.getNumber() == MessageType.MessageType_TxSize_VALUE) msg = TxSize.parseFrom(data);
+			if (type.getNumber() == MessageType.MessageType_WordRequest_VALUE) msg = WordRequest.parseFrom(data);
+		} catch (InvalidProtocolBufferException e) {
+			Log.e("Trezor.parseMessageFromBytes()", e.toString());
+			return null;
+		}
+		return msg;
+	}
+
+	private Message messageRead() {
 		ByteBuffer data = ByteBuffer.allocate(32768);
 		ByteBuffer buffer = ByteBuffer.allocate(64);
 		UsbRequest request = new UsbRequest();
 		request.initialize(conn, epr);
-		Method method;
+		MessageType type;
 		int msg_size;
 		for (;;) {
 			request.queue(buffer, 64);
@@ -154,13 +184,7 @@ public class Trezor {
 			Log.i("Trezor.messageRead()", String.format("Read chunk: %d bytes", b.length));
 			if (b.length < 9) continue;
 			if (b[0] != (byte)'?' || b[1] != (byte)'#' || b[2] != (byte)'#') continue;
-			MessageType type = MessageType.valueOf((b[3] << 8) + b[4]);
-			try {
-				method = Class.forName("com.satoshilabs.trezor.protobuf.TrezorMessage." + type.name().substring(12)).getMethod("parseFrom", byte[].class);
-			} catch (Exception e) {
-				Log.e("Trezor.messageRead()", e.toString());
-				return null;
-			}
+			type = MessageType.valueOf((b[3] << 8) + b[4]);
 			msg_size = (b[5] << 8) + (b[6] << 8) + (b[7] << 8) + b[8];
 			data.put(b, 9, b.length - 9);
 			break;
@@ -173,22 +197,12 @@ public class Trezor {
 			if (b[0] != (byte)'?') continue;
 			data.put(b, 1, b.length - 1);
 		}
-		try {
-			return (GeneratedMessage)method.invoke(null, data.array());
-		} catch (Exception e) {
-			Log.e("Trezor.messageRead()", e.toString());
-			return null;
-		}
+		return parseMessageFromBytes(type, Arrays.copyOfRange(data.array(), 0, msg_size));
 	}
 
-	public GeneratedMessage send(GeneratedMessage msg) {
-		try {
-			messageWrite(msg);
-			return messageRead();
-		} catch (IOException e) {
-			Log.e("Trezor.send()", e.toString());
-			return null;
-		}
+	public Message send(Message msg) {
+		messageWrite(msg);
+		return messageRead();
 	}
 
 }
