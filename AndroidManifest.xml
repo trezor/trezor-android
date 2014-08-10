@@ -6,4 +6,7 @@
     <uses-sdk
         android:minSdkVersion="12"
         android:targetSdkVersion="19" />
+    <application
+        android:allowBackup="true"
+    />
 </manifest>
