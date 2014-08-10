@@ -191,7 +191,7 @@ public final class TrezorType {
   }
 
   /**
-   * Protobuf enum {@code ScriptType}
+   * Protobuf enum {@code OutputScriptType}
    *
    * <pre>
    **
@@ -199,7 +199,7 @@ public final class TrezorType {
    * @used_in TxOutputType
    * </pre>
    */
-  public enum ScriptType
+  public enum OutputScriptType
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
      * <code>PAYTOADDRESS = 0;</code>
@@ -223,7 +223,7 @@ public final class TrezorType {
 
     public final int getNumber() { return value; }
 
-    public static ScriptType valueOf(int value) {
+    public static OutputScriptType valueOf(int value) {
       switch (value) {
         case 0: return PAYTOADDRESS;
         case 1: return PAYTOSCRIPTHASH;
@@ -231,15 +231,15 @@ public final class TrezorType {
       }
     }
 
-    public static com.google.protobuf.Internal.EnumLiteMap<ScriptType>
+    public static com.google.protobuf.Internal.EnumLiteMap<OutputScriptType>
         internalGetValueMap() {
       return internalValueMap;
     }
-    private static com.google.protobuf.Internal.EnumLiteMap<ScriptType>
+    private static com.google.protobuf.Internal.EnumLiteMap<OutputScriptType>
         internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<ScriptType>() {
-            public ScriptType findValueByNumber(int number) {
-              return ScriptType.valueOf(number);
+          new com.google.protobuf.Internal.EnumLiteMap<OutputScriptType>() {
+            public OutputScriptType findValueByNumber(int number) {
+              return OutputScriptType.valueOf(number);
             }
           };
 
@@ -256,9 +256,9 @@ public final class TrezorType {
       return com.satoshilabs.trezor.protobuf.TrezorType.getDescriptor().getEnumTypes().get(1);
     }
 
-    private static final ScriptType[] VALUES = values();
+    private static final OutputScriptType[] VALUES = values();
 
-    public static ScriptType valueOf(
+    public static OutputScriptType valueOf(
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
         throw new java.lang.IllegalArgumentException(
@@ -270,12 +270,100 @@ public final class TrezorType {
     private final int index;
     private final int value;
 
-    private ScriptType(int index, int value) {
+    private OutputScriptType(int index, int value) {
       this.index = index;
       this.value = value;
     }
 
-    // @@protoc_insertion_point(enum_scope:ScriptType)
+    // @@protoc_insertion_point(enum_scope:OutputScriptType)
+  }
+
+  /**
+   * Protobuf enum {@code InputScriptType}
+   *
+   * <pre>
+   **
+   * Type of script which will be used for transaction output
+   * @used_in TxInputType
+   * </pre>
+   */
+  public enum InputScriptType
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>SPENDADDRESS = 0;</code>
+     */
+    SPENDADDRESS(0, 0),
+    /**
+     * <code>SPENDMULTISIG = 1;</code>
+     */
+    SPENDMULTISIG(1, 1),
+    ;
+
+    /**
+     * <code>SPENDADDRESS = 0;</code>
+     */
+    public static final int SPENDADDRESS_VALUE = 0;
+    /**
+     * <code>SPENDMULTISIG = 1;</code>
+     */
+    public static final int SPENDMULTISIG_VALUE = 1;
+
+
+    public final int getNumber() { return value; }
+
+    public static InputScriptType valueOf(int value) {
+      switch (value) {
+        case 0: return SPENDADDRESS;
+        case 1: return SPENDMULTISIG;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<InputScriptType>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static com.google.protobuf.Internal.EnumLiteMap<InputScriptType>
+        internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<InputScriptType>() {
+            public InputScriptType findValueByNumber(int number) {
+              return InputScriptType.valueOf(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(index);
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return com.satoshilabs.trezor.protobuf.TrezorType.getDescriptor().getEnumTypes().get(2);
+    }
+
+    private static final InputScriptType[] VALUES = values();
+
+    public static InputScriptType valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int index;
+    private final int value;
+
+    private InputScriptType(int index, int value) {
+      this.index = index;
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:InputScriptType)
   }
 
   /**
@@ -359,7 +447,7 @@ public final class TrezorType {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return com.satoshilabs.trezor.protobuf.TrezorType.getDescriptor().getEnumTypes().get(2);
+      return com.satoshilabs.trezor.protobuf.TrezorType.getDescriptor().getEnumTypes().get(3);
     }
 
     private static final RequestType[] VALUES = values();
@@ -427,6 +515,14 @@ public final class TrezorType {
      * <code>ButtonRequest_SignTx = 8;</code>
      */
     ButtonRequest_SignTx(7, 8),
+    /**
+     * <code>ButtonRequest_FirmwareCheck = 9;</code>
+     */
+    ButtonRequest_FirmwareCheck(8, 9),
+    /**
+     * <code>ButtonRequest_Address = 10;</code>
+     */
+    ButtonRequest_Address(9, 10),
     ;
 
     /**
@@ -461,6 +557,14 @@ public final class TrezorType {
      * <code>ButtonRequest_SignTx = 8;</code>
      */
     public static final int ButtonRequest_SignTx_VALUE = 8;
+    /**
+     * <code>ButtonRequest_FirmwareCheck = 9;</code>
+     */
+    public static final int ButtonRequest_FirmwareCheck_VALUE = 9;
+    /**
+     * <code>ButtonRequest_Address = 10;</code>
+     */
+    public static final int ButtonRequest_Address_VALUE = 10;
 
 
     public final int getNumber() { return value; }
@@ -475,6 +579,8 @@ public final class TrezorType {
         case 6: return ButtonRequest_WipeDevice;
         case 7: return ButtonRequest_ProtectCall;
         case 8: return ButtonRequest_SignTx;
+        case 9: return ButtonRequest_FirmwareCheck;
+        case 10: return ButtonRequest_Address;
         default: return null;
       }
     }
@@ -501,7 +607,7 @@ public final class TrezorType {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return com.satoshilabs.trezor.protobuf.TrezorType.getDescriptor().getEnumTypes().get(3);
+      return com.satoshilabs.trezor.protobuf.TrezorType.getDescriptor().getEnumTypes().get(4);
     }
 
     private static final ButtonRequestType[] VALUES = values();
@@ -598,7 +704,7 @@ public final class TrezorType {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return com.satoshilabs.trezor.protobuf.TrezorType.getDescriptor().getEnumTypes().get(4);
+      return com.satoshilabs.trezor.protobuf.TrezorType.getDescriptor().getEnumTypes().get(5);
     }
 
     private static final PinMatrixRequestType[] VALUES = values();
@@ -729,6 +835,7 @@ public final class TrezorType {
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       initFields();
+      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -1576,6 +1683,7 @@ public final class TrezorType {
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       initFields();
+      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -2284,6 +2392,734 @@ public final class TrezorType {
     // @@protoc_insertion_point(class_scope:CoinType)
   }
 
+  public interface MultisigRedeemScriptTypeOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // repeated bytes pubkeys = 1;
+    /**
+     * <code>repeated bytes pubkeys = 1;</code>
+     *
+     * <pre>
+     * pubkeys from multisig address (sorted lexicographically)
+     * </pre>
+     */
+    java.util.List<com.google.protobuf.ByteString> getPubkeysList();
+    /**
+     * <code>repeated bytes pubkeys = 1;</code>
+     *
+     * <pre>
+     * pubkeys from multisig address (sorted lexicographically)
+     * </pre>
+     */
+    int getPubkeysCount();
+    /**
+     * <code>repeated bytes pubkeys = 1;</code>
+     *
+     * <pre>
+     * pubkeys from multisig address (sorted lexicographically)
+     * </pre>
+     */
+    com.google.protobuf.ByteString getPubkeys(int index);
+
+    // repeated bytes signatures = 2;
+    /**
+     * <code>repeated bytes signatures = 2;</code>
+     *
+     * <pre>
+     * existing signatures for partially signed input
+     * </pre>
+     */
+    java.util.List<com.google.protobuf.ByteString> getSignaturesList();
+    /**
+     * <code>repeated bytes signatures = 2;</code>
+     *
+     * <pre>
+     * existing signatures for partially signed input
+     * </pre>
+     */
+    int getSignaturesCount();
+    /**
+     * <code>repeated bytes signatures = 2;</code>
+     *
+     * <pre>
+     * existing signatures for partially signed input
+     * </pre>
+     */
+    com.google.protobuf.ByteString getSignatures(int index);
+  }
+  /**
+   * Protobuf type {@code MultisigRedeemScriptType}
+   *
+   * <pre>
+   **
+   * Type of redeem script used in input
+   * @used_in TxInputType
+   * </pre>
+   */
+  public static final class MultisigRedeemScriptType extends
+      com.google.protobuf.GeneratedMessage
+      implements MultisigRedeemScriptTypeOrBuilder {
+    // Use MultisigRedeemScriptType.newBuilder() to construct.
+    private MultisigRedeemScriptType(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private MultisigRedeemScriptType(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final MultisigRedeemScriptType defaultInstance;
+    public static MultisigRedeemScriptType getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public MultisigRedeemScriptType getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private MultisigRedeemScriptType(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                pubkeys_ = new java.util.ArrayList<com.google.protobuf.ByteString>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              pubkeys_.add(input.readBytes());
+              break;
+            }
+            case 18: {
+              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                signatures_ = new java.util.ArrayList<com.google.protobuf.ByteString>();
+                mutable_bitField0_ |= 0x00000002;
+              }
+              signatures_.add(input.readBytes());
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+          pubkeys_ = java.util.Collections.unmodifiableList(pubkeys_);
+        }
+        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+          signatures_ = java.util.Collections.unmodifiableList(signatures_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.satoshilabs.trezor.protobuf.TrezorType.internal_static_MultisigRedeemScriptType_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.satoshilabs.trezor.protobuf.TrezorType.internal_static_MultisigRedeemScriptType_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType.class, com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<MultisigRedeemScriptType> PARSER =
+        new com.google.protobuf.AbstractParser<MultisigRedeemScriptType>() {
+      public MultisigRedeemScriptType parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new MultisigRedeemScriptType(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<MultisigRedeemScriptType> getParserForType() {
+      return PARSER;
+    }
+
+    // repeated bytes pubkeys = 1;
+    public static final int PUBKEYS_FIELD_NUMBER = 1;
+    private java.util.List<com.google.protobuf.ByteString> pubkeys_;
+    /**
+     * <code>repeated bytes pubkeys = 1;</code>
+     *
+     * <pre>
+     * pubkeys from multisig address (sorted lexicographically)
+     * </pre>
+     */
+    public java.util.List<com.google.protobuf.ByteString>
+        getPubkeysList() {
+      return pubkeys_;
+    }
+    /**
+     * <code>repeated bytes pubkeys = 1;</code>
+     *
+     * <pre>
+     * pubkeys from multisig address (sorted lexicographically)
+     * </pre>
+     */
+    public int getPubkeysCount() {
+      return pubkeys_.size();
+    }
+    /**
+     * <code>repeated bytes pubkeys = 1;</code>
+     *
+     * <pre>
+     * pubkeys from multisig address (sorted lexicographically)
+     * </pre>
+     */
+    public com.google.protobuf.ByteString getPubkeys(int index) {
+      return pubkeys_.get(index);
+    }
+
+    // repeated bytes signatures = 2;
+    public static final int SIGNATURES_FIELD_NUMBER = 2;
+    private java.util.List<com.google.protobuf.ByteString> signatures_;
+    /**
+     * <code>repeated bytes signatures = 2;</code>
+     *
+     * <pre>
+     * existing signatures for partially signed input
+     * </pre>
+     */
+    public java.util.List<com.google.protobuf.ByteString>
+        getSignaturesList() {
+      return signatures_;
+    }
+    /**
+     * <code>repeated bytes signatures = 2;</code>
+     *
+     * <pre>
+     * existing signatures for partially signed input
+     * </pre>
+     */
+    public int getSignaturesCount() {
+      return signatures_.size();
+    }
+    /**
+     * <code>repeated bytes signatures = 2;</code>
+     *
+     * <pre>
+     * existing signatures for partially signed input
+     * </pre>
+     */
+    public com.google.protobuf.ByteString getSignatures(int index) {
+      return signatures_.get(index);
+    }
+
+    private void initFields() {
+      pubkeys_ = java.util.Collections.emptyList();
+      signatures_ = java.util.Collections.emptyList();
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      for (int i = 0; i < pubkeys_.size(); i++) {
+        output.writeBytes(1, pubkeys_.get(i));
+      }
+      for (int i = 0; i < signatures_.size(); i++) {
+        output.writeBytes(2, signatures_.get(i));
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      {
+        int dataSize = 0;
+        for (int i = 0; i < pubkeys_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeBytesSizeNoTag(pubkeys_.get(i));
+        }
+        size += dataSize;
+        size += 1 * getPubkeysList().size();
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < signatures_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeBytesSizeNoTag(signatures_.get(i));
+        }
+        size += dataSize;
+        size += 1 * getSignaturesList().size();
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code MultisigRedeemScriptType}
+     *
+     * <pre>
+     **
+     * Type of redeem script used in input
+     * @used_in TxInputType
+     * </pre>
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptTypeOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.satoshilabs.trezor.protobuf.TrezorType.internal_static_MultisigRedeemScriptType_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.satoshilabs.trezor.protobuf.TrezorType.internal_static_MultisigRedeemScriptType_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType.class, com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType.Builder.class);
+      }
+
+      // Construct using com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        pubkeys_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        signatures_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.satoshilabs.trezor.protobuf.TrezorType.internal_static_MultisigRedeemScriptType_descriptor;
+      }
+
+      public com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType getDefaultInstanceForType() {
+        return com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType.getDefaultInstance();
+      }
+
+      public com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType build() {
+        com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType buildPartial() {
+        com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType result = new com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType(this);
+        int from_bitField0_ = bitField0_;
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          pubkeys_ = java.util.Collections.unmodifiableList(pubkeys_);
+          bitField0_ = (bitField0_ & ~0x00000001);
+        }
+        result.pubkeys_ = pubkeys_;
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          signatures_ = java.util.Collections.unmodifiableList(signatures_);
+          bitField0_ = (bitField0_ & ~0x00000002);
+        }
+        result.signatures_ = signatures_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType) {
+          return mergeFrom((com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType other) {
+        if (other == com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType.getDefaultInstance()) return this;
+        if (!other.pubkeys_.isEmpty()) {
+          if (pubkeys_.isEmpty()) {
+            pubkeys_ = other.pubkeys_;
+            bitField0_ = (bitField0_ & ~0x00000001);
+          } else {
+            ensurePubkeysIsMutable();
+            pubkeys_.addAll(other.pubkeys_);
+          }
+          onChanged();
+        }
+        if (!other.signatures_.isEmpty()) {
+          if (signatures_.isEmpty()) {
+            signatures_ = other.signatures_;
+            bitField0_ = (bitField0_ & ~0x00000002);
+          } else {
+            ensureSignaturesIsMutable();
+            signatures_.addAll(other.signatures_);
+          }
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // repeated bytes pubkeys = 1;
+      private java.util.List<com.google.protobuf.ByteString> pubkeys_ = java.util.Collections.emptyList();
+      private void ensurePubkeysIsMutable() {
+        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+          pubkeys_ = new java.util.ArrayList<com.google.protobuf.ByteString>(pubkeys_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+      /**
+       * <code>repeated bytes pubkeys = 1;</code>
+       *
+       * <pre>
+       * pubkeys from multisig address (sorted lexicographically)
+       * </pre>
+       */
+      public java.util.List<com.google.protobuf.ByteString>
+          getPubkeysList() {
+        return java.util.Collections.unmodifiableList(pubkeys_);
+      }
+      /**
+       * <code>repeated bytes pubkeys = 1;</code>
+       *
+       * <pre>
+       * pubkeys from multisig address (sorted lexicographically)
+       * </pre>
+       */
+      public int getPubkeysCount() {
+        return pubkeys_.size();
+      }
+      /**
+       * <code>repeated bytes pubkeys = 1;</code>
+       *
+       * <pre>
+       * pubkeys from multisig address (sorted lexicographically)
+       * </pre>
+       */
+      public com.google.protobuf.ByteString getPubkeys(int index) {
+        return pubkeys_.get(index);
+      }
+      /**
+       * <code>repeated bytes pubkeys = 1;</code>
+       *
+       * <pre>
+       * pubkeys from multisig address (sorted lexicographically)
+       * </pre>
+       */
+      public Builder setPubkeys(
+          int index, com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensurePubkeysIsMutable();
+        pubkeys_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated bytes pubkeys = 1;</code>
+       *
+       * <pre>
+       * pubkeys from multisig address (sorted lexicographically)
+       * </pre>
+       */
+      public Builder addPubkeys(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensurePubkeysIsMutable();
+        pubkeys_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated bytes pubkeys = 1;</code>
+       *
+       * <pre>
+       * pubkeys from multisig address (sorted lexicographically)
+       * </pre>
+       */
+      public Builder addAllPubkeys(
+          java.lang.Iterable<? extends com.google.protobuf.ByteString> values) {
+        ensurePubkeysIsMutable();
+        super.addAll(values, pubkeys_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated bytes pubkeys = 1;</code>
+       *
+       * <pre>
+       * pubkeys from multisig address (sorted lexicographically)
+       * </pre>
+       */
+      public Builder clearPubkeys() {
+        pubkeys_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+        return this;
+      }
+
+      // repeated bytes signatures = 2;
+      private java.util.List<com.google.protobuf.ByteString> signatures_ = java.util.Collections.emptyList();
+      private void ensureSignaturesIsMutable() {
+        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+          signatures_ = new java.util.ArrayList<com.google.protobuf.ByteString>(signatures_);
+          bitField0_ |= 0x00000002;
+         }
+      }
+      /**
+       * <code>repeated bytes signatures = 2;</code>
+       *
+       * <pre>
+       * existing signatures for partially signed input
+       * </pre>
+       */
+      public java.util.List<com.google.protobuf.ByteString>
+          getSignaturesList() {
+        return java.util.Collections.unmodifiableList(signatures_);
+      }
+      /**
+       * <code>repeated bytes signatures = 2;</code>
+       *
+       * <pre>
+       * existing signatures for partially signed input
+       * </pre>
+       */
+      public int getSignaturesCount() {
+        return signatures_.size();
+      }
+      /**
+       * <code>repeated bytes signatures = 2;</code>
+       *
+       * <pre>
+       * existing signatures for partially signed input
+       * </pre>
+       */
+      public com.google.protobuf.ByteString getSignatures(int index) {
+        return signatures_.get(index);
+      }
+      /**
+       * <code>repeated bytes signatures = 2;</code>
+       *
+       * <pre>
+       * existing signatures for partially signed input
+       * </pre>
+       */
+      public Builder setSignatures(
+          int index, com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureSignaturesIsMutable();
+        signatures_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated bytes signatures = 2;</code>
+       *
+       * <pre>
+       * existing signatures for partially signed input
+       * </pre>
+       */
+      public Builder addSignatures(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureSignaturesIsMutable();
+        signatures_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated bytes signatures = 2;</code>
+       *
+       * <pre>
+       * existing signatures for partially signed input
+       * </pre>
+       */
+      public Builder addAllSignatures(
+          java.lang.Iterable<? extends com.google.protobuf.ByteString> values) {
+        ensureSignaturesIsMutable();
+        super.addAll(values, signatures_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated bytes signatures = 2;</code>
+       *
+       * <pre>
+       * existing signatures for partially signed input
+       * </pre>
+       */
+      public Builder clearSignatures() {
+        signatures_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:MultisigRedeemScriptType)
+    }
+
+    static {
+      defaultInstance = new MultisigRedeemScriptType(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:MultisigRedeemScriptType)
+  }
+
   public interface TxInputTypeOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
@@ -2354,7 +3190,7 @@ public final class TrezorType {
      * <code>optional bytes script_sig = 4;</code>
      *
      * <pre>
-     * script signature
+     * script signature, unset for tx to sign
      * </pre>
      */
     boolean hasScriptSig();
@@ -2362,7 +3198,7 @@ public final class TrezorType {
      * <code>optional bytes script_sig = 4;</code>
      *
      * <pre>
-     * script signature
+     * script signature, unset for tx to sign
      * </pre>
      */
     com.google.protobuf.ByteString getScriptSig();
@@ -2384,6 +3220,50 @@ public final class TrezorType {
      * </pre>
      */
     int getSequence();
+
+    // optional .InputScriptType script_type = 6 [default = SPENDADDRESS];
+    /**
+     * <code>optional .InputScriptType script_type = 6 [default = SPENDADDRESS];</code>
+     *
+     * <pre>
+     * defines template of input script
+     * </pre>
+     */
+    boolean hasScriptType();
+    /**
+     * <code>optional .InputScriptType script_type = 6 [default = SPENDADDRESS];</code>
+     *
+     * <pre>
+     * defines template of input script
+     * </pre>
+     */
+    com.satoshilabs.trezor.protobuf.TrezorType.InputScriptType getScriptType();
+
+    // optional .MultisigRedeemScriptType multisig = 7;
+    /**
+     * <code>optional .MultisigRedeemScriptType multisig = 7;</code>
+     *
+     * <pre>
+     * Filled if input is going to spend multisig tx
+     * </pre>
+     */
+    boolean hasMultisig();
+    /**
+     * <code>optional .MultisigRedeemScriptType multisig = 7;</code>
+     *
+     * <pre>
+     * Filled if input is going to spend multisig tx
+     * </pre>
+     */
+    com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType getMultisig();
+    /**
+     * <code>optional .MultisigRedeemScriptType multisig = 7;</code>
+     *
+     * <pre>
+     * Filled if input is going to spend multisig tx
+     * </pre>
+     */
+    com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptTypeOrBuilder getMultisigOrBuilder();
   }
   /**
    * Protobuf type {@code TxInputType}
@@ -2482,6 +3362,30 @@ public final class TrezorType {
             case 40: {
               bitField0_ |= 0x00000008;
               sequence_ = input.readUInt32();
+              break;
+            }
+            case 48: {
+              int rawValue = input.readEnum();
+              com.satoshilabs.trezor.protobuf.TrezorType.InputScriptType value = com.satoshilabs.trezor.protobuf.TrezorType.InputScriptType.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(6, rawValue);
+              } else {
+                bitField0_ |= 0x00000010;
+                scriptType_ = value;
+              }
+              break;
+            }
+            case 58: {
+              com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000020) == 0x00000020)) {
+                subBuilder = multisig_.toBuilder();
+              }
+              multisig_ = input.readMessage(com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(multisig_);
+                multisig_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000020;
               break;
             }
           }
@@ -2617,7 +3521,7 @@ public final class TrezorType {
      * <code>optional bytes script_sig = 4;</code>
      *
      * <pre>
-     * script signature
+     * script signature, unset for tx to sign
      * </pre>
      */
     public boolean hasScriptSig() {
@@ -2627,7 +3531,7 @@ public final class TrezorType {
      * <code>optional bytes script_sig = 4;</code>
      *
      * <pre>
-     * script signature
+     * script signature, unset for tx to sign
      * </pre>
      */
     public com.google.protobuf.ByteString getScriptSig() {
@@ -2658,12 +3562,72 @@ public final class TrezorType {
       return sequence_;
     }
 
+    // optional .InputScriptType script_type = 6 [default = SPENDADDRESS];
+    public static final int SCRIPT_TYPE_FIELD_NUMBER = 6;
+    private com.satoshilabs.trezor.protobuf.TrezorType.InputScriptType scriptType_;
+    /**
+     * <code>optional .InputScriptType script_type = 6 [default = SPENDADDRESS];</code>
+     *
+     * <pre>
+     * defines template of input script
+     * </pre>
+     */
+    public boolean hasScriptType() {
+      return ((bitField0_ & 0x00000010) == 0x00000010);
+    }
+    /**
+     * <code>optional .InputScriptType script_type = 6 [default = SPENDADDRESS];</code>
+     *
+     * <pre>
+     * defines template of input script
+     * </pre>
+     */
+    public com.satoshilabs.trezor.protobuf.TrezorType.InputScriptType getScriptType() {
+      return scriptType_;
+    }
+
+    // optional .MultisigRedeemScriptType multisig = 7;
+    public static final int MULTISIG_FIELD_NUMBER = 7;
+    private com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType multisig_;
+    /**
+     * <code>optional .MultisigRedeemScriptType multisig = 7;</code>
+     *
+     * <pre>
+     * Filled if input is going to spend multisig tx
+     * </pre>
+     */
+    public boolean hasMultisig() {
+      return ((bitField0_ & 0x00000020) == 0x00000020);
+    }
+    /**
+     * <code>optional .MultisigRedeemScriptType multisig = 7;</code>
+     *
+     * <pre>
+     * Filled if input is going to spend multisig tx
+     * </pre>
+     */
+    public com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType getMultisig() {
+      return multisig_;
+    }
+    /**
+     * <code>optional .MultisigRedeemScriptType multisig = 7;</code>
+     *
+     * <pre>
+     * Filled if input is going to spend multisig tx
+     * </pre>
+     */
+    public com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptTypeOrBuilder getMultisigOrBuilder() {
+      return multisig_;
+    }
+
     private void initFields() {
       addressN_ = java.util.Collections.emptyList();
       prevHash_ = com.google.protobuf.ByteString.EMPTY;
       prevIndex_ = 0;
       scriptSig_ = com.google.protobuf.ByteString.EMPTY;
       sequence_ = -1;
+      scriptType_ = com.satoshilabs.trezor.protobuf.TrezorType.InputScriptType.SPENDADDRESS;
+      multisig_ = com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -2700,6 +3664,12 @@ public final class TrezorType {
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         output.writeUInt32(5, sequence_);
       }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        output.writeEnum(6, scriptType_.getNumber());
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        output.writeMessage(7, multisig_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -2733,6 +3703,14 @@ public final class TrezorType {
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(5, sequence_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(6, scriptType_.getNumber());
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(7, multisig_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -2849,6 +3827,7 @@ public final class TrezorType {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getMultisigFieldBuilder();
         }
       }
       private static Builder create() {
@@ -2867,6 +3846,14 @@ public final class TrezorType {
         bitField0_ = (bitField0_ & ~0x00000008);
         sequence_ = -1;
         bitField0_ = (bitField0_ & ~0x00000010);
+        scriptType_ = com.satoshilabs.trezor.protobuf.TrezorType.InputScriptType.SPENDADDRESS;
+        bitField0_ = (bitField0_ & ~0x00000020);
+        if (multisigBuilder_ == null) {
+          multisig_ = com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType.getDefaultInstance();
+        } else {
+          multisigBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000040);
         return this;
       }
 
@@ -2916,6 +3903,18 @@ public final class TrezorType {
           to_bitField0_ |= 0x00000008;
         }
         result.sequence_ = sequence_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000010;
+        }
+        result.scriptType_ = scriptType_;
+        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
+          to_bitField0_ |= 0x00000020;
+        }
+        if (multisigBuilder_ == null) {
+          result.multisig_ = multisig_;
+        } else {
+          result.multisig_ = multisigBuilder_.build();
+        }
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -2953,6 +3952,12 @@ public final class TrezorType {
         }
         if (other.hasSequence()) {
           setSequence(other.getSequence());
+        }
+        if (other.hasScriptType()) {
+          setScriptType(other.getScriptType());
+        }
+        if (other.hasMultisig()) {
+          mergeMultisig(other.getMultisig());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -3190,7 +4195,7 @@ public final class TrezorType {
        * <code>optional bytes script_sig = 4;</code>
        *
        * <pre>
-       * script signature
+       * script signature, unset for tx to sign
        * </pre>
        */
       public boolean hasScriptSig() {
@@ -3200,7 +4205,7 @@ public final class TrezorType {
        * <code>optional bytes script_sig = 4;</code>
        *
        * <pre>
-       * script signature
+       * script signature, unset for tx to sign
        * </pre>
        */
       public com.google.protobuf.ByteString getScriptSig() {
@@ -3210,7 +4215,7 @@ public final class TrezorType {
        * <code>optional bytes script_sig = 4;</code>
        *
        * <pre>
-       * script signature
+       * script signature, unset for tx to sign
        * </pre>
        */
       public Builder setScriptSig(com.google.protobuf.ByteString value) {
@@ -3226,7 +4231,7 @@ public final class TrezorType {
        * <code>optional bytes script_sig = 4;</code>
        *
        * <pre>
-       * script signature
+       * script signature, unset for tx to sign
        * </pre>
        */
       public Builder clearScriptSig() {
@@ -3283,6 +4288,211 @@ public final class TrezorType {
         sequence_ = -1;
         onChanged();
         return this;
+      }
+
+      // optional .InputScriptType script_type = 6 [default = SPENDADDRESS];
+      private com.satoshilabs.trezor.protobuf.TrezorType.InputScriptType scriptType_ = com.satoshilabs.trezor.protobuf.TrezorType.InputScriptType.SPENDADDRESS;
+      /**
+       * <code>optional .InputScriptType script_type = 6 [default = SPENDADDRESS];</code>
+       *
+       * <pre>
+       * defines template of input script
+       * </pre>
+       */
+      public boolean hasScriptType() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      /**
+       * <code>optional .InputScriptType script_type = 6 [default = SPENDADDRESS];</code>
+       *
+       * <pre>
+       * defines template of input script
+       * </pre>
+       */
+      public com.satoshilabs.trezor.protobuf.TrezorType.InputScriptType getScriptType() {
+        return scriptType_;
+      }
+      /**
+       * <code>optional .InputScriptType script_type = 6 [default = SPENDADDRESS];</code>
+       *
+       * <pre>
+       * defines template of input script
+       * </pre>
+       */
+      public Builder setScriptType(com.satoshilabs.trezor.protobuf.TrezorType.InputScriptType value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000020;
+        scriptType_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional .InputScriptType script_type = 6 [default = SPENDADDRESS];</code>
+       *
+       * <pre>
+       * defines template of input script
+       * </pre>
+       */
+      public Builder clearScriptType() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        scriptType_ = com.satoshilabs.trezor.protobuf.TrezorType.InputScriptType.SPENDADDRESS;
+        onChanged();
+        return this;
+      }
+
+      // optional .MultisigRedeemScriptType multisig = 7;
+      private com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType multisig_ = com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType, com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType.Builder, com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptTypeOrBuilder> multisigBuilder_;
+      /**
+       * <code>optional .MultisigRedeemScriptType multisig = 7;</code>
+       *
+       * <pre>
+       * Filled if input is going to spend multisig tx
+       * </pre>
+       */
+      public boolean hasMultisig() {
+        return ((bitField0_ & 0x00000040) == 0x00000040);
+      }
+      /**
+       * <code>optional .MultisigRedeemScriptType multisig = 7;</code>
+       *
+       * <pre>
+       * Filled if input is going to spend multisig tx
+       * </pre>
+       */
+      public com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType getMultisig() {
+        if (multisigBuilder_ == null) {
+          return multisig_;
+        } else {
+          return multisigBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .MultisigRedeemScriptType multisig = 7;</code>
+       *
+       * <pre>
+       * Filled if input is going to spend multisig tx
+       * </pre>
+       */
+      public Builder setMultisig(com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType value) {
+        if (multisigBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          multisig_ = value;
+          onChanged();
+        } else {
+          multisigBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000040;
+        return this;
+      }
+      /**
+       * <code>optional .MultisigRedeemScriptType multisig = 7;</code>
+       *
+       * <pre>
+       * Filled if input is going to spend multisig tx
+       * </pre>
+       */
+      public Builder setMultisig(
+          com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType.Builder builderForValue) {
+        if (multisigBuilder_ == null) {
+          multisig_ = builderForValue.build();
+          onChanged();
+        } else {
+          multisigBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000040;
+        return this;
+      }
+      /**
+       * <code>optional .MultisigRedeemScriptType multisig = 7;</code>
+       *
+       * <pre>
+       * Filled if input is going to spend multisig tx
+       * </pre>
+       */
+      public Builder mergeMultisig(com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType value) {
+        if (multisigBuilder_ == null) {
+          if (((bitField0_ & 0x00000040) == 0x00000040) &&
+              multisig_ != com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType.getDefaultInstance()) {
+            multisig_ =
+              com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType.newBuilder(multisig_).mergeFrom(value).buildPartial();
+          } else {
+            multisig_ = value;
+          }
+          onChanged();
+        } else {
+          multisigBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000040;
+        return this;
+      }
+      /**
+       * <code>optional .MultisigRedeemScriptType multisig = 7;</code>
+       *
+       * <pre>
+       * Filled if input is going to spend multisig tx
+       * </pre>
+       */
+      public Builder clearMultisig() {
+        if (multisigBuilder_ == null) {
+          multisig_ = com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType.getDefaultInstance();
+          onChanged();
+        } else {
+          multisigBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000040);
+        return this;
+      }
+      /**
+       * <code>optional .MultisigRedeemScriptType multisig = 7;</code>
+       *
+       * <pre>
+       * Filled if input is going to spend multisig tx
+       * </pre>
+       */
+      public com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType.Builder getMultisigBuilder() {
+        bitField0_ |= 0x00000040;
+        onChanged();
+        return getMultisigFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .MultisigRedeemScriptType multisig = 7;</code>
+       *
+       * <pre>
+       * Filled if input is going to spend multisig tx
+       * </pre>
+       */
+      public com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptTypeOrBuilder getMultisigOrBuilder() {
+        if (multisigBuilder_ != null) {
+          return multisigBuilder_.getMessageOrBuilder();
+        } else {
+          return multisig_;
+        }
+      }
+      /**
+       * <code>optional .MultisigRedeemScriptType multisig = 7;</code>
+       *
+       * <pre>
+       * Filled if input is going to spend multisig tx
+       * </pre>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType, com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType.Builder, com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptTypeOrBuilder> 
+          getMultisigFieldBuilder() {
+        if (multisigBuilder_ == null) {
+          multisigBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType, com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType.Builder, com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptTypeOrBuilder>(
+                  multisig_,
+                  getParentForChildren(),
+                  isClean());
+          multisig_ = null;
+        }
+        return multisigBuilder_;
       }
 
       // @@protoc_insertion_point(builder_scope:TxInputType)
@@ -3370,9 +4580,9 @@ public final class TrezorType {
      */
     long getAmount();
 
-    // required .ScriptType script_type = 4;
+    // required .OutputScriptType script_type = 4;
     /**
-     * <code>required .ScriptType script_type = 4;</code>
+     * <code>required .OutputScriptType script_type = 4;</code>
      *
      * <pre>
      * output script type
@@ -3380,39 +4590,13 @@ public final class TrezorType {
      */
     boolean hasScriptType();
     /**
-     * <code>required .ScriptType script_type = 4;</code>
+     * <code>required .OutputScriptType script_type = 4;</code>
      *
      * <pre>
      * output script type
      * </pre>
      */
-    com.satoshilabs.trezor.protobuf.TrezorType.ScriptType getScriptType();
-
-    // repeated bytes script_args = 5;
-    /**
-     * <code>repeated bytes script_args = 5;</code>
-     *
-     * <pre>
-     * additional parameters for the script (script-dependent)
-     * </pre>
-     */
-    java.util.List<com.google.protobuf.ByteString> getScriptArgsList();
-    /**
-     * <code>repeated bytes script_args = 5;</code>
-     *
-     * <pre>
-     * additional parameters for the script (script-dependent)
-     * </pre>
-     */
-    int getScriptArgsCount();
-    /**
-     * <code>repeated bytes script_args = 5;</code>
-     *
-     * <pre>
-     * additional parameters for the script (script-dependent)
-     * </pre>
-     */
-    com.google.protobuf.ByteString getScriptArgs(int index);
+    com.satoshilabs.trezor.protobuf.TrezorType.OutputScriptType getScriptType();
   }
   /**
    * Protobuf type {@code TxOutputType}
@@ -3505,21 +4689,13 @@ public final class TrezorType {
             }
             case 32: {
               int rawValue = input.readEnum();
-              com.satoshilabs.trezor.protobuf.TrezorType.ScriptType value = com.satoshilabs.trezor.protobuf.TrezorType.ScriptType.valueOf(rawValue);
+              com.satoshilabs.trezor.protobuf.TrezorType.OutputScriptType value = com.satoshilabs.trezor.protobuf.TrezorType.OutputScriptType.valueOf(rawValue);
               if (value == null) {
                 unknownFields.mergeVarintField(4, rawValue);
               } else {
                 bitField0_ |= 0x00000004;
                 scriptType_ = value;
               }
-              break;
-            }
-            case 42: {
-              if (!((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
-                scriptArgs_ = new java.util.ArrayList<com.google.protobuf.ByteString>();
-                mutable_bitField0_ |= 0x00000010;
-              }
-              scriptArgs_.add(input.readBytes());
               break;
             }
           }
@@ -3532,9 +4708,6 @@ public final class TrezorType {
       } finally {
         if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
           addressN_ = java.util.Collections.unmodifiableList(addressN_);
-        }
-        if (((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
-          scriptArgs_ = java.util.Collections.unmodifiableList(scriptArgs_);
         }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
@@ -3682,11 +4855,11 @@ public final class TrezorType {
       return amount_;
     }
 
-    // required .ScriptType script_type = 4;
+    // required .OutputScriptType script_type = 4;
     public static final int SCRIPT_TYPE_FIELD_NUMBER = 4;
-    private com.satoshilabs.trezor.protobuf.TrezorType.ScriptType scriptType_;
+    private com.satoshilabs.trezor.protobuf.TrezorType.OutputScriptType scriptType_;
     /**
-     * <code>required .ScriptType script_type = 4;</code>
+     * <code>required .OutputScriptType script_type = 4;</code>
      *
      * <pre>
      * output script type
@@ -3696,57 +4869,21 @@ public final class TrezorType {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
-     * <code>required .ScriptType script_type = 4;</code>
+     * <code>required .OutputScriptType script_type = 4;</code>
      *
      * <pre>
      * output script type
      * </pre>
      */
-    public com.satoshilabs.trezor.protobuf.TrezorType.ScriptType getScriptType() {
+    public com.satoshilabs.trezor.protobuf.TrezorType.OutputScriptType getScriptType() {
       return scriptType_;
-    }
-
-    // repeated bytes script_args = 5;
-    public static final int SCRIPT_ARGS_FIELD_NUMBER = 5;
-    private java.util.List<com.google.protobuf.ByteString> scriptArgs_;
-    /**
-     * <code>repeated bytes script_args = 5;</code>
-     *
-     * <pre>
-     * additional parameters for the script (script-dependent)
-     * </pre>
-     */
-    public java.util.List<com.google.protobuf.ByteString>
-        getScriptArgsList() {
-      return scriptArgs_;
-    }
-    /**
-     * <code>repeated bytes script_args = 5;</code>
-     *
-     * <pre>
-     * additional parameters for the script (script-dependent)
-     * </pre>
-     */
-    public int getScriptArgsCount() {
-      return scriptArgs_.size();
-    }
-    /**
-     * <code>repeated bytes script_args = 5;</code>
-     *
-     * <pre>
-     * additional parameters for the script (script-dependent)
-     * </pre>
-     */
-    public com.google.protobuf.ByteString getScriptArgs(int index) {
-      return scriptArgs_.get(index);
     }
 
     private void initFields() {
       address_ = "";
       addressN_ = java.util.Collections.emptyList();
       amount_ = 0L;
-      scriptType_ = com.satoshilabs.trezor.protobuf.TrezorType.ScriptType.PAYTOADDRESS;
-      scriptArgs_ = java.util.Collections.emptyList();
+      scriptType_ = com.satoshilabs.trezor.protobuf.TrezorType.OutputScriptType.PAYTOADDRESS;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -3780,9 +4917,6 @@ public final class TrezorType {
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeEnum(4, scriptType_.getNumber());
       }
-      for (int i = 0; i < scriptArgs_.size(); i++) {
-        output.writeBytes(5, scriptArgs_.get(i));
-      }
       getUnknownFields().writeTo(output);
     }
 
@@ -3812,15 +4946,6 @@ public final class TrezorType {
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(4, scriptType_.getNumber());
-      }
-      {
-        int dataSize = 0;
-        for (int i = 0; i < scriptArgs_.size(); i++) {
-          dataSize += com.google.protobuf.CodedOutputStream
-            .computeBytesSizeNoTag(scriptArgs_.get(i));
-        }
-        size += dataSize;
-        size += 1 * getScriptArgsList().size();
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -3951,10 +5076,8 @@ public final class TrezorType {
         bitField0_ = (bitField0_ & ~0x00000002);
         amount_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000004);
-        scriptType_ = com.satoshilabs.trezor.protobuf.TrezorType.ScriptType.PAYTOADDRESS;
+        scriptType_ = com.satoshilabs.trezor.protobuf.TrezorType.OutputScriptType.PAYTOADDRESS;
         bitField0_ = (bitField0_ & ~0x00000008);
-        scriptArgs_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
 
@@ -4000,11 +5123,6 @@ public final class TrezorType {
           to_bitField0_ |= 0x00000004;
         }
         result.scriptType_ = scriptType_;
-        if (((bitField0_ & 0x00000010) == 0x00000010)) {
-          scriptArgs_ = java.util.Collections.unmodifiableList(scriptArgs_);
-          bitField0_ = (bitField0_ & ~0x00000010);
-        }
-        result.scriptArgs_ = scriptArgs_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -4041,16 +5159,6 @@ public final class TrezorType {
         }
         if (other.hasScriptType()) {
           setScriptType(other.getScriptType());
-        }
-        if (!other.scriptArgs_.isEmpty()) {
-          if (scriptArgs_.isEmpty()) {
-            scriptArgs_ = other.scriptArgs_;
-            bitField0_ = (bitField0_ & ~0x00000010);
-          } else {
-            ensureScriptArgsIsMutable();
-            scriptArgs_.addAll(other.scriptArgs_);
-          }
-          onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -4328,10 +5436,10 @@ public final class TrezorType {
         return this;
       }
 
-      // required .ScriptType script_type = 4;
-      private com.satoshilabs.trezor.protobuf.TrezorType.ScriptType scriptType_ = com.satoshilabs.trezor.protobuf.TrezorType.ScriptType.PAYTOADDRESS;
+      // required .OutputScriptType script_type = 4;
+      private com.satoshilabs.trezor.protobuf.TrezorType.OutputScriptType scriptType_ = com.satoshilabs.trezor.protobuf.TrezorType.OutputScriptType.PAYTOADDRESS;
       /**
-       * <code>required .ScriptType script_type = 4;</code>
+       * <code>required .OutputScriptType script_type = 4;</code>
        *
        * <pre>
        * output script type
@@ -4341,23 +5449,23 @@ public final class TrezorType {
         return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       /**
-       * <code>required .ScriptType script_type = 4;</code>
+       * <code>required .OutputScriptType script_type = 4;</code>
        *
        * <pre>
        * output script type
        * </pre>
        */
-      public com.satoshilabs.trezor.protobuf.TrezorType.ScriptType getScriptType() {
+      public com.satoshilabs.trezor.protobuf.TrezorType.OutputScriptType getScriptType() {
         return scriptType_;
       }
       /**
-       * <code>required .ScriptType script_type = 4;</code>
+       * <code>required .OutputScriptType script_type = 4;</code>
        *
        * <pre>
        * output script type
        * </pre>
        */
-      public Builder setScriptType(com.satoshilabs.trezor.protobuf.TrezorType.ScriptType value) {
+      public Builder setScriptType(com.satoshilabs.trezor.protobuf.TrezorType.OutputScriptType value) {
         if (value == null) {
           throw new NullPointerException();
         }
@@ -4367,7 +5475,7 @@ public final class TrezorType {
         return this;
       }
       /**
-       * <code>required .ScriptType script_type = 4;</code>
+       * <code>required .OutputScriptType script_type = 4;</code>
        *
        * <pre>
        * output script type
@@ -4375,107 +5483,7 @@ public final class TrezorType {
        */
       public Builder clearScriptType() {
         bitField0_ = (bitField0_ & ~0x00000008);
-        scriptType_ = com.satoshilabs.trezor.protobuf.TrezorType.ScriptType.PAYTOADDRESS;
-        onChanged();
-        return this;
-      }
-
-      // repeated bytes script_args = 5;
-      private java.util.List<com.google.protobuf.ByteString> scriptArgs_ = java.util.Collections.emptyList();
-      private void ensureScriptArgsIsMutable() {
-        if (!((bitField0_ & 0x00000010) == 0x00000010)) {
-          scriptArgs_ = new java.util.ArrayList<com.google.protobuf.ByteString>(scriptArgs_);
-          bitField0_ |= 0x00000010;
-         }
-      }
-      /**
-       * <code>repeated bytes script_args = 5;</code>
-       *
-       * <pre>
-       * additional parameters for the script (script-dependent)
-       * </pre>
-       */
-      public java.util.List<com.google.protobuf.ByteString>
-          getScriptArgsList() {
-        return java.util.Collections.unmodifiableList(scriptArgs_);
-      }
-      /**
-       * <code>repeated bytes script_args = 5;</code>
-       *
-       * <pre>
-       * additional parameters for the script (script-dependent)
-       * </pre>
-       */
-      public int getScriptArgsCount() {
-        return scriptArgs_.size();
-      }
-      /**
-       * <code>repeated bytes script_args = 5;</code>
-       *
-       * <pre>
-       * additional parameters for the script (script-dependent)
-       * </pre>
-       */
-      public com.google.protobuf.ByteString getScriptArgs(int index) {
-        return scriptArgs_.get(index);
-      }
-      /**
-       * <code>repeated bytes script_args = 5;</code>
-       *
-       * <pre>
-       * additional parameters for the script (script-dependent)
-       * </pre>
-       */
-      public Builder setScriptArgs(
-          int index, com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureScriptArgsIsMutable();
-        scriptArgs_.set(index, value);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>repeated bytes script_args = 5;</code>
-       *
-       * <pre>
-       * additional parameters for the script (script-dependent)
-       * </pre>
-       */
-      public Builder addScriptArgs(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureScriptArgsIsMutable();
-        scriptArgs_.add(value);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>repeated bytes script_args = 5;</code>
-       *
-       * <pre>
-       * additional parameters for the script (script-dependent)
-       * </pre>
-       */
-      public Builder addAllScriptArgs(
-          java.lang.Iterable<? extends com.google.protobuf.ByteString> values) {
-        ensureScriptArgsIsMutable();
-        super.addAll(values, scriptArgs_);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>repeated bytes script_args = 5;</code>
-       *
-       * <pre>
-       * additional parameters for the script (script-dependent)
-       * </pre>
-       */
-      public Builder clearScriptArgs() {
-        scriptArgs_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000010);
+        scriptType_ = com.satoshilabs.trezor.protobuf.TrezorType.OutputScriptType.PAYTOADDRESS;
         onChanged();
         return this;
       }
@@ -4553,6 +5561,7 @@ public final class TrezorType {
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       initFields();
+      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -6812,6 +7821,12 @@ public final class TrezorType {
   }
   /**
    * Protobuf type {@code TxRequestDetailsType}
+   *
+   * <pre>
+   **
+   * Structure representing request details
+   * @used_in TxRequest
+   * </pre>
    */
   public static final class TxRequestDetailsType extends
       com.google.protobuf.GeneratedMessage
@@ -6843,6 +7858,7 @@ public final class TrezorType {
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       initFields();
+      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -7077,6 +8093,12 @@ public final class TrezorType {
     }
     /**
      * Protobuf type {@code TxRequestDetailsType}
+     *
+     * <pre>
+     **
+     * Structure representing request details
+     * @used_in TxRequest
+     * </pre>
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
@@ -7373,6 +8395,12 @@ public final class TrezorType {
   }
   /**
    * Protobuf type {@code TxRequestSerializedType}
+   *
+   * <pre>
+   **
+   * Structure representing serialized data
+   * @used_in TxRequest
+   * </pre>
    */
   public static final class TxRequestSerializedType extends
       com.google.protobuf.GeneratedMessage
@@ -7404,6 +8432,7 @@ public final class TrezorType {
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       initFields();
+      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -7675,6 +8704,12 @@ public final class TrezorType {
     }
     /**
      * Protobuf type {@code TxRequestSerializedType}
+     *
+     * <pre>
+     **
+     * Structure representing serialized data
+     * @used_in TxRequest
+     * </pre>
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
@@ -8028,6 +9063,11 @@ public final class TrezorType {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_CoinType_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_MultisigRedeemScriptType_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_MultisigRedeemScriptType_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_TxInputType_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -8072,52 +9112,59 @@ public final class TrezorType {
       "\nchain_code\030\004 \002(\014\022\023\n\013private_key\030\005 \001(\014\022\022" +
       "\n\npublic_key\030\006 \001(\014\"]\n\010CoinType\022\021\n\tcoin_n" +
       "ame\030\001 \001(\t\022\025\n\rcoin_shortcut\030\002 \001(\t\022\024\n\014addr" +
-      "ess_type\030\003 \001(\r\022\021\n\tmaxfee_kb\030\004 \001(\004\"y\n\013TxI" +
-      "nputType\022\021\n\taddress_n\030\001 \003(\r\022\021\n\tprev_hash" +
-      "\030\002 \002(\014\022\022\n\nprev_index\030\003 \002(\r\022\022\n\nscript_sig" +
-      "\030\004 \001(\014\022\034\n\010sequence\030\005 \001(\r:\n4294967295\"y\n\014",
-      "TxOutputType\022\017\n\007address\030\001 \001(\t\022\021\n\taddress" +
-      "_n\030\002 \003(\r\022\016\n\006amount\030\003 \002(\004\022 \n\013script_type\030" +
-      "\004 \002(\0162\013.ScriptType\022\023\n\013script_args\030\005 \003(\014\"" +
-      "8\n\017TxOutputBinType\022\016\n\006amount\030\001 \002(\004\022\025\n\rsc" +
-      "ript_pubkey\030\002 \002(\014\"\303\001\n\017TransactionType\022\017\n" +
-      "\007version\030\001 \001(\r\022\034\n\006inputs\030\002 \003(\0132\014.TxInput" +
-      "Type\022%\n\013bin_outputs\030\003 \003(\0132\020.TxOutputBinT" +
-      "ype\022\036\n\007outputs\030\005 \003(\0132\r.TxOutputType\022\021\n\tl" +
-      "ock_time\030\004 \001(\r\022\022\n\ninputs_cnt\030\006 \001(\r\022\023\n\013ou" +
-      "tputs_cnt\030\007 \001(\r\">\n\024TxRequestDetailsType\022",
-      "\025\n\rrequest_index\030\001 \001(\r\022\017\n\007tx_hash\030\002 \001(\014\"" +
-      "\\\n\027TxRequestSerializedType\022\027\n\017signature_" +
-      "index\030\001 \001(\r\022\021\n\tsignature\030\002 \001(\014\022\025\n\rserial" +
-      "ized_tx\030\003 \001(\014*\315\002\n\013FailureType\022\035\n\031Failure" +
-      "_UnexpectedMessage\020\001\022\032\n\026Failure_ButtonEx" +
-      "pected\020\002\022\027\n\023Failure_SyntaxError\020\003\022\033\n\027Fai" +
-      "lure_ActionCancelled\020\004\022\027\n\023Failure_PinExp" +
-      "ected\020\005\022\030\n\024Failure_PinCancelled\020\006\022\026\n\022Fai" +
-      "lure_PinInvalid\020\007\022\034\n\030Failure_InvalidSign" +
-      "ature\020\010\022\021\n\rFailure_Other\020\t\022\032\n\026Failure_No",
-      "tEnoughFunds\020\n\022\032\n\026Failure_NotInitialized" +
-      "\020\013\022\031\n\025Failure_FirmwareError\020c*3\n\nScriptT" +
-      "ype\022\020\n\014PAYTOADDRESS\020\000\022\023\n\017PAYTOSCRIPTHASH" +
-      "\020\001*D\n\013RequestType\022\013\n\007TXINPUT\020\000\022\014\n\010TXOUTP" +
-      "UT\020\001\022\n\n\006TXMETA\020\002\022\016\n\nTXFINISHED\020\003*\206\002\n\021But" +
-      "tonRequestType\022\027\n\023ButtonRequest_Other\020\001\022" +
-      "\"\n\036ButtonRequest_FeeOverThreshold\020\002\022\037\n\033B" +
-      "uttonRequest_ConfirmOutput\020\003\022\035\n\031ButtonRe" +
-      "quest_ResetDevice\020\004\022\035\n\031ButtonRequest_Con" +
-      "firmWord\020\005\022\034\n\030ButtonRequest_WipeDevice\020\006",
-      "\022\035\n\031ButtonRequest_ProtectCall\020\007\022\030\n\024Butto" +
-      "nRequest_SignTx\020\010*\177\n\024PinMatrixRequestTyp" +
-      "e\022 \n\034PinMatrixRequestType_Current\020\001\022!\n\035P" +
-      "inMatrixRequestType_NewFirst\020\002\022\"\n\036PinMat" +
-      "rixRequestType_NewSecond\020\003:4\n\007wire_in\022!." +
-      "google.protobuf.EnumValueOptions\030\322\206\003 \001(\010" +
-      ":5\n\010wire_out\022!.google.protobuf.EnumValue" +
-      "Options\030\323\206\003 \001(\010::\n\rwire_debug_in\022!.googl" +
-      "e.protobuf.EnumValueOptions\030\324\206\003 \001(\010:;\n\016w" +
-      "ire_debug_out\022!.google.protobuf.EnumValu",
-      "eOptions\030\325\206\003 \001(\010B-\n\037com.satoshilabs.trez" +
-      "or.protobufB\nTrezorType"
+      "ess_type\030\003 \001(\r\022\021\n\tmaxfee_kb\030\004 \001(\004\"?\n\030Mul" +
+      "tisigRedeemScriptType\022\017\n\007pubkeys\030\001 \003(\014\022\022" +
+      "\n\nsignatures\030\002 \003(\014\"\333\001\n\013TxInputType\022\021\n\tad" +
+      "dress_n\030\001 \003(\r\022\021\n\tprev_hash\030\002 \002(\014\022\022\n\nprev",
+      "_index\030\003 \002(\r\022\022\n\nscript_sig\030\004 \001(\014\022\034\n\010sequ" +
+      "ence\030\005 \001(\r:\n4294967295\0223\n\013script_type\030\006 " +
+      "\001(\0162\020.InputScriptType:\014SPENDADDRESS\022+\n\010m" +
+      "ultisig\030\007 \001(\0132\031.MultisigRedeemScriptType" +
+      "\"j\n\014TxOutputType\022\017\n\007address\030\001 \001(\t\022\021\n\tadd" +
+      "ress_n\030\002 \003(\r\022\016\n\006amount\030\003 \002(\004\022&\n\013script_t" +
+      "ype\030\004 \002(\0162\021.OutputScriptType\"8\n\017TxOutput" +
+      "BinType\022\016\n\006amount\030\001 \002(\004\022\025\n\rscript_pubkey" +
+      "\030\002 \002(\014\"\303\001\n\017TransactionType\022\017\n\007version\030\001 " +
+      "\001(\r\022\034\n\006inputs\030\002 \003(\0132\014.TxInputType\022%\n\013bin",
+      "_outputs\030\003 \003(\0132\020.TxOutputBinType\022\036\n\007outp" +
+      "uts\030\005 \003(\0132\r.TxOutputType\022\021\n\tlock_time\030\004 " +
+      "\001(\r\022\022\n\ninputs_cnt\030\006 \001(\r\022\023\n\013outputs_cnt\030\007" +
+      " \001(\r\">\n\024TxRequestDetailsType\022\025\n\rrequest_" +
+      "index\030\001 \001(\r\022\017\n\007tx_hash\030\002 \001(\014\"\\\n\027TxReques" +
+      "tSerializedType\022\027\n\017signature_index\030\001 \001(\r" +
+      "\022\021\n\tsignature\030\002 \001(\014\022\025\n\rserialized_tx\030\003 \001" +
+      "(\014*\315\002\n\013FailureType\022\035\n\031Failure_Unexpected" +
+      "Message\020\001\022\032\n\026Failure_ButtonExpected\020\002\022\027\n" +
+      "\023Failure_SyntaxError\020\003\022\033\n\027Failure_Action",
+      "Cancelled\020\004\022\027\n\023Failure_PinExpected\020\005\022\030\n\024" +
+      "Failure_PinCancelled\020\006\022\026\n\022Failure_PinInv" +
+      "alid\020\007\022\034\n\030Failure_InvalidSignature\020\010\022\021\n\r" +
+      "Failure_Other\020\t\022\032\n\026Failure_NotEnoughFund" +
+      "s\020\n\022\032\n\026Failure_NotInitialized\020\013\022\031\n\025Failu" +
+      "re_FirmwareError\020c*9\n\020OutputScriptType\022\020" +
+      "\n\014PAYTOADDRESS\020\000\022\023\n\017PAYTOSCRIPTHASH\020\001*6\n" +
+      "\017InputScriptType\022\020\n\014SPENDADDRESS\020\000\022\021\n\rSP" +
+      "ENDMULTISIG\020\001*D\n\013RequestType\022\013\n\007TXINPUT\020" +
+      "\000\022\014\n\010TXOUTPUT\020\001\022\n\n\006TXMETA\020\002\022\016\n\nTXFINISHE",
+      "D\020\003*\302\002\n\021ButtonRequestType\022\027\n\023ButtonReque" +
+      "st_Other\020\001\022\"\n\036ButtonRequest_FeeOverThres" +
+      "hold\020\002\022\037\n\033ButtonRequest_ConfirmOutput\020\003\022" +
+      "\035\n\031ButtonRequest_ResetDevice\020\004\022\035\n\031Button" +
+      "Request_ConfirmWord\020\005\022\034\n\030ButtonRequest_W" +
+      "ipeDevice\020\006\022\035\n\031ButtonRequest_ProtectCall" +
+      "\020\007\022\030\n\024ButtonRequest_SignTx\020\010\022\037\n\033ButtonRe" +
+      "quest_FirmwareCheck\020\t\022\031\n\025ButtonRequest_A" +
+      "ddress\020\n*\177\n\024PinMatrixRequestType\022 \n\034PinM" +
+      "atrixRequestType_Current\020\001\022!\n\035PinMatrixR",
+      "equestType_NewFirst\020\002\022\"\n\036PinMatrixReques" +
+      "tType_NewSecond\020\003:4\n\007wire_in\022!.google.pr" +
+      "otobuf.EnumValueOptions\030\322\206\003 \001(\010:5\n\010wire_" +
+      "out\022!.google.protobuf.EnumValueOptions\030\323" +
+      "\206\003 \001(\010::\n\rwire_debug_in\022!.google.protobu" +
+      "f.EnumValueOptions\030\324\206\003 \001(\010:;\n\016wire_debug" +
+      "_out\022!.google.protobuf.EnumValueOptions\030" +
+      "\325\206\003 \001(\010B-\n\037com.satoshilabs.trezor.protob" +
+      "ufB\nTrezorType"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -8136,38 +9183,44 @@ public final class TrezorType {
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CoinType_descriptor,
               new java.lang.String[] { "CoinName", "CoinShortcut", "AddressType", "MaxfeeKb", });
-          internal_static_TxInputType_descriptor =
+          internal_static_MultisigRedeemScriptType_descriptor =
             getDescriptor().getMessageTypes().get(2);
+          internal_static_MultisigRedeemScriptType_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_MultisigRedeemScriptType_descriptor,
+              new java.lang.String[] { "Pubkeys", "Signatures", });
+          internal_static_TxInputType_descriptor =
+            getDescriptor().getMessageTypes().get(3);
           internal_static_TxInputType_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_TxInputType_descriptor,
-              new java.lang.String[] { "AddressN", "PrevHash", "PrevIndex", "ScriptSig", "Sequence", });
+              new java.lang.String[] { "AddressN", "PrevHash", "PrevIndex", "ScriptSig", "Sequence", "ScriptType", "Multisig", });
           internal_static_TxOutputType_descriptor =
-            getDescriptor().getMessageTypes().get(3);
+            getDescriptor().getMessageTypes().get(4);
           internal_static_TxOutputType_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_TxOutputType_descriptor,
-              new java.lang.String[] { "Address", "AddressN", "Amount", "ScriptType", "ScriptArgs", });
+              new java.lang.String[] { "Address", "AddressN", "Amount", "ScriptType", });
           internal_static_TxOutputBinType_descriptor =
-            getDescriptor().getMessageTypes().get(4);
+            getDescriptor().getMessageTypes().get(5);
           internal_static_TxOutputBinType_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_TxOutputBinType_descriptor,
               new java.lang.String[] { "Amount", "ScriptPubkey", });
           internal_static_TransactionType_descriptor =
-            getDescriptor().getMessageTypes().get(5);
+            getDescriptor().getMessageTypes().get(6);
           internal_static_TransactionType_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_TransactionType_descriptor,
               new java.lang.String[] { "Version", "Inputs", "BinOutputs", "Outputs", "LockTime", "InputsCnt", "OutputsCnt", });
           internal_static_TxRequestDetailsType_descriptor =
-            getDescriptor().getMessageTypes().get(6);
+            getDescriptor().getMessageTypes().get(7);
           internal_static_TxRequestDetailsType_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_TxRequestDetailsType_descriptor,
               new java.lang.String[] { "RequestIndex", "TxHash", });
           internal_static_TxRequestSerializedType_descriptor =
-            getDescriptor().getMessageTypes().get(7);
+            getDescriptor().getMessageTypes().get(8);
           internal_static_TxRequestSerializedType_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_TxRequestSerializedType_descriptor,
