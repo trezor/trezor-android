@@ -7,7 +7,10 @@ import java.util.Iterator;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.Message;
+import com.google.protobuf.Descriptors;
+import com.satoshilabs.trezor.protobuf.TrezorMessage;
 import com.satoshilabs.trezor.protobuf.TrezorMessage.*;
+import com.satoshilabs.trezor.TrezorGUICallback;
 
 import android.content.Context;
 import android.hardware.usb.UsbConstants;
@@ -21,7 +24,7 @@ import android.util.Log;
 
 public class Trezor {
 
-	public static Trezor getDevice(Context context) {
+	public static Trezor getDevice(Context context, TrezorGUICallback guicall) {
 		UsbManager manager = (UsbManager)context.getSystemService(Context.USB_SERVICE);
 		HashMap<String, UsbDevice> deviceList = manager.getDeviceList();
 		Iterator<UsbDevice> deviceIterator = deviceList.values().iterator();
@@ -80,7 +83,7 @@ public class Trezor {
 				continue;
 			}
 			// all OK - return the class
-			return new Trezor(device, conn, iface, epr, epw);
+			return new Trezor(guicall, device, conn, iface, epr, epw);
 		}
 		return null;
 	}
@@ -89,8 +92,10 @@ public class Trezor {
 	private UsbDeviceConnection conn;
 	private String serial;
 	private UsbEndpoint epr, epw;
+	private TrezorGUICallback guicall;
 
-	public Trezor(UsbDevice device, UsbDeviceConnection conn, UsbInterface iface, UsbEndpoint epr, UsbEndpoint epw) {
+	public Trezor(TrezorGUICallback guicall, UsbDevice device, UsbDeviceConnection conn, UsbInterface iface, UsbEndpoint epr, UsbEndpoint epw) {
+		this.guicall = guicall;
 //		this.device = device;
 		this.conn = conn;
 		this.epr = epr;
@@ -203,6 +208,58 @@ public class Trezor {
 	public Message send(Message msg) {
 		messageWrite(msg);
 		return messageRead();
+	}
+
+	private Message.Builder setFieldByName(Message.Builder builder,String name,Object value){
+		Descriptors.FieldDescriptor fieldDescriptor =
+			 builder.getDescriptorForType().findFieldByName(name);
+		if (value == null)
+			{ builder.clearField(fieldDescriptor); }
+		else
+			{ builder.setField(fieldDescriptor,value); }
+		return builder;
+	}
+
+	private Object getFieldByName(Message message,String name){
+		Descriptors.FieldDescriptor fieldDescriptor =
+			message.getDescriptorForType().findFieldByName(name);
+		return message.getField(fieldDescriptor);
+	}
+
+	private String _get(Message resp) {
+		switch (resp.getClass().getSimpleName()) {
+		case "Success":
+			TrezorMessage.Success r = (TrezorMessage.Success)resp;
+			if(r.hasPayload())throw new IllegalArgumentException();
+			if(r.hasMessage())return r.getMessage();
+			return "";
+		case "Failure":
+			throw new IllegalStateException();
+		/* User can catch ButtonRequest to Cancel by not calling _get */
+		case "ButtonRequest":
+			return _get(this.send(TrezorMessage.ButtonAck.newBuilder().build()));
+		}
+//		throw new IllegalArgumentException();
+		return resp.getClass().getSimpleName();
+	}
+
+	public String MessagePing() {
+		return _get(this.send(TrezorMessage.Ping.newBuilder().build()));
+	}
+
+	public String MessagePing(String msg) {
+		TrezorMessage.Ping.Builder bld = TrezorMessage.Ping.newBuilder();
+		setFieldByName(bld,"message",msg);
+		TrezorMessage.Ping req = bld.build();
+		return _get(this.send(req));
+	}
+
+	public String MessagePing(String msg, Boolean ButtonProtection) {
+		TrezorMessage.Ping.Builder bld = TrezorMessage.Ping.newBuilder();
+		setFieldByName(bld,"message",msg);
+		setFieldByName(bld,"button_protection",ButtonProtection);
+		TrezorMessage.Ping req = bld.build();
+		return _get(this.send(req));
 	}
 
 }
