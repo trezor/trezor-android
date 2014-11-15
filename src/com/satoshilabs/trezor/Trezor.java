@@ -10,6 +10,7 @@ import com.google.protobuf.Message;
 import com.google.protobuf.Descriptors;
 import com.satoshilabs.trezor.protobuf.TrezorMessage;
 import com.satoshilabs.trezor.protobuf.TrezorMessage.*;
+import com.satoshilabs.trezor.protobuf.TrezorType;
 import com.satoshilabs.trezor.TrezorGUICallback;
 
 import android.content.Context;
@@ -210,34 +211,55 @@ public class Trezor {
 		return messageRead();
 	}
 
-	private Message.Builder setFieldByName(Message.Builder builder,String name,Object value){
-		Descriptors.FieldDescriptor fieldDescriptor =
-			 builder.getDescriptorForType().findFieldByName(name);
-		if (value == null)
-			{ builder.clearField(fieldDescriptor); }
-		else
-			{ builder.setField(fieldDescriptor,value); }
-		return builder;
-	}
-
-	private Object getFieldByName(Message message,String name){
-		Descriptors.FieldDescriptor fieldDescriptor =
-			message.getDescriptorForType().findFieldByName(name);
-		return message.getField(fieldDescriptor);
+	final protected static char[] hexArray = "0123456789ABCDEF".toCharArray();
+	private static String bytesToHex(byte[] bytes) {
+		char[] hexChars = new char[bytes.length * 2];
+		for ( int j = 0; j < bytes.length; j++ ) {
+			int v = bytes[j] & 0xFF;
+			hexChars[j * 2] = hexArray[v >>> 4];
+			hexChars[j * 2 + 1] = hexArray[v & 0x0F];
+		}
+		return new String(hexChars);
 	}
 
 	private String _get(Message resp) {
 		switch (resp.getClass().getSimpleName()) {
-		case "Success":
+		case "Success": {
 			TrezorMessage.Success r = (TrezorMessage.Success)resp;
 			if(r.hasPayload())throw new IllegalArgumentException();
 			if(r.hasMessage())return r.getMessage();
-			return "";
+			return ""; }
 		case "Failure":
 			throw new IllegalStateException();
 		/* User can catch ButtonRequest to Cancel by not calling _get */
 		case "ButtonRequest":
 			return _get(this.send(TrezorMessage.ButtonAck.newBuilder().build()));
+		case "PinMatrixRequest":
+			return _get(this.send(
+				TrezorMessage.PinMatrixAck.newBuilder().
+				setPin(this.guicall.PinMatrixRequest()).
+				build()));
+		case "PassphraseRequest":
+			return _get(this.send(
+				TrezorMessage.PassphraseAck.newBuilder().
+				/* TODO: UTF8 VS Unicode... Fight! */
+				setPassphrase(this.guicall.PassphraseRequest()).
+				build()));
+		case "PublicKey": {
+			TrezorMessage.PublicKey r = (TrezorMessage.PublicKey)resp;
+			if(!r.hasNode())throw new IllegalArgumentException();
+			TrezorType.HDNodeType N = r.getNode();
+			String NodeStr = ((N.hasDepth())?N.getDepth():"") +"%"+
+				((N.hasFingerprint())?N.getFingerprint():"") +"%"+
+				((N.hasChildNum())?N.getChildNum():"") +"%"+
+				((N.hasChainCode())?bytesToHex(N.getChainCode().toByteArray()):"") +"%"+
+				((N.hasPrivateKey())?bytesToHex(N.getPrivateKey().toByteArray()):"") +"%"+
+				((N.hasPublicKey())?bytesToHex(N.getPublicKey().toByteArray()):"") +"%"+
+				"";
+			if(r.hasXpub())
+				return NodeStr + ":!:" + r.getXpub() + ":!:" +
+					bytesToHex(r.getXpubBytes().toByteArray());
+			return NodeStr; }
 		}
 //		throw new IllegalArgumentException();
 		return resp.getClass().getSimpleName();
@@ -248,18 +270,34 @@ public class Trezor {
 	}
 
 	public String MessagePing(String msg) {
-		TrezorMessage.Ping.Builder bld = TrezorMessage.Ping.newBuilder();
-		setFieldByName(bld,"message",msg);
-		TrezorMessage.Ping req = bld.build();
-		return _get(this.send(req));
+		return _get(this.send(
+			TrezorMessage.Ping.newBuilder().
+			setMessage(msg).
+			build()));
 	}
 
 	public String MessagePing(String msg, Boolean ButtonProtection) {
-		TrezorMessage.Ping.Builder bld = TrezorMessage.Ping.newBuilder();
-		setFieldByName(bld,"message",msg);
-		setFieldByName(bld,"button_protection",ButtonProtection);
-		TrezorMessage.Ping req = bld.build();
-		return _get(this.send(req));
+		return _get(this.send(
+			TrezorMessage.Ping.newBuilder().
+			setMessage(msg).
+			setButtonProtection(ButtonProtection).
+			build()));
+	}
+
+	public String MessageGetPublicKey() {
+		return _get(this.send(
+			TrezorMessage.GetPublicKey.newBuilder().
+			clearAddressN().
+			addAddressN(1).
+			build()));
+	}
+
+	public String MessageGetPublicKey(Integer[] addrn) {
+		return _get(this.send(
+			TrezorMessage.GetPublicKey.newBuilder().
+			clearAddressN().
+			addAllAddressN(Arrays.asList(addrn)).
+			build()));
 	}
 
 }
