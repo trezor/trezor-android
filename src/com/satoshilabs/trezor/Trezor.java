@@ -7,7 +7,11 @@ import java.util.Iterator;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.Message;
+import com.google.protobuf.Descriptors;
+import com.satoshilabs.trezor.protobuf.TrezorMessage;
 import com.satoshilabs.trezor.protobuf.TrezorMessage.*;
+import com.satoshilabs.trezor.protobuf.TrezorType;
+import com.satoshilabs.trezor.TrezorGUICallback;
 
 import android.content.Context;
 import android.hardware.usb.UsbConstants;
@@ -19,9 +23,19 @@ import android.hardware.usb.UsbManager;
 import android.hardware.usb.UsbRequest;
 import android.util.Log;
 
+/* Stub for empty TrezorGUICallback */
+class _TrezorGUICallback implements TrezorGUICallback {
+	public String PinMatrixRequest() { return ""; }
+	public String PassphraseRequest() { return ""; }
+}
+
 public class Trezor {
 
 	public static Trezor getDevice(Context context) {
+		return getDevice(context,new _TrezorGUICallback());
+	}
+
+	public static Trezor getDevice(Context context, TrezorGUICallback guicall) {
 		UsbManager manager = (UsbManager)context.getSystemService(Context.USB_SERVICE);
 		HashMap<String, UsbDevice> deviceList = manager.getDeviceList();
 		Iterator<UsbDevice> deviceIterator = deviceList.values().iterator();
@@ -80,7 +94,7 @@ public class Trezor {
 				continue;
 			}
 			// all OK - return the class
-			return new Trezor(device, conn, iface, epr, epw);
+			return new Trezor(guicall, device, conn, iface, epr, epw);
 		}
 		return null;
 	}
@@ -89,8 +103,10 @@ public class Trezor {
 	private UsbDeviceConnection conn;
 	private String serial;
 	private UsbEndpoint epr, epw;
+	private TrezorGUICallback guicall;
 
-	public Trezor(UsbDevice device, UsbDeviceConnection conn, UsbInterface iface, UsbEndpoint epr, UsbEndpoint epw) {
+	public Trezor(TrezorGUICallback guicall, UsbDevice device, UsbDeviceConnection conn, UsbInterface iface, UsbEndpoint epr, UsbEndpoint epw) {
+		this.guicall = guicall;
 //		this.device = device;
 		this.conn = conn;
 		this.epr = epr;
@@ -203,6 +219,95 @@ public class Trezor {
 	public Message send(Message msg) {
 		messageWrite(msg);
 		return messageRead();
+	}
+
+	final protected static char[] hexArray = "0123456789ABCDEF".toCharArray();
+	private static String bytesToHex(byte[] bytes) {
+		char[] hexChars = new char[bytes.length * 2];
+		for ( int j = 0; j < bytes.length; j++ ) {
+			int v = bytes[j] & 0xFF;
+			hexChars[j * 2] = hexArray[v >>> 4];
+			hexChars[j * 2 + 1] = hexArray[v & 0x0F];
+		}
+		return new String(hexChars);
+	}
+
+	private String _get(Message resp) {
+		switch (resp.getClass().getSimpleName()) {
+		case "Success": {
+			TrezorMessage.Success r = (TrezorMessage.Success)resp;
+			if(r.hasPayload())throw new IllegalArgumentException();
+			if(r.hasMessage())return r.getMessage();
+			return ""; }
+		case "Failure":
+			throw new IllegalStateException();
+		/* User can catch ButtonRequest to Cancel by not calling _get */
+		case "ButtonRequest":
+			return _get(this.send(TrezorMessage.ButtonAck.newBuilder().build()));
+		case "PinMatrixRequest":
+			return _get(this.send(
+				TrezorMessage.PinMatrixAck.newBuilder().
+				setPin(this.guicall.PinMatrixRequest()).
+				build()));
+		case "PassphraseRequest":
+			return _get(this.send(
+				TrezorMessage.PassphraseAck.newBuilder().
+				/* TODO: UTF8 VS Unicode... Fight! */
+				setPassphrase(this.guicall.PassphraseRequest()).
+				build()));
+		case "PublicKey": {
+			TrezorMessage.PublicKey r = (TrezorMessage.PublicKey)resp;
+			if(!r.hasNode())throw new IllegalArgumentException();
+			TrezorType.HDNodeType N = r.getNode();
+			String NodeStr = ((N.hasDepth())?N.getDepth():"") +"%"+
+				((N.hasFingerprint())?N.getFingerprint():"") +"%"+
+				((N.hasChildNum())?N.getChildNum():"") +"%"+
+				((N.hasChainCode())?bytesToHex(N.getChainCode().toByteArray()):"") +"%"+
+				((N.hasPrivateKey())?bytesToHex(N.getPrivateKey().toByteArray()):"") +"%"+
+				((N.hasPublicKey())?bytesToHex(N.getPublicKey().toByteArray()):"") +"%"+
+				"";
+			if(r.hasXpub())
+				return NodeStr + ":!:" + r.getXpub() + ":!:" +
+					bytesToHex(r.getXpubBytes().toByteArray());
+			return NodeStr; }
+		}
+//		throw new IllegalArgumentException();
+		return resp.getClass().getSimpleName();
+	}
+
+	public String MessagePing() {
+		return _get(this.send(TrezorMessage.Ping.newBuilder().build()));
+	}
+
+	public String MessagePing(String msg) {
+		return _get(this.send(
+			TrezorMessage.Ping.newBuilder().
+			setMessage(msg).
+			build()));
+	}
+
+	public String MessagePing(String msg, Boolean ButtonProtection) {
+		return _get(this.send(
+			TrezorMessage.Ping.newBuilder().
+			setMessage(msg).
+			setButtonProtection(ButtonProtection).
+			build()));
+	}
+
+	public String MessageGetPublicKey() {
+		return _get(this.send(
+			TrezorMessage.GetPublicKey.newBuilder().
+			clearAddressN().
+			addAddressN(1).
+			build()));
+	}
+
+	public String MessageGetPublicKey(Integer[] addrn) {
+		return _get(this.send(
+			TrezorMessage.GetPublicKey.newBuilder().
+			clearAddressN().
+			addAllAddressN(Arrays.asList(addrn)).
+			build()));
 	}
 
 }
