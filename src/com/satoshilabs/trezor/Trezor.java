@@ -23,7 +23,17 @@ import android.hardware.usb.UsbManager;
 import android.hardware.usb.UsbRequest;
 import android.util.Log;
 
+/* Stub for empty TrezorGUICallback */
+class _TrezorGUICallback implements TrezorGUICallback {
+	public String PinMatrixRequest() { return ""; }
+	public String PassphraseRequest() { return ""; }
+}
+
 public class Trezor {
+
+	public static Trezor getDevice(Context context) {
+		return getDevice(context,new _TrezorGUICallback());
+	}
 
 	public static Trezor getDevice(Context context, TrezorGUICallback guicall) {
 		UsbManager manager = (UsbManager)context.getSystemService(Context.USB_SERVICE);
