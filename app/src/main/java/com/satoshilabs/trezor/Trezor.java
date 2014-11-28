@@ -236,7 +236,6 @@ public class Trezor {
 		switch (resp.getClass().getSimpleName()) {
 		case "Success": {
 			TrezorMessage.Success r = (TrezorMessage.Success)resp;
-			if(r.hasPayload())throw new IllegalArgumentException();
 			if(r.hasMessage())return r.getMessage();
 			return ""; }
 		case "Failure":
