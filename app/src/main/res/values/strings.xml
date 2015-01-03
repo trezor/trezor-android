@@ -2,7 +2,6 @@
 <resources>
 
     <string name="app_name">TREZOR</string>
-    <string name="action_settings">Settings</string>
-    <string name="button_send">Send</string>
+    <string name="button_test">Test</string>
 
 </resources>
