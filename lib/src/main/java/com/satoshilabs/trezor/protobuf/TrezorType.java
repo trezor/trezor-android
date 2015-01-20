@@ -1221,7 +1221,7 @@ public final class TrezorType {
                 com.satoshilabs.trezor.protobuf.TrezorType.HDNodeType.class, com.satoshilabs.trezor.protobuf.TrezorType.HDNodeType.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorType.HDNodeType.newBuilder()
+      // Construct using TrezorType.HDNodeType.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -2000,7 +2000,7 @@ public final class TrezorType {
                 com.satoshilabs.trezor.protobuf.TrezorType.HDNodePathType.class, com.satoshilabs.trezor.protobuf.TrezorType.HDNodePathType.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorType.HDNodePathType.newBuilder()
+      // Construct using TrezorType.HDNodePathType.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -2876,7 +2876,7 @@ public final class TrezorType {
                 com.satoshilabs.trezor.protobuf.TrezorType.CoinType.class, com.satoshilabs.trezor.protobuf.TrezorType.CoinType.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorType.CoinType.newBuilder()
+      // Construct using TrezorType.CoinType.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -3765,7 +3765,7 @@ public final class TrezorType {
                 com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType.class, com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorType.MultisigRedeemScriptType.newBuilder()
+      // Construct using TrezorType.MultisigRedeemScriptType.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -5103,7 +5103,7 @@ public final class TrezorType {
                 com.satoshilabs.trezor.protobuf.TrezorType.TxInputType.class, com.satoshilabs.trezor.protobuf.TrezorType.TxInputType.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorType.TxInputType.newBuilder()
+      // Construct using TrezorType.TxInputType.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -6431,7 +6431,7 @@ public final class TrezorType {
                 com.satoshilabs.trezor.protobuf.TrezorType.TxOutputType.class, com.satoshilabs.trezor.protobuf.TrezorType.TxOutputType.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorType.TxOutputType.newBuilder()
+      // Construct using TrezorType.TxOutputType.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -7368,7 +7368,7 @@ public final class TrezorType {
                 com.satoshilabs.trezor.protobuf.TrezorType.TxOutputBinType.class, com.satoshilabs.trezor.protobuf.TrezorType.TxOutputBinType.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorType.TxOutputBinType.newBuilder()
+      // Construct using TrezorType.TxOutputBinType.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -8204,7 +8204,7 @@ public final class TrezorType {
                 com.satoshilabs.trezor.protobuf.TrezorType.TransactionType.class, com.satoshilabs.trezor.protobuf.TrezorType.TransactionType.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorType.TransactionType.newBuilder()
+      // Construct using TrezorType.TransactionType.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -9673,7 +9673,7 @@ public final class TrezorType {
                 com.satoshilabs.trezor.protobuf.TrezorType.TxRequestDetailsType.class, com.satoshilabs.trezor.protobuf.TrezorType.TxRequestDetailsType.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorType.TxRequestDetailsType.newBuilder()
+      // Construct using TrezorType.TxRequestDetailsType.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -10284,7 +10284,7 @@ public final class TrezorType {
                 com.satoshilabs.trezor.protobuf.TrezorType.TxRequestSerializedType.class, com.satoshilabs.trezor.protobuf.TrezorType.TxRequestSerializedType.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorType.TxRequestSerializedType.newBuilder()
+      // Construct using TrezorType.TxRequestSerializedType.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }

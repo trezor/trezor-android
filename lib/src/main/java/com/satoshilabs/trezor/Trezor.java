@@ -29,26 +29,23 @@ class Trezor {
     private String _get(Message resp) {
         switch (resp.getClass().getSimpleName()) {
             case "Success": {
-                TrezorMessage.Success r = (TrezorMessage.Success) resp;
-                if (r.hasMessage()) return r.getMessage();
+                TrezorMessage.Success rs = (TrezorMessage.Success) resp;
+                if (rs.hasMessage()) return rs.getMessage();
                 return "";
             }
-            case "Failure":
-                throw new IllegalStateException();
-        /* User can catch ButtonRequest to Cancel by not calling _get */
             case "ButtonRequest":
-                TrezorMessage.ButtonRequest r = (TrezorMessage.ButtonRequest) resp;
-                if (this.gui.ButtonRequest(r.getCode(), r.getData())) {
+                TrezorMessage.ButtonRequest rbr = (TrezorMessage.ButtonRequest) resp;
+                if (this.gui.ButtonRequest(rbr.getCode(), rbr.getData())) {
                     return _get(this.send(TrezorMessage.ButtonAck.newBuilder().build()));
                 } else {
                     this.send(TrezorMessage.Cancel.newBuilder().build());
                     return "";
                 }
             case "PinMatrixRequest":
-                TrezorMessage.PinMatrixRequest r = (TrezorMessage.PinMatrixRequest) resp;
+                TrezorMessage.PinMatrixRequest rpmr = (TrezorMessage.PinMatrixRequest) resp;
                 return _get(this.send(
                         TrezorMessage.PinMatrixAck.newBuilder().
-                                setPin(this.gui.PinMatrixRequest(r.getType())).
+                                setPin(this.gui.PinMatrixRequest(rpmr.getType())).
                                 build()));
             case "PassphraseRequest":
                 return _get(this.send(
@@ -56,21 +53,23 @@ class Trezor {
                                 setPassphrase(Normalizer.normalize(this.gui.PassphraseRequest(), Normalizer.Form.NFKD)).
                                 build()));
             case "PublicKey": {
-                TrezorMessage.PublicKey r = (TrezorMessage.PublicKey) resp;
-                if (!r.hasNode()) throw new IllegalArgumentException();
-                TrezorType.HDNodeType N = r.getNode();
-                String NodeStr = ((N.hasDepth()) ? N.getDepth() : "") + "%" +
+                TrezorMessage.PublicKey rpk = (TrezorMessage.PublicKey) resp;
+                if (!rpk.hasNode()) throw new IllegalArgumentException();
+                TrezorType.HDNodeType N = rpk.getNode();
+                String str = ((N.hasDepth()) ? N.getDepth() : "") + "%" +
                         ((N.hasFingerprint()) ? N.getFingerprint() : "") + "%" +
                         ((N.hasChildNum()) ? N.getChildNum() : "") + "%" +
                         ((N.hasChainCode()) ? bytesToHex(N.getChainCode()) : "") + "%" +
                         ((N.hasPrivateKey()) ? bytesToHex(N.getPrivateKey()) : "") + "%" +
                         ((N.hasPublicKey()) ? bytesToHex(N.getPublicKey()) : "") + "%" +
                         "";
-                if (r.hasXpub()) {
-                    NodeStr += ":!:" + r.getXpub();
+                if (rpk.hasXpub()) {
+                    str += ":!:" + rpk.getXpub();
                 }
-                return NodeStr;
+                return str;
             }
+            case "Failure":
+                throw new IllegalStateException();
         }
 //		throw new IllegalArgumentException();
         return resp.getClass().getSimpleName();

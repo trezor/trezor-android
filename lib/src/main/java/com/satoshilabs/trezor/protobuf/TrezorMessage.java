@@ -759,7 +759,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.Initialize.class, com.satoshilabs.trezor.protobuf.TrezorMessage.Initialize.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.Initialize.newBuilder()
+      // Construct using TrezorMessage.Initialize.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -2132,7 +2132,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.Features.class, com.satoshilabs.trezor.protobuf.TrezorMessage.Features.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.Features.newBuilder()
+      // Construct using TrezorMessage.Features.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -3833,7 +3833,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.ClearSession.class, com.satoshilabs.trezor.protobuf.TrezorMessage.ClearSession.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.ClearSession.newBuilder()
+      // Construct using TrezorMessage.ClearSession.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -4343,7 +4343,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.ApplySettings.class, com.satoshilabs.trezor.protobuf.TrezorMessage.ApplySettings.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.ApplySettings.newBuilder()
+      // Construct using TrezorMessage.ApplySettings.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -4939,7 +4939,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.ChangePin.class, com.satoshilabs.trezor.protobuf.TrezorMessage.ChangePin.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.ChangePin.newBuilder()
+      // Construct using TrezorMessage.ChangePin.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -5584,7 +5584,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.Ping.class, com.satoshilabs.trezor.protobuf.TrezorMessage.Ping.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.Ping.newBuilder()
+      // Construct using TrezorMessage.Ping.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -6287,7 +6287,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.Success.class, com.satoshilabs.trezor.protobuf.TrezorMessage.Success.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.Success.newBuilder()
+      // Construct using TrezorMessage.Success.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -6877,7 +6877,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.Failure.class, com.satoshilabs.trezor.protobuf.TrezorMessage.Failure.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.Failure.newBuilder()
+      // Construct using TrezorMessage.Failure.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -7492,7 +7492,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.ButtonRequest.class, com.satoshilabs.trezor.protobuf.TrezorMessage.ButtonRequest.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.ButtonRequest.newBuilder()
+      // Construct using TrezorMessage.ButtonRequest.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -7947,7 +7947,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.ButtonAck.class, com.satoshilabs.trezor.protobuf.TrezorMessage.ButtonAck.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.ButtonAck.newBuilder()
+      // Construct using TrezorMessage.ButtonAck.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -8317,7 +8317,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.PinMatrixRequest.class, com.satoshilabs.trezor.protobuf.TrezorMessage.PinMatrixRequest.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.PinMatrixRequest.newBuilder()
+      // Construct using TrezorMessage.PinMatrixRequest.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -8788,7 +8788,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.PinMatrixAck.class, com.satoshilabs.trezor.protobuf.TrezorMessage.PinMatrixAck.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.PinMatrixAck.newBuilder()
+      // Construct using TrezorMessage.PinMatrixAck.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -9230,7 +9230,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.Cancel.class, com.satoshilabs.trezor.protobuf.TrezorMessage.Cancel.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.Cancel.newBuilder()
+      // Construct using TrezorMessage.Cancel.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -9553,7 +9553,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.PassphraseRequest.class, com.satoshilabs.trezor.protobuf.TrezorMessage.PassphraseRequest.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.PassphraseRequest.newBuilder()
+      // Construct using TrezorMessage.PassphraseRequest.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -9951,7 +9951,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.PassphraseAck.class, com.satoshilabs.trezor.protobuf.TrezorMessage.PassphraseAck.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.PassphraseAck.newBuilder()
+      // Construct using TrezorMessage.PassphraseAck.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -10430,7 +10430,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.GetEntropy.class, com.satoshilabs.trezor.protobuf.TrezorMessage.GetEntropy.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.GetEntropy.newBuilder()
+      // Construct using TrezorMessage.GetEntropy.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -10878,7 +10878,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.Entropy.class, com.satoshilabs.trezor.protobuf.TrezorMessage.Entropy.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.Entropy.newBuilder()
+      // Construct using TrezorMessage.Entropy.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -11371,7 +11371,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.GetPublicKey.class, com.satoshilabs.trezor.protobuf.TrezorMessage.GetPublicKey.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.GetPublicKey.newBuilder()
+      // Construct using TrezorMessage.GetPublicKey.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -11991,7 +11991,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.PublicKey.class, com.satoshilabs.trezor.protobuf.TrezorMessage.PublicKey.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.PublicKey.newBuilder()
+      // Construct using TrezorMessage.PublicKey.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -12905,7 +12905,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.GetAddress.class, com.satoshilabs.trezor.protobuf.TrezorMessage.GetAddress.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.GetAddress.newBuilder()
+      // Construct using TrezorMessage.GetAddress.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -13746,7 +13746,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.Address.class, com.satoshilabs.trezor.protobuf.TrezorMessage.Address.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.Address.newBuilder()
+      // Construct using TrezorMessage.Address.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -14184,7 +14184,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.WipeDevice.class, com.satoshilabs.trezor.protobuf.TrezorMessage.WipeDevice.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.WipeDevice.newBuilder()
+      // Construct using TrezorMessage.WipeDevice.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -15088,7 +15088,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.LoadDevice.class, com.satoshilabs.trezor.protobuf.TrezorMessage.LoadDevice.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.LoadDevice.newBuilder()
+      // Construct using TrezorMessage.LoadDevice.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -16556,7 +16556,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.ResetDevice.class, com.satoshilabs.trezor.protobuf.TrezorMessage.ResetDevice.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.ResetDevice.newBuilder()
+      // Construct using TrezorMessage.ResetDevice.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -17333,7 +17333,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.EntropyRequest.class, com.satoshilabs.trezor.protobuf.TrezorMessage.EntropyRequest.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.EntropyRequest.newBuilder()
+      // Construct using TrezorMessage.EntropyRequest.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -17713,7 +17713,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.EntropyAck.class, com.satoshilabs.trezor.protobuf.TrezorMessage.EntropyAck.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.EntropyAck.newBuilder()
+      // Construct using TrezorMessage.EntropyAck.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -18513,7 +18513,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.RecoveryDevice.class, com.satoshilabs.trezor.protobuf.TrezorMessage.RecoveryDevice.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.RecoveryDevice.newBuilder()
+      // Construct using TrezorMessage.RecoveryDevice.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -19292,7 +19292,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.WordRequest.class, com.satoshilabs.trezor.protobuf.TrezorMessage.WordRequest.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.WordRequest.newBuilder()
+      // Construct using TrezorMessage.WordRequest.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -19720,7 +19720,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.WordAck.class, com.satoshilabs.trezor.protobuf.TrezorMessage.WordAck.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.WordAck.newBuilder()
+      // Construct using TrezorMessage.WordAck.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -20414,7 +20414,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.SignMessage.class, com.satoshilabs.trezor.protobuf.TrezorMessage.SignMessage.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.SignMessage.newBuilder()
+      // Construct using TrezorMessage.SignMessage.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -21233,7 +21233,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.VerifyMessage.class, com.satoshilabs.trezor.protobuf.TrezorMessage.VerifyMessage.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.VerifyMessage.newBuilder()
+      // Construct using TrezorMessage.VerifyMessage.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -21941,7 +21941,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.MessageSignature.class, com.satoshilabs.trezor.protobuf.TrezorMessage.MessageSignature.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.MessageSignature.newBuilder()
+      // Construct using TrezorMessage.MessageSignature.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -22798,7 +22798,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.EncryptMessage.class, com.satoshilabs.trezor.protobuf.TrezorMessage.EncryptMessage.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.EncryptMessage.newBuilder()
+      // Construct using TrezorMessage.EncryptMessage.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -23690,7 +23690,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.EncryptedMessage.class, com.satoshilabs.trezor.protobuf.TrezorMessage.EncryptedMessage.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.EncryptedMessage.newBuilder()
+      // Construct using TrezorMessage.EncryptedMessage.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -24465,7 +24465,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.DecryptMessage.class, com.satoshilabs.trezor.protobuf.TrezorMessage.DecryptMessage.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.DecryptMessage.newBuilder()
+      // Construct using TrezorMessage.DecryptMessage.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -25236,7 +25236,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.DecryptedMessage.class, com.satoshilabs.trezor.protobuf.TrezorMessage.DecryptedMessage.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.DecryptedMessage.newBuilder()
+      // Construct using TrezorMessage.DecryptedMessage.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -26148,7 +26148,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.CipherKeyValue.class, com.satoshilabs.trezor.protobuf.TrezorMessage.CipherKeyValue.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.CipherKeyValue.newBuilder()
+      // Construct using TrezorMessage.CipherKeyValue.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -26985,7 +26985,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.CipheredKeyValue.class, com.satoshilabs.trezor.protobuf.TrezorMessage.CipheredKeyValue.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.CipheredKeyValue.newBuilder()
+      // Construct using TrezorMessage.CipheredKeyValue.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -27592,7 +27592,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.EstimateTxSize.class, com.satoshilabs.trezor.protobuf.TrezorMessage.EstimateTxSize.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.EstimateTxSize.newBuilder()
+      // Construct using TrezorMessage.EstimateTxSize.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -28207,7 +28207,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.TxSize.class, com.satoshilabs.trezor.protobuf.TrezorMessage.TxSize.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.TxSize.newBuilder()
+      // Construct using TrezorMessage.TxSize.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -28811,7 +28811,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.SignTx.class, com.satoshilabs.trezor.protobuf.TrezorMessage.SignTx.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.SignTx.newBuilder()
+      // Construct using TrezorMessage.SignTx.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -29854,7 +29854,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.SimpleSignTx.class, com.satoshilabs.trezor.protobuf.TrezorMessage.SimpleSignTx.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.SimpleSignTx.newBuilder()
+      // Construct using TrezorMessage.SimpleSignTx.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -31601,7 +31601,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.TxRequest.class, com.satoshilabs.trezor.protobuf.TrezorMessage.TxRequest.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.TxRequest.newBuilder()
+      // Construct using TrezorMessage.TxRequest.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -32396,7 +32396,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.TxAck.class, com.satoshilabs.trezor.protobuf.TrezorMessage.TxAck.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.TxAck.newBuilder()
+      // Construct using TrezorMessage.TxAck.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -32864,7 +32864,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.FirmwareErase.class, com.satoshilabs.trezor.protobuf.TrezorMessage.FirmwareErase.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.FirmwareErase.newBuilder()
+      // Construct using TrezorMessage.FirmwareErase.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -33248,7 +33248,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.FirmwareUpload.class, com.satoshilabs.trezor.protobuf.TrezorMessage.FirmwareUpload.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.FirmwareUpload.newBuilder()
+      // Construct using TrezorMessage.FirmwareUpload.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -33699,7 +33699,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.DebugLinkDecision.class, com.satoshilabs.trezor.protobuf.TrezorMessage.DebugLinkDecision.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.DebugLinkDecision.newBuilder()
+      // Construct using TrezorMessage.DebugLinkDecision.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -34086,7 +34086,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.DebugLinkGetState.class, com.satoshilabs.trezor.protobuf.TrezorMessage.DebugLinkGetState.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.DebugLinkGetState.newBuilder()
+      // Construct using TrezorMessage.DebugLinkGetState.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -35191,7 +35191,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.DebugLinkState.class, com.satoshilabs.trezor.protobuf.TrezorMessage.DebugLinkState.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.DebugLinkState.newBuilder()
+      // Construct using TrezorMessage.DebugLinkState.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -36474,7 +36474,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.DebugLinkStop.class, com.satoshilabs.trezor.protobuf.TrezorMessage.DebugLinkStop.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.DebugLinkStop.newBuilder()
+      // Construct using TrezorMessage.DebugLinkStop.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -36976,7 +36976,7 @@ public final class TrezorMessage {
                 com.satoshilabs.trezor.protobuf.TrezorMessage.DebugLinkLog.class, com.satoshilabs.trezor.protobuf.TrezorMessage.DebugLinkLog.Builder.class);
       }
 
-      // Construct using com.satoshilabs.trezor.protobuf.TrezorMessage.DebugLinkLog.newBuilder()
+      // Construct using TrezorMessage.DebugLinkLog.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
