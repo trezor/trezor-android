@@ -10,10 +10,10 @@ import java.util.Arrays;
 
 class Trezor {
 
-    private TrezorGUICallback gui;
+    private TrezorCallback gui;
     private TrezorDevice device;
 
-    public Trezor(TrezorGUICallback gui, TrezorDevice device) {
+    public Trezor(TrezorCallback gui, TrezorDevice device) {
         this.gui = gui;
         this.device = device;
     }
@@ -37,11 +37,18 @@ class Trezor {
                 throw new IllegalStateException();
         /* User can catch ButtonRequest to Cancel by not calling _get */
             case "ButtonRequest":
-                return _get(this.send(TrezorMessage.ButtonAck.newBuilder().build()));
+                TrezorMessage.ButtonRequest r = (TrezorMessage.ButtonRequest) resp;
+                if (this.gui.ButtonRequest(r.getCode(), r.getData())) {
+                    return _get(this.send(TrezorMessage.ButtonAck.newBuilder().build()));
+                } else {
+                    this.send(TrezorMessage.Cancel.newBuilder().build());
+                    return "";
+                }
             case "PinMatrixRequest":
+                TrezorMessage.PinMatrixRequest r = (TrezorMessage.PinMatrixRequest) resp;
                 return _get(this.send(
                         TrezorMessage.PinMatrixAck.newBuilder().
-                                setPin(this.gui.PinMatrixRequest()).
+                                setPin(this.gui.PinMatrixRequest(r.getType())).
                                 build()));
             case "PassphraseRequest":
                 return _get(this.send(

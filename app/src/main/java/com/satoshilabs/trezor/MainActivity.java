@@ -8,9 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.satoshilabs.trezor.protobuf.TrezorType;
+
 import java.util.HashMap;
 
-public class MainActivity extends ActionBarActivity implements TrezorGUICallback {
+public class MainActivity extends ActionBarActivity implements TrezorCallback {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +50,11 @@ public class MainActivity extends ActionBarActivity implements TrezorGUICallback
         editText.append("got: " + resp + "\n");
     }
 
-    public String PinMatrixRequest() {
+    public boolean ButtonRequest(TrezorType.ButtonRequestType code, String data) {
+        return true;
+    }
+
+    public String PinMatrixRequest(TrezorType.PinMatrixRequestType type) {
         return "";
     }
 
