@@ -3,6 +3,10 @@ trezor-android
 
 TREZOR Library for Android
 
+Requirements
+------
+TREZOR has to be connected to Android by OTG cable. The Android device needs to support such connections.
+
 Example
 -------
 
@@ -20,3 +24,5 @@ Example
       // "got: " + resp.getClass().getSimpleName()
     }
   }
+
+You can see examples of real-life usage in `GreenBits repository<https://github.com/greenaddress/GreenBits/blob/master/app/src/main/java/com/greenaddress/greenbits/wallets/TrezorHWWallet.java>`_ or `MyCelium repository<https://github.com/mycelium-com/wallet/tree/master/public/mbw/src/main/java/com/mycelium/wallet/trezor>`.
