@@ -25,4 +25,4 @@ Example
     }
   }
 
-You can see examples of real-life usage in `GreenBits repository<https://github.com/greenaddress/GreenBits/blob/master/app/src/main/java/com/greenaddress/greenbits/wallets/TrezorHWWallet.java>`_ or `MyCelium repository<https://github.com/mycelium-com/wallet/tree/master/public/mbw/src/main/java/com/mycelium/wallet/trezor>`.
+You can see examples of real-life usage in `GreenBits repository <https://github.com/greenaddress/GreenBits/blob/master/app/src/main/java/com/greenaddress/greenbits/wallets/TrezorHWWallet.java>`_ or `MyCelium repository <https://github.com/mycelium-com/wallet/tree/master/public/mbw/src/main/java/com/mycelium/wallet/trezor>`_.
