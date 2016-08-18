@@ -4,8 +4,14 @@ import android.content.Context;
 import android.content.res.AssetManager;
 
 import com.circlegate.liban.base.GlobalContextLib;
+import com.circlegate.liban.task.TaskCommon.AsyncTaskParam;
+import com.circlegate.liban.task.TaskCommon.EmptyTaskListener;
+import com.circlegate.liban.task.TaskErrors.TaskException;
+import com.circlegate.liban.task.TaskInterfaces.ITask;
+import com.circlegate.liban.task.TaskInterfaces.ITaskContext;
 import com.circlegate.liban.utils.LogUtils;
 import com.google.common.collect.ImmutableList;
+import com.satoshilabs.trezor.app.common.TrezorTasks.TrezorTaskParam;
 import com.satoshilabs.trezor.app.db.CommonDb;
 import com.satoshilabs.trezor.lib.TrezorManager;
 import com.satoshilabs.trezor.lib.protobuf.TrezorMessage.Features;
@@ -139,6 +145,26 @@ public class GlobalContext extends GlobalContextLib {
     public synchronized InputStream openStreamBundledFirmware() throws IOException {
         FirmwareVersion f = getBundledFirmwareVersion();
         return getAndroidContext().getAssets().open(FIRMWARE_DIR + File.separatorChar + FIRMWARE_FILE_PREFIX + f.major + "." + f.minor + "." + f.patch + FIRMWARE_FILE_POSTFIX);
+    }
+
+    public synchronized void executeDisconnectTrezorTask() {
+        // schvalne resime takto globalne pres taskExecutor, protoze kazdopadne nechceme, aby se task (cekajici ve fronte) zrusil napr. pri zavreni aktivity...
+        getTaskExecutor().executeTask("TASK_DISCONNECT_TREZOR_GCT",
+                new AsyncTaskParam(TrezorTaskParam.SERIAL_EXECUTION_KEY_TREZOR) {
+                    @Override
+                    public boolean isExecutionInParallelForbidden(ITaskContext context) {
+                        return true;
+                    }
+
+                    @Override
+                    public void execute(ITaskContext context, ITask task) throws TaskException {
+                        getTrezorManager().closeDeviceConnection();
+                    }
+                },
+                null,
+                false,
+                new EmptyTaskListener(),
+                null);
     }
 
 

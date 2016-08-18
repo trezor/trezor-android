@@ -129,6 +129,7 @@ public class NavDrawer {
             public void onClick(View view) {
                 hideDrawerOnStop = true;
                 activity.startActivity(AboutActivity.createIntent(view.getContext()));
+                activity.setDontDisconnectOnStop();
             }
         });
 

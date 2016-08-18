@@ -200,6 +200,7 @@ public class MainActivity extends BaseActivity implements OnPromptDialogDone, On
             public void onClick(View view) {
                 if (initializedTrezor != null && initializedTrezor.getFeatures().getDeviceId().equals(connectedTrezorDeviceId)) {
                     startActivityForResult(ChangeHomescreenActivity.createIntent(view.getContext(), initializedTrezor.getFeatures().getLabel()), GlobalContext.RQC_PICK_HOMESCREEN);
+                    setDontDisconnectOnStop();
                 }
             }
         });
@@ -271,6 +272,7 @@ public class MainActivity extends BaseActivity implements OnPromptDialogDone, On
             public void onClick(View view) {
                 if (initializedTrezor != null) {
                     startActivity(FirmwareUpgradeActivity.createIntent(view.getContext(), new MsgWrp(initializedTrezor.getFeatures())));
+                    setDontDisconnectOnStop();
                 }
             }
         });
@@ -356,12 +358,14 @@ public class MainActivity extends BaseActivity implements OnPromptDialogDone, On
                     startActivity(FirmwareUpgradeActivity.createIntent(this, res.getMsgResult()));
                     if (((IntParcelable)res.getParam().getTag()).value == 0)
                         overridePendingTransition(0, 0);
+                    setDontDisconnectOnStop();
                 }
                 else if (!features.getInitialized()) {
                     finish();
                     startActivity(InitTrezorActivity.createIntent(this, res.getMsgResult()));
                     if (((IntParcelable)res.getParam().getTag()).value == 0)
                         overridePendingTransition(0, 0);
+                    setDontDisconnectOnStop();
                 }
                 else {
                     setupConnectedTrezor(features);
@@ -444,7 +448,7 @@ public class MainActivity extends BaseActivity implements OnPromptDialogDone, On
         }
         else {
             gct.getCommonDb().removeAllTrezors();
-            gct.getTrezorManager().closeDeviceConnection();
+            gct.executeDisconnectTrezorTask();
 
             if (!TrezorError.ERR_NOT_CONNECTED.equals(error))
                 error.showToast(gct);

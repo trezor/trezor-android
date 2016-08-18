@@ -61,6 +61,11 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseFra
     private boolean readyToCommitFragments = false;
     private INavDrawerCallbacks navDrawerCallbacks;
 
+    // pokud je false a pokud nedochazi pouze ke zmene konfigurace (nejcasteji kvuli otoceni displeje), pri kazdem volani onStop dojde k odpojeni trezoru
+    // aktivita muze nastavit na true, aby pri prechodu z jedne aktivity do druhe nedochazelo ke zbytecnemu odpojovani
+    // V kazdem pripade pri kazdem volani onStop (a onCreate) je nastaveno zpet na false
+    private boolean dontDisconnectOnStop = false;
+
 
     //
     // LIFECYCLE CALLBACKS
@@ -73,6 +78,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseFra
         onBackPressedListeners.clear(); // pro jistotu...
         readyToCommitFragments = false;
         trezorConnectionChangedReceiver.register(this);
+        dontDisconnectOnStop = false;
 	}
 
     @Override
@@ -125,6 +131,11 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseFra
         super.onStop();
         if (this.navDrawerCallbacks != null)
             this.navDrawerCallbacks.onActivityStop();
+
+        if (!dontDisconnectOnStop && !isChangingConfigurations()) {
+            gct.executeDisconnectTrezorTask();
+        }
+        dontDisconnectOnStop = false;
     }
 
     @Override
@@ -227,6 +238,10 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseFra
     }
 
 
+    public void setDontDisconnectOnStop() {
+        this.dontDisconnectOnStop = true;
+    }
+
     public void executeTrezorTaskIfCan(String taskId, Message msgParam) {
         executeTrezorTaskIfCan(taskId, new TrezorTaskParam(msgParam));
     }
@@ -248,6 +263,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseFra
                     case MessageType_PinMatrixRequest:
                         startActivityForResult(EnterPinActivity.createIntent(this, new EnterPinActivityParam(id, res.getParam().getTag(), ((PinMatrixRequest) res.getMsgResult().msg).getType())),
                                 GlobalContext.RQC_ENTER_PIN);
+                        setDontDisconnectOnStop();
                         break;
 
                     case MessageType_EntropyRequest: {
@@ -262,6 +278,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseFra
                     case MessageType_PassphraseRequest: {
                         startActivityForResult(EnterPassphraseActivity.createIntent(this, new EnterPassphraseActivityParam(id, res.getParam().getTag())),
                                 GlobalContext.RQC_ENTER_PASSPHRASE);
+                        setDontDisconnectOnStop();
                         break;
                     }
 
@@ -293,9 +310,10 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseFra
         error.showToast(gct);
 
         gct.getCommonDb().removeAllTrezors();
-        gct.getTrezorManager().closeDeviceConnection();
+        gct.executeDisconnectTrezorTask();
         finish();
         startActivity(MainActivity.createIntent(BaseActivity.this));
+        setDontDisconnectOnStop();
 
         if (BaseActivity.this instanceof MainActivity) {
             overridePendingTransition(0, 0);

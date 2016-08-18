@@ -182,6 +182,11 @@ public class TrezorTasks {
         }
 
         @Override
+        public boolean isExecutionInParallelForbidden(ITaskContext context) {
+            return true;
+        }
+
+        @Override
         public TrezorTaskResult createResultUncached(ITaskContext context, ITask task) throws TaskException {
             try {
                 GlobalContext gct = (GlobalContext)context;

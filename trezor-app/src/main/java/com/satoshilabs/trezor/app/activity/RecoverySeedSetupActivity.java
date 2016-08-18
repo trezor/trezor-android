@@ -107,6 +107,7 @@ public class RecoverySeedSetupActivity extends BaseActivity {
             else if (res.getMsgResult().msgType == MessageType.MessageType_Success) {
                 finish();
                 startActivity(MainActivity.createIntent(this));
+                setDontDisconnectOnStop();
             }
             else {
                 onTrezorError(TrezorError.ERR_UNEXPECTED_RESPONSE);

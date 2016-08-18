@@ -87,12 +87,14 @@ public class InitTrezorActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 startActivity(TrezorRecoveryInitActivity.createIntent(view.getContext()));
+                setDontDisconnectOnStop();
             }
         });
         btnFirmwareUpgradeAvail.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(FirmwareUpgradeActivity.createIntent(view.getContext(), new MsgWrp(features)));
+                setDontDisconnectOnStop();
             }
         });
     }
@@ -125,6 +127,7 @@ public class InitTrezorActivity extends BaseActivity {
             if (res.getMsgResult().msgType == MessageType.MessageType_ButtonRequest && ((ButtonRequest)res.getMsgResult().msg).getCode() == ButtonRequestType.ButtonRequest_ConfirmWord) {
                 finish();
                 startActivity(RecoverySeedSetupActivity.createIntent(this));
+                setDontDisconnectOnStop();
             }
             else if (res.getMsgResult().msgType == MessageType.MessageType_Failure) {
                 showToastTrezorMsgFailure((Failure)res.getMsgResult().msg);

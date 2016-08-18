@@ -104,6 +104,7 @@ public class TrezorRecoveryInitActivity extends BaseActivity {
         if (id.equals(TASK_RECOVERY_DEVICE)) {
             if (res.getMsgResult().msgType == MessageType.MessageType_WordRequest) {
                 startActivity(TrezorRecoverySeedActivity.createIntent(this));
+                setDontDisconnectOnStop();
             }
             else
                 onTrezorError(TrezorError.ERR_UNEXPECTED_RESPONSE);

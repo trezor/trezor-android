@@ -130,6 +130,7 @@ public class TrezorRecoverySeedActivity extends BaseActivity {
             else if (res.getMsgResult().msgType == MessageType.MessageType_Success) {
                 finish();
                 startActivity(MainActivity.createIntent(this));
+                setDontDisconnectOnStop();
             }
             else if (res.getMsgResult().msgType == MessageType.MessageType_Failure) {
                 showToastTrezorMsgFailure((Failure) res.getMsgResult().msg);

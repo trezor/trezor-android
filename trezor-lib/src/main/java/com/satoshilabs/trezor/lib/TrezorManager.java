@@ -24,6 +24,11 @@ import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.HashMap;
 
+/**
+ * ATTENTION!
+ * All instance methods are synchronized and can possibly lock for a long time (like when Trezor is waiting for user to press a button
+ * Methods must be called from a background thread!
+ */
 public class TrezorManager {
     private static final String TAG = TrezorManager.class.getSimpleName();
 
@@ -39,19 +44,18 @@ public class TrezorManager {
     }
 
 
-    public synchronized boolean isConnectionOpen() {
-        return device != null;
-    }
-
     public synchronized boolean tryConnectDevice() {
         return tryGetDevice() != null;
     }
 
     public synchronized void closeDeviceConnection() {
         if (device != null) {
+            LogUtils.d(TAG, "closeDeviceConnection: closing");
             device.close();
             device = null;
         }
+        else
+            LogUtils.d(TAG, "closeDeviceConnection: no device connected now");
     }
 
     public synchronized boolean hasDeviceWithoutPermission(boolean refreshDevices) {
@@ -81,17 +85,6 @@ public class TrezorManager {
         }
     }
 
-
-    public static <TMessage extends Message> TMessage castMessage(Message m, Class<TMessage> cls) {
-        if (canCastMessage(m, cls))
-            return cls.cast(m);
-        else
-            throw new TrezorException(TrezorException.TYPE_UNEXPECTED_RESPONSE);
-    }
-
-    public static <TMessage extends Message> boolean canCastMessage(Message m, Class<TMessage> cls) {
-        return cls.isAssignableFrom(m.getClass());
-    }
 
     public static Message parseMessageFromBytes(MessageType type, byte[] data) throws InvalidProtocolBufferException {
         //LogUtils.i(TAG, String.format("parseMessageFromBytes: Parsing %s (%d bytes):", type, data.length));
@@ -183,13 +176,11 @@ public class TrezorManager {
                 if (conn == null) {
                     LogUtils.e(TAG, "tryGetDevice: could not open connection");
                     continue;
-                }
-                else {
+                } else {
                     if (!conn.claimInterface(usbInterface, true)) {
                         LogUtils.e(TAG, "tryGetDevice: could not claim interface");
                         continue;
-                    }
-                    else {
+                    } else {
                         this.deviceWithoutPermission = null;
                         this.device = new TrezorDevice(usbDevice.getDeviceName(), conn.getSerial(), conn, usbInterface, readEndpoint, writeEndpoint);
                         break;
@@ -197,8 +188,7 @@ public class TrezorManager {
                 }
             }
             LogUtils.i(TAG, "tryGetDevice: " + (this.device == null ? "TREZOR device not found or failed to connect" : "TREZOR device successfully connected"));
-        }
-        else
+        } else
             LogUtils.i(TAG, "tryGetDevice: using already connected device");
         return device;
     }
@@ -371,6 +361,8 @@ public class TrezorManager {
             return s;
         }
     }
+
+
 
     public static abstract class UsbPermissionReceiver extends BaseGlobalReceiver {
         public static final String ACTION = UsbPermissionReceiver.class.getName() + ".ACTION";
