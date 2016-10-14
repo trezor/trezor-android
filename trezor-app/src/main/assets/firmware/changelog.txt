@@ -1,8 +1,4 @@
 Stable release, optional update
-Enable advanced transactions such as ones with REPLACE-BY-FEE and CHECKLOCKTIMEVERIFY
-Fix message signing for altcoins
-Message verification now shows address
-Enable GPG signing support
-Enable Ed25519 curve (for SSH and GPG)
-Use separate deterministic hierarchy for NIST256P1 and Ed25519 curves
-Users using SSH already need to regenerate their keys using the new firmware!!!
+U2F support
+Ethereum support
+GPG decryption support

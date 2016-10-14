@@ -1,7 +1,11 @@
-Popis bundlovani nove verze firmwaru do APK instalacniho souboru Trezor Manageru:
+How to bundle TREZOR firmware to TREZOR Manager APK:
 
-Pri aktualizaci firmwaru je treba smazat stary a nahrat novy firmware do teto slozky (trezor-android/trezor-app/src/main/assets/firmware).
-Jmeno souboru musi byt: trezor-X.Y.Z.bin, kde X, Y a Z jsou major, minor a patch cisla verze firmwaru.
-Takovy soubor zde muze byt maximalne jeden!
-Zmeny ve firmwaru je treba napsat do souboru changelog.txt, na jednotlive radky. Kodovani souboru musi byt UTF-8 a oddelovace radku znaky LF (tzn. podle unixu)
-Fingerprint firmwaru (pro kontrolni zobrazeni pri aktualizaci na displeji telefonu) je treba ulozit do souboru fingerprint.txt - naformatovany tak, jak jej chceme zobrazit (tzn. nejspis 4 radky po 16 znacich)
+* remove old firmware and put new firmware to this folder
+  (trezor-android/trezor-app/src/main/assets/firmware)
+* filename of the firmware has to be trezor-X.Y.Z.bin,
+  where X, Y a Z are major, minor a patch fields of version respectively
+* there could be only ONE firmware file present!
+* firmware changelog should be put in changelog.txt on separate lines
+* firmware fingerprint should be stored in fingerprint.txt
+  (4 lines with 16 hexa digits)
+* all text files are using UTF-8 encoding and LF (Unix) endlines
