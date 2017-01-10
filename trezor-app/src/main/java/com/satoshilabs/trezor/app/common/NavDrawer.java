@@ -111,7 +111,7 @@ public class NavDrawer {
             @Override
             public void onClick(View view) {
                 // TODO Doresit support
-                Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto","support@bitcointrezor.com", null));
+                Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto","support@trezor.io", null));
                 emailIntent.putExtra(Intent.EXTRA_SUBJECT, activity.getString(R.string.support_email_subject));
                 //emailIntent.putExtra(Intent.EXTRA_TEXT, text);
                 try {
