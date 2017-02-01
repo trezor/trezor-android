@@ -1,4 +1,4 @@
 Stable release, optional update
-U2F support
-Ethereum support
-GPG decryption support
+New Matrix-based recovery method
+Minor Ethereum fixes (including EIP-155 replay protection)
+Minor USB, U2F and GPG fixes
