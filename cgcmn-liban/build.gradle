@@ -17,11 +17,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    lintOptions {
+        warning 'NewApi'
+        warning 'InvalidPackage'
+        warning 'MissingPermission'
+    }
+
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile "com.android.support:support-v4:${project.ext.support_version}"
+    compile "com.android.support:appcompat-v7:${project.ext.support_version}"
     compile 'com.squareup.okhttp3:okhttp:3.2.0'
     compile project(':android-styled-dialog')
 }

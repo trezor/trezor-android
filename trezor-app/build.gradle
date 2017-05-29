@@ -28,6 +28,11 @@ android {
             zipAlignEnabled true
         }
     }
+
+    lintOptions {
+        warning 'InvalidPackage'
+    }
+
 }
 
 dependencies {

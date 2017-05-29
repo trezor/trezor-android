@@ -10,8 +10,10 @@ buildscript {
 
 allprojects {
     repositories {
+
         jcenter()
     }
+
     project.ext {
         support_version = "25.3.1"
         buildToolsVersion = "25.0.2"

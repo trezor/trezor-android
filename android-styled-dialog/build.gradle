@@ -31,4 +31,9 @@ android {
 
         instrumentTest.setRoot('tests')
     }
+
+    lintOptions {
+        warning 'NewApi'
+    }
+
 }
