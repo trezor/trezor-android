@@ -1,16 +1,16 @@
 apply plugin: 'com.android.library'
 
 dependencies {
-    compile 'com.android.support:support-v4:24.0.0'
+    compile "com.android.support:support-v4:${project.ext.support_version}"
 }
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.1"
+    compileSdkVersion project.ext.sdk
+    buildToolsVersion project.ext.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 11
-        targetSdkVersion 24
+        minSdkVersion project.ext.minsdk
+        targetSdkVersion project.ext.sdk
     }
 
     compileOptions {
