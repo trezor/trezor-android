@@ -2,9 +2,10 @@
 
 TREZOR Management App and Communication Library for Android
 
-[Google Play Store listing](https://play.google.com/store/apps/details?id=io.trezor.app)
+Download options:
 
-[direct download](https://wallet.trezor.io/data/android/latest.apk)
+* [Google Play Store](https://play.google.com/store/apps/details?id=io.trezor.app)
+* [Direct APK download](https://wallet.trezor.io/data/android/latest.apk)
 
 ## Requirements
 
