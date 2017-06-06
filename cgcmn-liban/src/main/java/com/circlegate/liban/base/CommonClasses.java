@@ -13,13 +13,9 @@ import com.circlegate.liban.utils.BitmapUtils;
 import com.circlegate.liban.utils.EqualsUtils;
 
 public class CommonClasses {
-    public interface IDisposable {
-        void dispose();
-    }
+
 
     public interface IGlobalContext {
-        static int RQC_SPEECH_RECOGNITION = 100;
-
         Context getAndroidContext();
         boolean getAppIsInProductionMode();
     }
@@ -41,31 +37,6 @@ public class CommonClasses {
             return this.second;
         }
     }
-
-    public static class Tripple<TFirst, TSecond, TThird> {
-        private final TFirst first;
-        private final TSecond second;
-        private final TThird third;
-
-        public Tripple(TFirst first, TSecond second, TThird third) {
-            this.first = first;
-            this.second = second;
-            this.third = third;
-        }
-
-        public TFirst getFirst() {
-            return this.first;
-        }
-
-        public TSecond getSecond() {
-            return this.second;
-        }
-
-        public TThird getThird() {
-            return this.third;
-        }
-    }
-
 
     public static class EntryImpl<TKey, TValue> implements Entry<TKey, TValue> {
         private final TKey key;
@@ -96,11 +67,6 @@ public class CommonClasses {
     public static class LargeHash extends ApiParcelable {
         private final long md5Upper;
         private final long md5Lower;
-
-        public LargeHash(long md5Upper, long md5Lower) {
-            this.md5Upper = md5Upper;
-            this.md5Lower = md5Lower;
-        }
 
         public LargeHash(byte[] bytes) {
             if (bytes.length != 16)
@@ -144,14 +110,6 @@ public class CommonClasses {
                 ret[i + 8] = (byte)((md5Upper >> (i * 8)) & 0xFF);
             }
             return ret;
-        }
-
-        public long getMd5Upper() {
-            return this.md5Upper;
-        }
-
-        public long getMd5Lower() {
-            return this.md5Lower;
         }
 
         @Override
@@ -283,109 +241,6 @@ public class CommonClasses {
     }
 
 
-    public static class IntMutableWrp {
-        public int value;
-
-        public IntMutableWrp() { }
-
-        public IntMutableWrp(int value) {
-            this.value = value;
-        }
-    }
-
-    public static class BoolMutableWrp {
-        public boolean value;
-
-        public BoolMutableWrp() { }
-
-        public BoolMutableWrp(boolean value) {
-            this.value = value;
-        }
-    }
-
-    public static class ObjMutableWrp<T> {
-        public T value;
-
-        public ObjMutableWrp() { }
-
-        public ObjMutableWrp(T value) {
-            this.value = value;
-        }
-    }
 
 
-    public static class IntArrayWrp extends ApiParcelable {
-        private final int[] array;
-
-        public IntArrayWrp(int[] array, boolean dontClone) {
-            if (dontClone)
-                this.array = array;
-            else {
-                this.array = new int[array.length];
-                for (int i = 0; i < array.length; i++)
-                    this.array[i] = array[i];
-            }
-        }
-
-        // Upraveno!
-        public IntArrayWrp(int[] array) {
-            this(array, false);
-        }
-
-        public IntArrayWrp(ApiDataInput d) {
-            this.array = d.readIntArray();
-        }
-
-        @Override
-        public void save(ApiDataOutput d, int flags) {
-            d.write(this.array);
-        }
-
-        public int[] getClonnedArray() {
-            return this.array.clone();
-        }
-
-        public int size() {
-            return this.array.length;
-        }
-
-        public int valueAt(int ind) {
-            return this.array[ind];
-        }
-
-
-        @Override
-        public int hashCode() {
-            int _hash = 17;
-            _hash = _hash * 29 + EqualsUtils.itemsHashCode(array);
-            return _hash;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) {
-                return true;
-            }
-
-            if (!(o instanceof IntArrayWrp)) {
-                return false;
-            }
-
-            IntArrayWrp lhs = (IntArrayWrp) o;
-            return lhs != null &&
-                    EqualsUtils.itemsEqual(array, lhs.array);
-        }
-
-
-        public IntArrayWrp cloneWith(int index, int value) {
-            int[] ret = getClonnedArray();
-            ret[index] = value;
-            return new IntArrayWrp(ret, true);
-        }
-
-        public static final ApiCreator<IntArrayWrp> CREATOR = new ApiCreator<IntArrayWrp>() {
-            public IntArrayWrp create(ApiDataInput d) { return new IntArrayWrp(d); }
-            public IntArrayWrp[] newArray(int size) { return new IntArrayWrp[size]; }
-        };
-    }
 }

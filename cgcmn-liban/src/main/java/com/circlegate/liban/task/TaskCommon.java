@@ -15,7 +15,7 @@ import com.circlegate.liban.task.TaskInterfaces.ITaskResult;
 import com.circlegate.liban.task.TaskInterfaces.ITaskResultListener;
 import com.circlegate.liban.utils.EqualsUtils;
 import com.circlegate.liban.utils.LogUtils;
-import com.google.common.collect.ImmutableList;
+import tinyguava.ImmutableList;
 
 import java.util.ArrayList;
 import java.util.HashMap;

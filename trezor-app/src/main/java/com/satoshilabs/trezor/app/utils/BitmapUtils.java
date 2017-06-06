@@ -7,9 +7,6 @@ import android.util.StateSet;
 
 public class BitmapUtils extends com.circlegate.liban.utils.BitmapUtils {
 
-    public static StateListDrawable getColoredDrawable(Drawable d, int colorNormal, int colorPressed) {
-        return getColoredDrawable(d, colorNormal, colorPressed, android.R.attr.state_pressed);
-    }
 
     public static StateListDrawable getColoredDrawable(Drawable d, int colorNormal, int colorSpec, int specState) {
         StateColoredDrawable ret = new StateColoredDrawable(d, colorNormal, colorSpec, specState, true);

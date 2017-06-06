@@ -3,7 +3,6 @@ package com.satoshilabs.trezor.app.db;
 import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
-
 import com.circlegate.liban.base.ApiBase.ApiCreator;
 import com.circlegate.liban.base.ApiBase.ApiParcelable;
 import com.circlegate.liban.base.ApiDataIO.ApiDataInput;
@@ -13,13 +12,12 @@ import com.circlegate.liban.utils.EqualsUtils;
 import com.circlegate.liban.utils.FileUtils;
 import com.circlegate.liban.utils.FileUtils.FileObjsCallback;
 import com.circlegate.liban.utils.FileUtils.FileObjsStaticInfo;
-import com.google.common.collect.ImmutableList;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.satoshilabs.trezor.app.common.GlobalContext;
 import com.satoshilabs.trezor.lib.TrezorManager;
 import com.satoshilabs.trezor.lib.protobuf.TrezorMessage.Features;
 import com.satoshilabs.trezor.lib.protobuf.TrezorMessage.MessageType;
-import com.satoshilabs.trezor.lib.protobuf.TrezorMessage.PublicKey;
+import tinyguava.ImmutableList;
 
 public class CommonDb {
 

@@ -41,7 +41,7 @@ public class XpubActivity extends BaseActivity {
 
         TextView txtText = (TextView)findViewById(R.id.txt_text);
         EditText editTextXpub = (EditText) findViewById(R.id.edit_text_xpub);
-        View btnCopyToClipboard = (View) findViewById(R.id.btn_copy_to_clipboard);
+        View btnCopyToClipboard = findViewById(R.id.btn_copy_to_clipboard);
         ImageView imgQrCode = (ImageView) findViewById(R.id.img_qr_code);
 
         txtText.setMovementMethod(LinkMovementMethod.getInstance());

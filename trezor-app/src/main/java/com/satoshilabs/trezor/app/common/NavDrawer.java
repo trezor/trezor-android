@@ -23,7 +23,7 @@ import com.circlegate.liban.utils.AppUtils;
 import com.circlegate.liban.utils.LogUtils;
 import com.circlegate.liban.view.ScrimInsetsScrollView;
 import com.circlegate.liban.view.ScrimInsetsScrollView.OnInsetsCallback;
-import com.google.common.collect.ImmutableList;
+import tinyguava.ImmutableList;
 import com.satoshilabs.trezor.app.R;
 import com.satoshilabs.trezor.app.activity.AboutActivity;
 import com.satoshilabs.trezor.app.activity.base.BaseActivity;
