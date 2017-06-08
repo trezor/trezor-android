@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'witness'
 
 android {
     compileSdkVersion project.ext.sdk
@@ -27,3 +28,10 @@ dependencies {
     compile 'com.google.protobuf:protobuf-java:2.6.1'
     compile project(':cgcmn-liban')
 }
+
+dependencyVerification {
+    verify = [
+        'com.google.protobuf:protobuf-java:55aa554843983f431df5616112cf688d38aa17c132357afd1c109435bfdac4e6',
+    ]
+}
+

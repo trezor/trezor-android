@@ -5,6 +5,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.2'
+        classpath files('libs/gradle-witness.jar')
     }
 }
 
@@ -25,3 +26,4 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
