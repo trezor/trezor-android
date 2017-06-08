@@ -8,11 +8,9 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat.OnRequestPermissionsResultCallback;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.circlegate.liban.base.BaseBroadcastReceivers.BaseLocalReceiver;
-import com.circlegate.liban.base.FastDateTimeZoneProvider;
 import com.circlegate.liban.dialog.DialogsFragment;
 import com.circlegate.liban.dialog.DialogsFragment.IDialogsFragmentActivity;
 import com.circlegate.liban.fragment.BaseFragmentCommon.IBaseFragmentActivity;
@@ -101,7 +99,6 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseFra
 
     @Override
     protected void onStart() {
-        FastDateTimeZoneProvider.refreshCurrentTimeZone(); // je treba volat pred super (aby se projevilo i ve fragmentech v onStart...)
         super.onStart();
 
         if (this.navDrawerCallbacks != null)

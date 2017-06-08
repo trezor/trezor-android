@@ -37,7 +37,7 @@ import com.circlegate.liban.task.TaskErrors.BaseError;
 import com.circlegate.liban.utils.ActivityUtils;
 import com.circlegate.liban.utils.LogUtils;
 import com.circlegate.liban.utils.ViewUtils;
-import com.google.common.collect.ImmutableList;
+import tinyguava.ImmutableList;
 import com.satoshilabs.trezor.app.R;
 import com.satoshilabs.trezor.app.activity.base.BaseActivity;
 import com.satoshilabs.trezor.app.common.GlobalContext;

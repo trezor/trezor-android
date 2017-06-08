@@ -10,7 +10,7 @@ import com.circlegate.liban.task.TaskErrors.TaskException;
 import com.circlegate.liban.task.TaskInterfaces.ITask;
 import com.circlegate.liban.task.TaskInterfaces.ITaskContext;
 import com.circlegate.liban.utils.LogUtils;
-import com.google.common.collect.ImmutableList;
+import tinyguava.ImmutableList;
 import com.satoshilabs.trezor.app.common.TrezorTasks.TrezorTaskParam;
 import com.satoshilabs.trezor.app.db.CommonDb;
 import com.satoshilabs.trezor.lib.TrezorManager;

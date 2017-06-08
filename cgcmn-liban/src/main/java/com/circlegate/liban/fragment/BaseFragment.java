@@ -83,37 +83,6 @@ public class BaseFragment extends Fragment implements OnBackPressedListener {
         return readyToCommitFragments;
     }
 
-    public boolean isInitialOnResume() {
-        return isInitialOnResume;
-    }
-
-
-    public void addDelayedTask(Runnable task) {
-        if (!delayTasks)
-            task.run();
-        else
-            this.delayedTasks.add(task);
-    }
-
-    public void setDelayTasks(boolean delayTasks) {
-        if (this.delayTasks != delayTasks) {
-            this.delayTasks = delayTasks;
-
-            if (!delayTasks) {
-                if (readyToCommitFragments) {
-                    for (Runnable task : delayedTasks)
-                        task.run();
-                }
-                else {
-                    for (Runnable task : delayedTasks)
-                        addPendingTask(task);
-                }
-                delayedTasks.clear();
-            }
-        }
-    }
-
-
     @Override
     public boolean onBackPressed() {
         return false;

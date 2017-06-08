@@ -1,26 +1,22 @@
 package com.circlegate.liban.utils;
 
 import android.util.Log;
-
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
-
-import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PrintStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class LogUtils {
     private static final int MIN_LOG_TO_FILE_COUNT = 400;
     private static final int MAX_LOG_TO_FILE_COUNT = 500;
-    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormat.forPattern("[yyyy.MM.dd HH:mm:ss:SSS]");
+    private static final DateFormat DATE_FORMATTER = new SimpleDateFormat("[yyyy.MM.dd HH:mm:ss:SSS]", Locale.getDefault());
+//    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormat.forPattern("[yyyy.MM.dd HH:mm:ss:SSS]");
 
     private static boolean logcatEnabled;
 
@@ -30,70 +26,6 @@ public class LogUtils {
 
     public static void setLoggingEnabled(boolean logcatEnabled) {
         LogUtils.logcatEnabled = logcatEnabled;
-    }
-
-    public static void setupLogFile(File optLogFile) {
-        synchronized (logEntries) {
-            if (logFile != optLogFile && (logFile == null || optLogFile == null || !logFile.getAbsolutePath().equals(optLogFile.getAbsolutePath()))) {
-                closeLogFile();
-                logFile = optLogFile;
-
-                if (logFile != null) {
-                    openLogFile(true);
-                }
-            }
-        }
-    }
-
-    public static StringBuilder copyLogs() {
-        synchronized (logEntries) {
-            StringBuilder b = new StringBuilder();
-            for (String line : logEntries)
-                b.append(line).append("\n");
-            return b;
-        }
-    }
-
-    public static void copyLogsToStream(OutputStream outputStream) {
-        synchronized (logEntries) {
-            if (logFile != null && logFile.exists()) {
-                closeLogFile();
-
-                BufferedInputStream origin = null;
-                byte buffer[] = new byte[1024 * 8];
-
-                try {
-                    origin = new BufferedInputStream(new FileInputStream(logFile), buffer.length);
-                    int count;
-                    while ((count = origin.read(buffer, 0, buffer.length)) != -1) {
-                        outputStream.write(buffer, 0, count);
-                    }
-                }
-                catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-                finally {
-                    try {
-                        if (origin != null)
-                            origin.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                openLogFile(true);
-            }
-            else {
-                // pokud nemame ulozeny logFile, tak zapiseme aspon aktualne ulozene logy v pameti
-                if (!logEntries.isEmpty()) {
-                    PrintStream printStream = new PrintStream(new BufferedOutputStream(outputStream));
-
-                    for (String line : logEntries) {
-                        printStream.println(line);
-                    }
-                }
-            }
-        }
     }
 
     private static void closeLogFile() {
@@ -112,7 +44,7 @@ public class LogUtils {
     }
 
     private static void logToArrayList(String type, String tag, String text, Throwable optTr) {
-        StringBuilder s = new StringBuilder(new DateTime().toString(DATE_TIME_FORMATTER));
+        StringBuilder s = new StringBuilder(DATE_FORMATTER.format(new Date()));
         s.append(" ");
         s.append(type).append(":").append(tag).append(": ").append(text);
 

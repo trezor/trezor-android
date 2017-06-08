@@ -18,7 +18,7 @@ import com.circlegate.liban.base.ApiDataIO.ApiDataOutput;
 import com.circlegate.liban.base.Exceptions.NotImplementedException;
 import com.circlegate.liban.task.TaskInterfaces.ITaskResultListener;
 import com.circlegate.liban.utils.ActivityUtils;
-import com.google.common.collect.ImmutableList;
+import tinyguava.ImmutableList;
 import com.satoshilabs.trezor.app.R;
 import com.satoshilabs.trezor.app.activity.base.BaseActivity;
 import com.satoshilabs.trezor.app.common.GlobalContext;

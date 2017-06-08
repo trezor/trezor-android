@@ -2,18 +2,12 @@ package com.circlegate.liban.base;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.util.Base64;
-
 import com.circlegate.liban.base.ApiDataIO.ApiDataInput;
-import com.circlegate.liban.base.ApiDataIO.ApiDataInputStreamWrp;
 import com.circlegate.liban.base.ApiDataIO.ApiDataOutput;
 import com.circlegate.liban.base.ApiDataIO.ApiDataOutputStreamWrp;
 import com.circlegate.liban.base.ApiDataIO.ApiParcelInputWrp;
 import com.circlegate.liban.base.ApiDataIO.ApiParcelOutputWrp;
-
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -51,24 +45,6 @@ public class ApiBase {
             return byteStream.toByteArray();
         }
 
-        public static String saveToBase64(IApiParcelable obj, int base64Flags) {
-            return saveToBase64(obj, base64Flags, false);
-        }
-
-        public static String saveToBase64(IApiParcelable obj, int base64Flags, boolean withName) {
-            String ret = Base64.encodeToString(saveToByteArray(obj), base64Flags); // Base64.DEFAULT
-            return ret;
-        }
-
-
-        public static ApiDataInput loadFromByteArray(byte[] bytes) {
-            ApiDataInputStreamWrp ret = new ApiDataInputStreamWrp(new DataInputStream(new ByteArrayInputStream(bytes)));
-            return ret;
-        }
-
-        public static ApiDataInput loadFromBase64(String base64String, int base64Flags) {
-            return loadFromByteArray(Base64.decode(base64String, base64Flags));
-        }
     }
 
     public static abstract class ApiParcelable extends ApiObject implements IApiParcelable {
