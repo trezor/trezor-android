@@ -45,7 +45,6 @@ dependencies {
 
     compile project(':trezor-lib')
     compile 'com.android.support.constraint:constraint-layout:1.0.0'
-    compile 'com.google.zxing:core:3.2.1'
 }
 
 dependencyVerification {
@@ -55,7 +54,6 @@ dependencyVerification {
         'com.android.support:appcompat-v7:ac1ebbc46589195dda3e0b1becfe410bafd75bdf3edd1cd9acf04850f3895830',
         'com.android.support:design:a3e83064fe99d0a4369f9b46d8bfbe77d0c3022fffdee4be3ac3857b87cc89e3',
         'com.android.support.constraint:constraint-layout:d50564661be1e44d9a080253f8ef0064751f4c53301fcacc4384034210fc48e6',
-        'com.google.zxing:core:b4d82452e7a6bf6ec2698904b332431717ed8f9a850224f295aec89de80f2259',
         'com.android.support:support-compat:e02d781268dc60aab6638d8dc20156ea11ca20b962d294b85e6f1e8418cabfa7',
         'com.android.support:support-media-compat:cbed07d07e0e84fdb4b75712f5fd946229a8af155933c9a92e41db64d00791e0',
         'com.android.support:support-core-utils:32fac02eb2c20a77fa3e3bc3ede62392a19613f72b8f8e10f5dfa84bb4c89ea1',
