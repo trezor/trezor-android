@@ -51,9 +51,6 @@
         <activity android:name=".activity.RecoverySeedSetupActivity"
                   android:label="@string/trezor_setup" />
 
-        <activity android:name=".activity.XpubActivity"
-                  android:label="@string/xpub_activity_title" />
-
         <activity android:name=".activity.ChangeHomescreenActivity"
                   android:label="@string/main_activity_change_homescreen" />
 
