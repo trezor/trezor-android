@@ -4,11 +4,35 @@
 
 TREZOR Management App and Communication Library for Android
 
-Download options:
+## Download options
 
 * [Google Play Store](https://play.google.com/store/apps/details?id=io.trezor.app)
 * [Direct APK download](https://wallet.trezor.io/data/android/latest.apk)
 * F-Droid (coming soon)
+
+## Using the library
+
+You can add the library via jitpack. Add to jitpack as a repository:
+
+```groovy
+allprojects {
+    repositories {
+        maven { url 'https://jitpack.io' }
+        ...
+    }
+}
+```
+
+Then you can add the dependency like this:
+
+```groovy
+dependencies {
+    compile 'com.github.trezor.trezor-android:trezor-lib:v1.0.4'
+    ...
+}
+```
+
+Please consider using [gradle witness](https://github.com/WhisperSystems/gradle-witness) to improve security.
 
 ## Requirements
 
