@@ -44,7 +44,6 @@ dependencies {
     compile "com.android.support:design:${project.ext.support_version}"
 
     compile project(':trezor-lib')
-    compile 'com.android.support.constraint:constraint-layout:1.0.0'
 }
 
 dependencyVerification {
@@ -53,7 +52,6 @@ dependencyVerification {
         'com.android.support:support-v4:07d389154bcf73b47e514964df1578136b26cba78257b8a577a3ccb54beff0ae',
         'com.android.support:appcompat-v7:ac1ebbc46589195dda3e0b1becfe410bafd75bdf3edd1cd9acf04850f3895830',
         'com.android.support:design:a3e83064fe99d0a4369f9b46d8bfbe77d0c3022fffdee4be3ac3857b87cc89e3',
-        'com.android.support.constraint:constraint-layout:d50564661be1e44d9a080253f8ef0064751f4c53301fcacc4384034210fc48e6',
         'com.android.support:support-compat:e02d781268dc60aab6638d8dc20156ea11ca20b962d294b85e6f1e8418cabfa7',
         'com.android.support:support-media-compat:cbed07d07e0e84fdb4b75712f5fd946229a8af155933c9a92e41db64d00791e0',
         'com.android.support:support-core-utils:32fac02eb2c20a77fa3e3bc3ede62392a19613f72b8f8e10f5dfa84bb4c89ea1',
@@ -65,7 +63,6 @@ dependencyVerification {
         'com.android.support:recyclerview-v7:375974a8724e359d97d77fa8522c614f813a3ac4583c1807f154a3f9a054b0a1',
         'com.android.support:transition:36c688825a8c0e6e879e18886de83dc90673322822d5b606ee302f70fb558e16',
         'com.google.protobuf:protobuf-java:55aa554843983f431df5616112cf688d38aa17c132357afd1c109435bfdac4e6',
-        'com.android.support.constraint:constraint-layout-solver:3a74b897776d923a71dc8a45219aca7a3582fcf7173f9f333853e0a5a0dcd2da',
         'com.squareup.okhttp3:okhttp:19e1db51787716ff0046fa19e408fb34ed32a6274baa0c07475bf724b4eb6800',
         'com.squareup.okio:okio:734269c3ebc5090e3b23566db558f421f0b4027277c79ad5d176b8ec168bb850',
     ]
