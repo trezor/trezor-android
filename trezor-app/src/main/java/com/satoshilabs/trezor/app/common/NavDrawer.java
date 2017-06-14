@@ -94,7 +94,6 @@ public class NavDrawer {
         btnHelp.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO Doresit help
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://doc.satoshilabs.com/trezor-user/"));
                 try {
                     activity.startActivity(intent);
@@ -110,12 +109,10 @@ public class NavDrawer {
         btnSupport.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO Doresit support
-                Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto","support@trezor.io", null));
-                emailIntent.putExtra(Intent.EXTRA_SUBJECT, activity.getString(R.string.support_email_subject));
-                //emailIntent.putExtra(Intent.EXTRA_TEXT, text);
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://trezor.io/support"));
                 try {
-                    activity.startActivity(Intent.createChooser(emailIntent, activity.getString(R.string.support_title)));
+                    activity.startActivity(intent);
+                    hideDrawerOnStop = true;
                 }
                 catch (Exception ex) {
                     LogUtils.e(TAG, "btnSupport onClick threw Exception:", ex);

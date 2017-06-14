@@ -95,7 +95,7 @@ public class TrezorManager {
             Class cls = Class.forName(className);
             Method method = cls.getDeclaredMethod("parseFrom", byte[].class);
             //noinspection PrimitiveArrayArgumentToVariableArgMethod
-            return (Message)method.invoke(null, data); // TODO Doresit cachovani pro rychlejsi spousteni...
+            return (Message)method.invoke(null, data); // TODO cache methods for faster start?
         }
         catch (Exception ex) {
             throw new InvalidProtocolBufferException("Exception while calling: parseMessageFromBytes for MessageType: " + type.name());
