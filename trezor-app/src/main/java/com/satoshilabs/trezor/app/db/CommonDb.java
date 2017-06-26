@@ -7,7 +7,7 @@ import com.circlegate.liban.base.ApiBase.ApiCreator;
 import com.circlegate.liban.base.ApiBase.ApiParcelable;
 import com.circlegate.liban.base.ApiDataIO.ApiDataInput;
 import com.circlegate.liban.base.ApiDataIO.ApiDataOutput;
-import com.circlegate.liban.base.BaseBroadcastReceivers.BaseLocalReceiver;
+import com.satoshilabs.trezor.lib.BaseBroadcastReceivers.BaseLocalReceiver;
 import com.circlegate.liban.utils.EqualsUtils;
 import com.circlegate.liban.utils.FileUtils;
 import com.circlegate.liban.utils.FileUtils.FileObjsCallback;

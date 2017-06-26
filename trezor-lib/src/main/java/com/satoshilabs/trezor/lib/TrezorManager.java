@@ -11,18 +11,15 @@ import android.hardware.usb.UsbEndpoint;
 import android.hardware.usb.UsbInterface;
 import android.hardware.usb.UsbManager;
 import android.hardware.usb.UsbRequest;
-
-import com.circlegate.liban.base.BaseBroadcastReceivers.BaseGlobalReceiver;
-import com.circlegate.liban.utils.LogUtils;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.Message;
 import com.satoshilabs.trezor.lib.protobuf.TrezorMessage.MessageType;
-
 import java.lang.reflect.Method;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.HashMap;
+import timber.log.Timber;
 
 /**
  * ATTENTION!
@@ -50,12 +47,12 @@ public class TrezorManager {
 
     public synchronized void closeDeviceConnection() {
         if (device != null) {
-            LogUtils.d(TAG, "closeDeviceConnection: closing");
+            Timber.d(TAG, "closeDeviceConnection: closing");
             device.close();
             device = null;
         }
         else
-            LogUtils.d(TAG, "closeDeviceConnection: no device connected now");
+            Timber.d(TAG, "closeDeviceConnection: no device connected now");
     }
 
     public synchronized boolean hasDeviceWithoutPermission(boolean refreshDevices) {
@@ -79,7 +76,7 @@ public class TrezorManager {
                 return device.sendMessage(message);
             }
             catch (Exception e) {
-                LogUtils.e(TAG, "sendMessage: device.sendMessage thrown exception:", e);
+                Timber.e(TAG, "sendMessage: device.sendMessage thrown exception:", e);
                 throw new TrezorException(TrezorException.TYPE_COMMUNICATION_ERROR, e);
             }
         }
@@ -87,8 +84,8 @@ public class TrezorManager {
 
 
     public static Message parseMessageFromBytes(MessageType type, byte[] data) throws InvalidProtocolBufferException {
-        //LogUtils.i(TAG, String.format("parseMessageFromBytes: Parsing %s (%d bytes):", type, data.length));
-        //LogUtils.i(TAG, "parseMessageFromBytes: data:" + bufferToString(data));
+        //Timber.i(TAG, String.format("parseMessageFromBytes: Parsing %s (%d bytes):", type, data.length));
+        //Timber.i(TAG, "parseMessageFromBytes: data:" + bufferToString(data));
 
         try {
             String className = com.satoshilabs.trezor.lib.protobuf.TrezorMessage.class.getName() + "$" + type.name().replace("MessageType_", "");
@@ -117,7 +114,7 @@ public class TrezorManager {
 
     private TrezorDevice tryGetDevice() {
         if (device == null) {
-            LogUtils.i(TAG, "tryGetDevice: trying to find and open connection to TREZOR");
+            Timber.i(TAG, "tryGetDevice: trying to find and open connection to TREZOR");
             HashMap<String, UsbDevice> deviceList = usbManager.getDeviceList();
 
             this.deviceWithoutPermission = null;
@@ -127,10 +124,10 @@ public class TrezorManager {
                 if (!deviceIsTrezor(usbDevice))
                     continue;
 
-                LogUtils.i(TAG, "tryGetDevice: TREZOR device found");
+                Timber.i(TAG, "tryGetDevice: TREZOR device found");
 
 //                if (usbDevice.getInterfaceCount() <= 0) {
-//                    LogUtils.i(TAG, "wrong number of interfaces!");
+//                    Timber.i(TAG, "wrong number of interfaces!");
 //                    continue;
 //                }
 
@@ -156,29 +153,29 @@ public class TrezorManager {
                     }
                 }
                 if (readEndpoint == null) {
-                    LogUtils.e(TAG, "tryGetDevice: Could not find read endpoint");
+                    Timber.e(TAG, "tryGetDevice: Could not find read endpoint");
                     continue;
                 }
                 if (writeEndpoint == null) {
-                    LogUtils.e(TAG, "tryGetDevice: Could not find write endpoint");
+                    Timber.e(TAG, "tryGetDevice: Could not find write endpoint");
                     continue;
                 }
                 if (readEndpoint.getMaxPacketSize() != 64) {
-                    LogUtils.e(TAG, "tryGetDevice: Wrong packet size for read endpoint");
+                    Timber.e(TAG, "tryGetDevice: Wrong packet size for read endpoint");
                     continue;
                 }
                 if (writeEndpoint.getMaxPacketSize() != 64) {
-                    LogUtils.e(TAG, "tryGetDevice: Wrong packet size for write endpoint");
+                    Timber.e(TAG, "tryGetDevice: Wrong packet size for write endpoint");
                     continue;
                 }
 
                 UsbDeviceConnection conn = usbManager.openDevice(usbDevice);
                 if (conn == null) {
-                    LogUtils.e(TAG, "tryGetDevice: could not open connection");
+                    Timber.e(TAG, "tryGetDevice: could not open connection");
                     continue;
                 } else {
                     if (!conn.claimInterface(usbInterface, true)) {
-                        LogUtils.e(TAG, "tryGetDevice: could not claim interface");
+                        Timber.e(TAG, "tryGetDevice: could not claim interface");
                         continue;
                     } else {
                         this.deviceWithoutPermission = null;
@@ -187,9 +184,9 @@ public class TrezorManager {
                     }
                 }
             }
-            LogUtils.i(TAG, "tryGetDevice: " + (this.device == null ? "TREZOR device not found or failed to connect" : "TREZOR device successfully connected"));
+            Timber.i(TAG, "tryGetDevice: " + (this.device == null ? "TREZOR device not found or failed to connect" : "TREZOR device successfully connected"));
         } else
-            LogUtils.i(TAG, "tryGetDevice: using already connected device");
+            Timber.i(TAG, "tryGetDevice: using already connected device");
         return device;
     }
 
@@ -267,7 +264,7 @@ public class TrezorManager {
             int msg_size = msg.getSerializedSize();
             String msg_name = msg.getClass().getSimpleName();
             int msg_id = MessageType.valueOf("MessageType_" + msg_name).getNumber();
-            LogUtils.i(TAG, String.format("messageWrite: Got message: %s (%d bytes)", msg_name, msg_size));
+            Timber.i(TAG, String.format("messageWrite: Got message: %s (%d bytes)", msg_name, msg_size));
             ByteBuffer data = ByteBuffer.allocate(msg_size + 1024); // 32768);
             data.put((byte) '#');
             data.put((byte) '#');
@@ -284,13 +281,13 @@ public class TrezorManager {
             UsbRequest request = new UsbRequest();
             request.initialize(usbConnection, writeEndpoint);
             int chunks = data.position() / 63;
-            LogUtils.i(TAG, String.format("messageWrite: Writing %d chunks", chunks));
+            Timber.i(TAG, String.format("messageWrite: Writing %d chunks", chunks));
             data.rewind();
             for (int i = 0; i < chunks; i++) {
                 byte[] buffer = new byte[64];
                 buffer[0] = (byte) '?';
                 data.get(buffer, 1, 63);
-                //LogUtils.d(TAG, "messageWrite: chunk: " + bufferToString(buffer));
+                //Timber.d(TAG, "messageWrite: chunk: " + bufferToString(buffer));
                 request.queue(ByteBuffer.wrap(buffer), 64);
                 usbConnection.requestWait();
             }
@@ -309,8 +306,8 @@ public class TrezorManager {
                 request.queue(buffer, 64);
                 usbConnection.requestWait();
                 byte[] b = buffer.array();
-                LogUtils.i(TAG, String.format("messageRead: Read chunk: %d bytes", b.length));
-                //LogUtils.d(TAG, "messageRead: chunk: " + bufferToString(b));
+                Timber.i(TAG, String.format("messageRead: Read chunk: %d bytes", b.length));
+                //Timber.d(TAG, "messageRead: chunk: " + bufferToString(b));
 
                 if (b.length < 9 || b[0] != (byte) '?' || b[1] != (byte) '#' || b[2] != (byte) '#') {
                     if (invalidChunksCounter++ > 5)
@@ -336,8 +333,8 @@ public class TrezorManager {
                 request.queue(buffer, 64);
                 usbConnection.requestWait();
                 byte[] b = buffer.array();
-                LogUtils.i(TAG, String.format("messageRead: Read chunk (cont): %d bytes", b.length));
-                //LogUtils.d(TAG, "messageRead: chunk: " + bufferToString(b));
+                Timber.i(TAG, String.format("messageRead: Read chunk (cont): %d bytes", b.length));
+                //Timber.d(TAG, "messageRead: chunk: " + bufferToString(b));
                 if (b[0] != (byte) '?') {
                     if (invalidChunksCounter++ > 5)
                         throw new InvalidProtocolBufferException("messageRead: too many invalid chunks (2)");
@@ -348,8 +345,8 @@ public class TrezorManager {
 
             byte[] msgData = Arrays.copyOfRange(data.array(), 0, msg_size);
 
-            LogUtils.i(TAG, String.format("parseMessageFromBytes: Parsing %s (%d bytes):", type, msgData.length));
-            //LogUtils.d(TAG, "parseMessageFromBytes: data:" + bufferToString(msgData));
+            Timber.i(TAG, String.format("parseMessageFromBytes: Parsing %s (%d bytes):", type, msgData.length));
+            //Timber.d(TAG, "parseMessageFromBytes: data:" + bufferToString(msgData));
             return parseMessageFromBytes(type, msgData);
         }
 
@@ -364,7 +361,7 @@ public class TrezorManager {
 
 
 
-    public static abstract class UsbPermissionReceiver extends BaseGlobalReceiver {
+    public static abstract class UsbPermissionReceiver extends BaseBroadcastReceivers.BaseGlobalReceiver {
         public static final String ACTION = UsbPermissionReceiver.class.getName() + ".ACTION";
 
         public UsbPermissionReceiver() {
@@ -381,7 +378,7 @@ public class TrezorManager {
     }
 
 
-    public static abstract class TrezorConnectionChangedReceiver extends BaseGlobalReceiver {
+    public static abstract class TrezorConnectionChangedReceiver extends BaseBroadcastReceivers.BaseGlobalReceiver {
         private static final String TAG = TrezorConnectionChangedReceiver.class.getSimpleName();
 
         private static IntentFilter createIntentFilter() {
@@ -397,7 +394,7 @@ public class TrezorManager {
 
         @Override
         protected final void onReceiveRegistered(Context context, Intent intent) {
-            LogUtils.d(TAG, "onReceiveRegistered: " + intent.getAction());
+            Timber.d(TAG, "onReceiveRegistered: " + intent.getAction());
 
             UsbDevice device = intent.getParcelableExtra(UsbManager.EXTRA_DEVICE);
             if (device != null && deviceIsTrezor(device)) {

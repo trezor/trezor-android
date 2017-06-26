@@ -10,7 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.circlegate.liban.base.BaseBroadcastReceivers.BaseLocalReceiver;
+import com.satoshilabs.trezor.lib.BaseBroadcastReceivers.BaseLocalReceiver;
 import com.circlegate.liban.dialog.DialogsFragment;
 import com.circlegate.liban.dialog.DialogsFragment.IDialogsFragmentActivity;
 import com.circlegate.liban.fragment.BaseFragmentCommon.IBaseFragmentActivity;
@@ -37,7 +37,6 @@ import com.satoshilabs.trezor.app.common.NavDrawer.INavDrawerCallbacks;
 import com.satoshilabs.trezor.app.common.TrezorTasks.TrezorError;
 import com.satoshilabs.trezor.app.common.TrezorTasks.TrezorTaskParam;
 import com.satoshilabs.trezor.app.common.TrezorTasks.TrezorTaskResult;
-import com.satoshilabs.trezor.app.view.CustomActionBar;
 import com.satoshilabs.trezor.lib.TrezorManager.TrezorConnectionChangedReceiver;
 import com.satoshilabs.trezor.lib.protobuf.TrezorMessage.Cancel;
 import com.satoshilabs.trezor.lib.protobuf.TrezorMessage.EntropyAck;
