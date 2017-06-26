@@ -1,5 +1,1 @@
-<manifest package="com.satoshilabs.trezor.lib"
-          xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <application />
-</manifest>
+<manifest package="com.satoshilabs.trezor.lib"/>
