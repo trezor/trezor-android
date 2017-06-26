@@ -4,27 +4,25 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
-
 import com.circlegate.liban.base.ApiBase.ApiCreator;
 import com.circlegate.liban.base.ApiBase.ApiParcelable;
 import com.circlegate.liban.base.ApiBase.IApiParcelable;
 import com.circlegate.liban.base.ApiDataIO.ApiDataInput;
 import com.circlegate.liban.base.ApiDataIO.ApiDataOutput;
 import com.circlegate.liban.base.Exceptions.NotImplementedException;
-import com.circlegate.liban.task.TaskInterfaces.ITaskResultListener;
 import com.circlegate.liban.utils.ActivityUtils;
-import tinyguava.ImmutableList;
 import com.satoshilabs.trezor.app.R;
 import com.satoshilabs.trezor.app.activity.base.BaseActivity;
 import com.satoshilabs.trezor.app.common.GlobalContext;
 import com.satoshilabs.trezor.app.style.CustomHtml;
-import com.satoshilabs.trezor.app.view.CustomActionBar;
 import com.satoshilabs.trezor.lib.protobuf.TrezorType.PinMatrixRequestType;
+import tinyguava.ImmutableList;
 
 public class EnterPinActivity extends BaseActivity {
     private static final int PIN_MAX_LENGTH = 9;
@@ -127,14 +125,13 @@ public class EnterPinActivity extends BaseActivity {
                             diffDigits++;
                     }
 
-                    if (diffDigits < 4)
-                        txtPinStrength.setText(CustomHtml.fromHtmlWithCustomSpans(CustomHtml.getFontColorTag(getString(R.string.enter_pin_strength_weak), getResources().getColor(R.color.text_problem))));
-                    else if (diffDigits < 6)
-                        txtPinStrength.setText(R.string.enter_pin_strength_fine);
-                    else if (diffDigits < 8)
-                        txtPinStrength.setText(R.string.enter_pin_strength_strong);
-                    else
-                        txtPinStrength.setText(R.string.enter_pin_strength_ultimate);
+                    if (diffDigits < 4) {
+                        final int problemColor = ContextCompat.getColor(EnterPinActivity.this, R.color.text_problem);
+                        final String html = CustomHtml.getFontColorTag(getString(R.string.enter_pin_strength_weak), problemColor);
+                        txtPinStrength.setText(CustomHtml.fromHtmlWithCustomSpans(html));
+                    } else if (diffDigits < 6) txtPinStrength.setText(R.string.enter_pin_strength_fine);
+                    else if (diffDigits < 8) txtPinStrength.setText(R.string.enter_pin_strength_strong);
+                    else txtPinStrength.setText(R.string.enter_pin_strength_ultimate);
                 }
 
                 boolean pinBtnsEnabled = editable.length() < PIN_MAX_LENGTH;
