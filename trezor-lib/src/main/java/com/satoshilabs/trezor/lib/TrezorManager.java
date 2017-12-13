@@ -101,9 +101,19 @@ public class TrezorManager {
     //
 
     static boolean deviceIsTrezor(UsbDevice usbDevice) {
-        return usbDevice.getVendorId() == 0x534c
-                && usbDevice.getProductId() == 0x0001
-                && usbDevice.getInterfaceCount() > 0;
+        // no usable interfaces
+        if (usbDevice.getInterfaceCount() <= 0) {
+            return false;
+        }
+        // TREZOR v1
+        if (usbDevice.getVendorId() == 0x534c) {
+            return usbDevice.getProductId() == 0x0001;
+        }
+        // TREZOR v2
+        if (usbDevice.getVendorId() == 0x1209) {
+            return usbDevice.getProductId() == 0x53c0 || usbDevice.getProductId() == 0x53c1;
+        }
+        return false;
     }
 
     private TrezorDevice tryGetDevice() {
