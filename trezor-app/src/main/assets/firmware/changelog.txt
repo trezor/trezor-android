@@ -1,3 +1,0 @@
-Stable release, optional update
-Native SegWit (Bech32) address support
-Show recognized BIP44/BIP49 paths

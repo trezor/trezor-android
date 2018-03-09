@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:visibility="visible"
+        android:visibility="gone"
         />
 
     <android.support.v4.widget.NestedScrollView
@@ -162,6 +162,6 @@
 
     </android.support.v4.widget.NestedScrollView>
 
-    <include layout="@layout/firmware_upgrade_button" />
+    <include layout="@layout/notification_bottom_button" />
 
 </merge>

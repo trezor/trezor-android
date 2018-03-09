@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    >
+
+    <com.circlegate.liban.view.PaddedLinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:maxPaddedWidth="@dimen/max_screen_width_narrow"
+        >
+
+        <TextView
+            style="@style/TextStyleTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/trezor_recovery_init_v2_title"
+            />
+
+        <TextView
+            android:id="@+id/txt_text"
+            style="@style/TextStyleBody"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/trezor_recovery_init_v2_text"
+            />
+
+        <Button
+            android:id="@+id/btn_continue"
+            style="@style/ButtonAppTheme.Primary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/form_vert_padding"
+            android:layout_marginBottom="@dimen/form_vert_padding"
+            android:layout_marginLeft="@dimen/form_hor_padding_btn"
+            android:layout_marginRight="@dimen/form_hor_padding_btn"
+            android:layout_gravity="center_horizontal"
+            android:minWidth="180dp"
+            android:text="@string/do_continue"
+            />
+
+    </com.circlegate.liban.view.PaddedLinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

@@ -73,6 +73,17 @@
         <item name="android:paddingBottom">4dp</item>
     </style>
 
+    <style name="ButtonAppTheme.Red" >
+        <item name="android:background">@drawable/btn_card_red</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:minWidth">@dimen/column_width_normal</item>
+        <item name="android:minHeight">@dimen/line_height_normal</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">20dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+    </style>
+
     <style name="ButtonAppTheme.Pin" parent="@style/ButtonAppTheme.Secondary">
         <item name="android:layout_width">@dimen/btn_pin_width</item>
         <item name="android:layout_height">@dimen/btn_pin_height</item>

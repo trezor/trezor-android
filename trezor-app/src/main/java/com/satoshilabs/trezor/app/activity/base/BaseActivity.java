@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.circlegate.liban.dialog.PromptDialog;
 import com.satoshilabs.trezor.lib.BaseBroadcastReceivers.BaseLocalReceiver;
 import com.circlegate.liban.dialog.DialogsFragment;
 import com.circlegate.liban.dialog.DialogsFragment.IDialogsFragmentActivity;
@@ -38,6 +39,7 @@ import com.satoshilabs.trezor.app.common.TrezorTasks.TrezorError;
 import com.satoshilabs.trezor.app.common.TrezorTasks.TrezorTaskParam;
 import com.satoshilabs.trezor.app.common.TrezorTasks.TrezorTaskResult;
 import com.satoshilabs.trezor.lib.TrezorManager.TrezorConnectionChangedReceiver;
+import com.satoshilabs.trezor.lib.protobuf.TrezorMessage.ButtonAck;
 import com.satoshilabs.trezor.lib.protobuf.TrezorMessage.Cancel;
 import com.satoshilabs.trezor.lib.protobuf.TrezorMessage.EntropyAck;
 import com.satoshilabs.trezor.lib.protobuf.TrezorMessage.Failure;
@@ -50,6 +52,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class BaseActivity extends AppCompatActivity implements IBaseFragmentActivity, ITaskFragmentActivity, IDialogsFragmentActivity, OnRequestPermissionsResultCallback, ITaskResultListener {
+    private static final String DIALOG_CONFIRM_ACTION = "BaseActivity.DIALOG_CONFIRM_ACTION";
+
     private GlobalContext gct;
     private TaskFragment taskFragment;
 	private DialogsFragment dialogsFragment;
@@ -62,6 +66,9 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseFra
     // aktivita muze nastavit na true, aby pri prechodu z jedne aktivity do druhe nedochazelo ke zbytecnemu odpojovani
     // V kazdem pripade pri kazdem volani onStop (a onCreate) je nastaveno zpet na false
     private boolean dontDisconnectOnStop = false;
+
+    // Saved state
+    private PromptDialog dialogConfirmAction;
 
 
     //
@@ -76,6 +83,8 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseFra
         readyToCommitFragments = false;
         trezorConnectionChangedReceiver.register(this);
         dontDisconnectOnStop = false;
+
+        this.dialogConfirmAction = (PromptDialog)getSupportFragmentManager().findFragmentByTag(DIALOG_CONFIRM_ACTION);
 	}
 
     @Override
@@ -248,11 +257,20 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseFra
         }
     }
 
+    protected boolean canHandleButtonReqByDefAction() {
+        return false;
+    }
+
     @Override
     public final void onTaskCompleted(String id, ITaskResult result, Bundle bundle) {
         if (result instanceof TrezorTaskResult) {
             TrezorTaskResult res = (TrezorTaskResult)result;
             beforeTrezorTaskCompleted(id, res);
+
+            if (dialogConfirmAction != null) {
+                dialogConfirmAction.dismiss();
+                dialogConfirmAction = null;
+            }
 
             if (res.isValidResult()) {
                 switch (res.getMsgResult().msgType) {
@@ -275,6 +293,17 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseFra
                         startActivityForResult(EnterPassphraseActivity.createIntent(this, new EnterPassphraseActivityParam(id, res.getParam().getTag())),
                                 GlobalContext.RQC_ENTER_PASSPHRASE);
                         setDontDisconnectOnStop();
+                        break;
+                    }
+
+                    case MessageType_ButtonRequest: {
+                        if (canHandleButtonReqByDefAction()) {
+                            this.dialogConfirmAction = PromptDialog.show(getSupportFragmentManager(), dialogConfirmAction, DIALOG_CONFIRM_ACTION, DIALOG_CONFIRM_ACTION, "", getString(R.string.confirm_action_on_trezor),
+                                    false, false, false, null, "", "");
+                            executeTrezorTaskIfCan(id, ButtonAck.newBuilder().build());
+                        }
+                        else
+                            onTrezorTaskCompletedSucc(id, res);
                         break;
                     }
 

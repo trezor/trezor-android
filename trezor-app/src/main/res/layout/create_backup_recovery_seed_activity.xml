@@ -15,10 +15,11 @@
         >
 
         <TextView
+            android:id="@+id/txt_title"
             style="@style/TextStyleTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/recovery_seed_setup_title"
+            android:text="@string/create_backup_recovery_seed_title_write"
             />
 
         <TextView
@@ -26,7 +27,7 @@
             style="@style/TextStyleBody"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/recovery_seed_setup_text_write"
+            android:text="@string/create_backup_recovery_seed_text_write"
             />
 
         <android.support.v4.widget.Space
@@ -41,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/form_vert_padding"
-            android:text="@string/recovery_seed_setup_word_num_above_write"
+            android:text="@string/create_backup_recovery_seed_word_num_above_write"
             android:textColor="@color/text_primary"
             android:gravity="center_horizontal"
             />
@@ -64,7 +65,7 @@
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/form_vert_padding_small"
             android:paddingBottom="@dimen/form_vert_padding"
-            android:text="@string/recovery_seed_setup_word_num_below_write"
+            android:text="@string/create_backup_recovery_seed_num_below_write"
             android:textColor="@color/text_primary"
             android:gravity="center_horizontal"
             />
@@ -73,6 +74,19 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="30"
+            />
+
+        <TextView
+            style="@style/TextStyleBody"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/form_vert_padding_small"
+            android:paddingBottom="@dimen/form_vert_padding_small"
+            android:text="@string/create_backup_recovery_seed_do_not_disconnect"
+            android:textColor="@color/red_highlight"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@color/red_bg"
             />
 
     </com.circlegate.liban.view.PaddedLinearLayout>

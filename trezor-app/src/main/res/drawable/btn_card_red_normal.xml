@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/btn_card_shadow" />
+    <item android:drawable="@drawable/btn_card_red_no_shadow" />
+</layer-list>
