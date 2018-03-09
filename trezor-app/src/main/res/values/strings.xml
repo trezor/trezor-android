@@ -15,7 +15,7 @@
     <string name="ok">OK</string>
     <string name="back">Back</string>
 
-    <string name="confirm_action_on_trezor">Please confirm the action on your device</string>
+    <string name="confirm_action_on_trezor">Complete the action on your TREZOR device</string>
     <string name="i_understand">I understand</string>
 
     <!-- TREZOR Errors -->
@@ -48,16 +48,71 @@
     <string name="main_activity_forget_device_prompt">Do you want to forget your device?\n\nForgetting only removes the device from the list on the left, your bitcoins are still safe and you can access them by reconnecting your TREZOR again</string>
     <string name="main_activity_wipe_device_title">Wipe device</string>
     <string name="main_activity_wipe_device_text">Wiping the device <b>removes all its information</b>\nUse this feature only if you have your Recovery Seed or you don\'t have any coins on your device</string>
-    <string name="main_activity_wipe_device_prompt_text">All data on your device will be deleted, this action cannot be undone!\n\nNever do this action with TREZOR holding coins unless you have your recovery seed at hand!</string>
+    <string name="main_activity_wipe_device_prompt_text"><b>All data on your device will be deleted</b>\n\nThis action cannot be undone. Never do this action with TREZOR holding coins unless you have your recovery seed at hand</string>
     <string name="main_activity_disconnect_to_apply_setting">Disconnect your TREZOR now to apply changed settings</string>
     <string name="main_activity_disconnect_now">Disconnect your TREZOR</string>
+    <string name="main_activity_notif_not_backed_up">Your TREZOR is not backed up\nTap to create backup</string>
+    <string name="main_activity_notif_not_named">Your TREZOR has a generic name\nTap to name your TREZOR to increase security</string>
+    <string name="main_activity_notif_no_pin">Your TREZOR is not protected by a PIN\nTap to create PIN</string>
 
     <!-- INIT TREZOR -->
-    <string name="init_trezor_title">Welcome to TREZOR Setup!</string>
-    <string name="init_trezor_text">Please take your time to read all of the instructions\n\nSetting up your TREZOR will take only a few minutes. When you\'re done, you can start using your TREZOR.</string>
+    <!--<string name="init_trezor_title">Welcome to TREZOR Setup!</string>-->
+    <!--<string name="init_trezor_text">Please take your time to read all of the instructions\n\nSetting up your TREZOR will take only a few minutes. When you\'re done, you can start using your TREZOR.</string>-->
     <string name="init_trezor_device_label_hint">Device label</string>
     <string name="init_trezor_device_label_default">My TREZOR</string>
-    <string name="init_trezor_restore_text">Want to restore your wallet from recovery seed?</string>
+    <!--<string name="init_trezor_restore_text">Want to restore your wallet from recovery seed?</string>-->
+
+    <string name="init_trezor_create_wallet_title">Create a new wallet</string>
+    <string name="init_trezor_create_wallet_desc">New to TREZOR? Don\'t worry!\nWe will walk you through the setup process\nin a few minutes.</string>
+    <string name="init_trezor_create_wallet_button">Create new</string>
+    <string name="init_trezor_recover_wallet_title">Recover wallet</string>
+    <string name="init_trezor_recover_wallet_desc">Have you used a TREZOR before?\nOwn a recovery seed from a different wallet or app?\nSimply restore the wallet from your backup.</string>
+    <string name="init_trezor_recover_wallet_button">Recover wallet</string>
+
+    <!-- CREATE BACKUP -->
+    <string name="create_backup_activity_title">1/3 Create backup</string>
+
+    <string name="create_backup_init_title">Backup your TREZOR</string>
+    <string name="create_backup_init_desc">First you need to create a backup of your TREZOR to protect your coins from the unexpected</string>
+    <string name="create_backup_init_warning_title">Your recovery seed is the backup key to all your cryptocurrencies and applications</string>
+    <string name="create_backup_init_warning_desc">Your recovery seed can only be displayed once. Never make a digital copy of your recovery seed and never upload it online. Keep your recovery seed in a safe place. TREZOR cannot be held liable for financial losses incurred through improper care of sensitive information.</string>
+    <string name="create_backup_init_things_to_avoid_title">Things to avoid:</string>
+    <string name="create_backup_init_things_to_avoid_desc">- Do not take a photo of your recovery seed\n- Do not write it into a computer\n- Do not save it into your cloud storage\n- Never upload it on the Internet</string>
+    <string name="create_backup_init_checkbox">I understand and agree</string>
+
+    <string name="create_backup_recovery_seed_title_write">Write down your recovery seed</string>
+    <string name="create_backup_recovery_seed_title_check">Check your seed again</string>
+    <string name="create_backup_recovery_seed_text_write">On your TREZOR, you will now see a unique combination of 24 words, which will allow you to recover your accounts in case you lose your device. The order of the words is very important.\n\n<b>Please write down all these words carefully.</b></string>
+    <string name="create_backup_recovery_seed_text_check">Your TREZOR device will now display your 24 word recovery seed again.\nThese words serve as your backup in case you lose the device.</string>
+    <string name="create_backup_recovery_seed_word_num_above_write">Write down the</string>
+    <string name="create_backup_recovery_seed_word_num_above_check">Check the</string>
+    <string name="create_backup_recovery_seed_num_below_write">word from TREZOR\ninto the recovery seed card</string>
+    <string name="create_backup_recovery_seed_word_num_below_check">word from TREZOR\nwith your paper</string>
+    <string name="create_backup_recovery_seed_do_not_disconnect">Do not disconnect device</string>
+
+    <string name="create_backup_completed">You have successfully backed up your device!</string>
+
+    <string name="create_backup_recovery_seed_v2_title">Write down your recovery seed</string>
+    <string name="create_backup_recovery_seed_v2_desc">Your TREZOR Model T will now display your 12-word recovery seed. Swipe to scroll through the words.\n\nAfter you confirm you finished writing down the words, TREZOR will randomly select two words and ask you to retype them on the screen for verification.</string>
+
+    <!-- NAME DEVICE -->
+    <string name="name_device_activity_title">2/3 Name your device</string>
+    <string name="name_device_init_title">Why should you name your device?</string>
+    <string name="name_device_init_desc_title">Security reasons</string>
+    <string name="name_device_init_desc_text">By customizing the device name, you can be sure that the TREZOR in your hands is indeed yours. It may also help you in distinguishing between different TREZOR devices.</string>
+
+    <string name="name_device_title">Choose a name for your TREZOR</string>
+    <string name="name_device_desc">Personalize your device with your own name or choose one from the examples.\nMaximum label length is 16 characters.</string>
+    <string name="name_device_confirm">Confirm to continue</string>
+
+    <string name="name_device_completed">You chose a wonderful name!</string>
+
+    <!-- SETUP PIN -->
+    <string name="setup_pin_activity_title">3/3 Set up PIN lock</string>
+    <string name="setup_pin_title">Enter a new PIN for ^d^</string>
+    <string name="setup_pin_desc">Choose a strong PIN to protect your device from unauthorized access.\nThe layout will be displayed on your TREZOR</string>
+    <string name="setup_pin_completed">Good job! Your PIN is set</string>
+
 
     <!-- ENTER PIN -->
     <string name="enter_pin_current_prompt">Please enter current PIN</string>
@@ -70,14 +125,9 @@
     <string name="enter_pin_strength_strong">Strong</string>
     <string name="enter_pin_strength_ultimate">Ultimate</string>
 
-    <!-- RECOVERY SEED SETUP -->
-    <string name="recovery_seed_setup_title">Recovery seed setup</string>
-    <string name="recovery_seed_setup_text_write">We will now show you 24 words that will allow you to recover your accounts in case you lose your device\n\n<b>Please write down all these words carefully</b></string>
-    <string name="recovery_seed_setup_text_check">We will now show you the 24 words again\n\n<b>Please check carefully that you wrote them down correctly</b></string>
-    <string name="recovery_seed_setup_word_num_above_write">Please write down the</string>
-    <string name="recovery_seed_setup_word_num_above_check">Please check the</string>
-    <string name="recovery_seed_setup_word_num_below_write">word of your recovery seed</string>
-    <string name="recovery_seed_setup_word_num_below_check">word of your recovery seed</string>
+
+
+
 
     <!-- XPUB -->
     <string name="xpub_activity_title">XPUBs</string>
@@ -87,6 +137,7 @@
     <!-- CHANGE HOMESCREEN -->
     <string name="change_homescreen_pick_custom_img">Pick custom image</string>
     <string name="change_homescreen_custom_img_advice">For best results pick a 124x64 black and white image (not grayscale)</string>
+    <string name="change_homescreen_custom_img_advice_v2">For best results pick a 144x144 image</string>
     <string name="change_homescreen_select_image_from_list">or, select image from a list:</string>
 
     <!-- ENTER PASSPHRASE -->
@@ -99,6 +150,14 @@
     <string name="trezor_recovery_init_seed_length">Number of words in you recovery seed</string>
     <string name="trezor_recovery_init_enable_pin">Enable PIN protection</string>
     <string name="trezor_recovery_init_enable_passphrase">Additional passphrase encryption</string>
+    <string name="trezor_recovery_init_12_words">12 words</string>
+    <string name="trezor_recovery_init_18_words">18 words</string>
+    <string name="trezor_recovery_init_24_words">24 words</string>
+
+    <string name="trezor_recovery_init_v2_title">Recover your wallet</string>
+    <string name="trezor_recovery_init_v2_text">Your wallet backup, the recovery seed, is entered entirely on the TREZOR Model T, through the device screen. We avoid passing any of your sensitive information to a potentially insecure computer or web browser.
+        \n\nFirst of all, TREZOR will ask you how long is your recovery seed. Select the correct number and then you will be asked to enter the words in their correct order, as displayed on the screen. Us the touchscreen to enter the words.
+        \n\nClick on \"Continue\" to start the recovery process.</string>
 
     <!-- TREZOR RECOVERY SEED -->
     <string name="trezor_recovery_seed_hint">Enter seed word</string>
@@ -109,22 +168,45 @@
 
     <!-- FIRMWARE UPGRADE -->
     <string name="firmware_upgrade_avail">Firmware upgrade available\nTap to show details</string>
-    <string name="firmware_upgrade_activity_title">Firmware upgrade</string>
-    <string name="firmware_upgrade_title_outdated">Your device firmware is outdated</string>
-    <string name="firmware_upgrade_title_upgrade">Do you want to update the device firmware?</string>
+    <string name="firmware_upgrade_activity_title_update">TREZOR Firmware Update</string>
+    <string name="firmware_upgrade_activity_title_clean_install">Welcome to TREZOR</string>
+    <string name="firmware_upgrade_title_outdated">Your TREZOR firmware is outdated</string>
+    <string name="firmware_upgrade_title_up_to_date">Your TREZOR firmware is up to date</string>
+    <string name="firmware_upgrade_title_clean_install">It is time to install the device firmware</string>
+    <string name="firmware_upgrade_title_firmware_update">Firmware update</string>
     <string name="firmware_upgrade_device_version">Device firmware version:</string>
     <string name="firmware_upgrade_avail_version">Available version:</string>
+    <string name="firmware_upgrade_common_info_update">For full functionality and security, we recommend you keep your TREZOR updated\nFor more information about the update process, please visit the <a href="https://doc.satoshilabs.com/trezor-user/updatingfirmware.html">user manual</a></string>
+    <string name="firmware_upgrade_common_info_update_required">This is a required update, you must update your TREZOR before you continue\nFor more information about the update process, please visit the <a href="https://doc.satoshilabs.com/trezor-user/updatingfirmware.html">user manual</a></string>
+    <string name="firmware_upgrade_common_info_clean_install">Your TREZOR is shipped without firmware installed to ensure that you can get started with the latest features right away\n\nThe authenticity of the installed firmware is always checked during device start\nIf the firmware is not correctly signed by SatoshiLabs, your TREZOR will display a warning</string>
     <string name="firmware_upgrade_instructions_title">To update the firmware:</string>
-    <string name="firmware_upgrade_instructions_text">1. disconnect the device\n2. plug it in while holding both device buttons pressed\n\nFor more information, visit the <a href="https://doc.satoshilabs.com/trezor-user/updatingfirmware.html">user manual</a>\n\nTo enjoy full functionality and security of your device, we strongly recommend you to update</string>
-    <string name="firmware_upgrade_initialized_title">Caution!</string>
-    <string name="firmware_upgrade_initialized_text"><b>Your TREZOR is already initialized. Check that you have your Recovery seed with you before updating the firmware!</b>\n\nIn very rare cases, a firmware update might result in the need to recover the wallet from Recovery seed</string>
-    <string name="firmware_upgrade_yes_update">Yes, update</string>
-    <string name="firmware_upgrade_changelog">Changelog:</string>
-    <string name="firmware_upgrade_progress">Uploading firmware…\nIf asked, please confirm the update on your device</string>
+    <string name="firmware_upgrade_instructions_text">1. Disconnect TREZOR\n2. When connecting, hold both buttons pressed</string>
+    <string name="firmware_upgrade_instructions_text_v2">1. Disconnect TREZOR\n2. When connecting, slide your fingers on the display\n3. Confirm connection in bootloader mode on device</string>
+    <string name="firmware_upgrade_update_my_device">Update my device</string>
+    <string name="firmware_upgrade_install_firmware">Install firmware</string>
+    <string name="firmware_upgrade_show_changelog">Show changelog</string>
+    <string name="firmware_upgrade_changelog">Changelog</string>
+    <string name="firmware_upgrade_update_progress">Uploading firmware…\nIf asked, please confirm the action on your device</string>
+    <string name="firmware_upgrade_factory_reset_progress">Wiping device…\nIf asked, please confirm the action on your device</string>
     <string name="firmware_upgrade_fingerprint_title">Firmware fingerprint</string>
     <string name="firmware_upgrade_fingerprint_text">Make sure the same fingerprint is displayed on the device screen</string>
-    <string name="firmware_upgrade_success">Update was successful\nPlease unplug the device now</string>
-    <string name="firmware_upgrade_failed">Update failed!\nPlease unplug the device now</string>
+    <string name="firmware_upgrade_update_success">Update was successful\nComplete the action on your TREZOR device</string>
+    <string name="firmware_upgrade_clean_install_success">Firmware install was successful\nComplete the action on your TREZOR device</string>
+    <string name="firmware_upgrade_factory_reset_success">Factory reset was successful\nComplete the action on your TREZOR device</string>
+    <string name="firmware_upgrade_update_failed">Update failed!\nPlease unplug the device now</string>
+    <string name="firmware_upgrade_clean_install_failed">Firmware install failed!\nPlease unplug the device now</string>
+    <string name="firmware_upgrade_factory_reset_failed">Factory reset failed!\nPlease unplug the device now</string>
+    <string name="firmware_upgrade_warning_title">Warning</string>
+    <string name="firmware_upgrade_warning_bootloader_desc">Your TREZOR may have already been set up. We cannot check the state of your device because it is in bootloader mode.\nIf your device has already been initialized, meaning you have a recovery seed, make sure you have it with you.</string>
+    <string name="firmware_upgrade_warning_initialized_desc">Your TREZOR is already set up. Before you update firmware, please make sure that you have recovery seed with you.</string>
+    <string name="firmware_upgrade_i_have_recovery_seed">I have recovery seed with me</string>
+    <string name="firmware_upgrade_my_trezor_is_empty">My TREZOR is empty</string>
+    <string name="firmware_upgrade_factory_reset_title">Factory reset</string>
+    <string name="firmware_upgrade_factory_reset_desc_1">You can reset the TREZOR Model T to factory defaults if you need to do so</string>
+    <string name="firmware_upgrade_factory_reset_desc_2">Please keep in mind that factory reset will erase all sensitive data, including the seed from the device, as well as the firmware</string>
+    <string name="firmware_upgrade_factory_reset_device">Reset device</string>
+    <string name="firmware_upgrade_factory_reset_prompt_title">Confirm factory reset</string>
+    <string name="firmware_upgrade_factory_reset_prompt_text"><b>All data on your device will be deleted</b>\n\nThis action cannot be undone. Never do this action with TREZOR holding coins unless you have your recovery seed at hand</string>
 
 
 </resources>

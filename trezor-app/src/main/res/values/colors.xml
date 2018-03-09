@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="primary_normal">#79C018</color> <!-- 0E509A #87CE26-->
+    <color name="primary_disabled">#ABE55C</color>
     <color name="primary_light">#ABED4A</color> <!-- 0E509A -->
     <color name="primary_dark">#549B00</color> <!-- 0E509A -->
+    <color name="primary_light_bg">#E8F5E9</color> <!-- 0E509A -->
 
 
     <color name="accent_normal">@color/primary_normal</color> <!-- #FEE01A FDD835-->
@@ -26,6 +28,7 @@
     <color name="red">#E53935</color>
 
     <color name="orange_bg">#FDD835</color> <!-- #FFCC80 -->
+    <color name="red_bg">#FFEBEE</color>
 
     <color name="green_highlight">#43A047</color>
     <color name="orange_highlight">#FFAB00</color>
@@ -78,6 +81,7 @@
     <color name="btn_flat_accent_text">@color/accent2_normal</color>
     <color name="btn_raised_text">@color/accent2_normal</color>
     <color name="btn_raised_primary_bg">@color/primary_normal</color>
+    <color name="btn_raised_primary_disabled_bg">@color/primary_disabled</color>
     <color name="btn_raised_primary_text">@android:color/white</color>
     <color name="btn_raised_accent_bg">@color/accent2_normal</color>
     <color name="btn_raised_accent_text">@android:color/white</color>

@@ -2,7 +2,6 @@ package com.satoshilabs.trezor.app.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
@@ -15,6 +14,10 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.circlegate.liban.base.ApiBase.ApiCreator;
+import com.circlegate.liban.base.ApiBase.ApiParcelable;
+import com.circlegate.liban.base.ApiDataIO.ApiDataInput;
+import com.circlegate.liban.base.ApiDataIO.ApiDataOutput;
 import com.circlegate.liban.base.CommonClasses.Couple;
 import com.circlegate.liban.base.Exceptions.NotImplementedException;
 import com.circlegate.liban.dialog.PromptDialog;
@@ -30,8 +33,10 @@ import com.satoshilabs.trezor.app.R;
 import com.satoshilabs.trezor.app.activity.ChangeHomescreenActivity.ChangeHomescreenActivityResult;
 import com.satoshilabs.trezor.app.activity.base.BaseActivity;
 import com.satoshilabs.trezor.app.common.GlobalContext;
+import com.satoshilabs.trezor.app.common.GlobalContext.FirmwareRelease;
+import com.satoshilabs.trezor.app.common.GlobalContext.FirmwareReleases;
+import com.satoshilabs.trezor.app.common.GlobalContext.FirmwareVersion;
 import com.satoshilabs.trezor.app.common.NavDrawer;
-import com.satoshilabs.trezor.app.common.TrezorTasks.IntParcelable;
 import com.satoshilabs.trezor.app.common.TrezorTasks.MsgWrp;
 import com.satoshilabs.trezor.app.common.TrezorTasks.TrezorError;
 import com.satoshilabs.trezor.app.common.TrezorTasks.TrezorTaskParam;
@@ -43,6 +48,7 @@ import com.satoshilabs.trezor.app.dialog.CheckConfirmedDialog.OnCheckConfirmedDi
 import com.satoshilabs.trezor.app.dialog.EnterTextDialog;
 import com.satoshilabs.trezor.app.dialog.EnterTextDialog.OnEnterTextDialogDone;
 import com.satoshilabs.trezor.app.style.CustomHtml;
+import com.satoshilabs.trezor.app.utils.CommonUtils;
 import com.satoshilabs.trezor.app.view.CustomActionBar;
 import com.satoshilabs.trezor.lib.TrezorManager.UsbPermissionReceiver;
 import com.satoshilabs.trezor.lib.protobuf.TrezorMessage.ApplySettings;
@@ -50,10 +56,8 @@ import com.satoshilabs.trezor.lib.protobuf.TrezorMessage.ButtonAck;
 import com.satoshilabs.trezor.lib.protobuf.TrezorMessage.ChangePin;
 import com.satoshilabs.trezor.lib.protobuf.TrezorMessage.Failure;
 import com.satoshilabs.trezor.lib.protobuf.TrezorMessage.Features;
-import com.satoshilabs.trezor.lib.protobuf.TrezorMessage.GetPublicKey;
 import com.satoshilabs.trezor.lib.protobuf.TrezorMessage.Initialize;
 import com.satoshilabs.trezor.lib.protobuf.TrezorMessage.MessageType;
-import com.satoshilabs.trezor.lib.protobuf.TrezorMessage.PublicKey;
 import com.satoshilabs.trezor.lib.protobuf.TrezorMessage.WipeDevice;
 
 public class MainActivity extends BaseActivity implements OnPromptDialogDone, OnEnterTextDialogDone, OnCheckConfirmedDialogDone {
@@ -92,7 +96,7 @@ public class MainActivity extends BaseActivity implements OnPromptDialogDone, On
     private Button btnFirmwareVersion;
     //private Button btnForgetDevice;
     private Button btnWipeDevice;
-    private Button btnFirmwareUpgradeAvail;
+    private Button btnNotification;
 
     private GlobalContext gct;
 
@@ -138,7 +142,7 @@ public class MainActivity extends BaseActivity implements OnPromptDialogDone, On
         this.btnFirmwareVersion = (Button)findViewById(R.id.btn_firmware_version);
         //this.btnForgetDevice = (Button)findViewById(R.id.btn_forget_device);
         this.btnWipeDevice = (Button)findViewById(R.id.btn_wipe_device);
-        this.btnFirmwareUpgradeAvail = (Button)findViewById(R.id.btn_firmware_upgrade_avail);
+        this.btnNotification = (Button)findViewById(R.id.btn_notification);
 
         this.gct = GlobalContext.get();
 
@@ -199,7 +203,7 @@ public class MainActivity extends BaseActivity implements OnPromptDialogDone, On
             @Override
             public void onClick(View view) {
                 if (initializedTrezor != null && initializedTrezor.getFeatures().getDeviceId().equals(connectedTrezorDeviceId)) {
-                    startActivityForResult(ChangeHomescreenActivity.createIntent(view.getContext(), initializedTrezor.getFeatures().getLabel()), GlobalContext.RQC_PICK_HOMESCREEN);
+                    startActivityForResult(ChangeHomescreenActivity.createIntent(view.getContext(), initializedTrezor.getFeatures().getLabel(), TextUtils.equals(initializedTrezor.getFeatures().getModel(), "T")), GlobalContext.RQC_PICK_HOMESCREEN);
                     setDontDisconnectOnStop();
                 }
             }
@@ -267,15 +271,6 @@ public class MainActivity extends BaseActivity implements OnPromptDialogDone, On
                 }
             }
         });
-        btnFirmwareUpgradeAvail.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (initializedTrezor != null) {
-                    startActivity(FirmwareUpgradeActivity.createIntent(view.getContext(), new MsgWrp(initializedTrezor.getFeatures())));
-                    setDontDisconnectOnStop();
-                }
-            }
-        });
 
         this.initializedTrezor = null;
         this.connectedTrezorDeviceId = savedInstanceState != null ? savedInstanceState.getString("connectedTrezorDeviceId") : "";
@@ -289,8 +284,8 @@ public class MainActivity extends BaseActivity implements OnPromptDialogDone, On
             }
         }
 
-        if (TextUtils.isEmpty(connectedTrezorDeviceId))
-            executeTryConnectTrezor(false);
+        //if (TextUtils.isEmpty(connectedTrezorDeviceId))
+        //    executeTryConnectTrezor(false);
     }
 
     @Override
@@ -313,6 +308,10 @@ public class MainActivity extends BaseActivity implements OnPromptDialogDone, On
         navDrawer.trezorListChangedReceiver.register(this);
         navDrawer.trezorListChangedReceiver.onTrezorListChanged(true, true);
         trezorListChangedReceiver.register(this);
+
+        executeTryConnectTrezor(false);
+        //if (!TextUtils.isEmpty(connectedTrezorDeviceId))
+        //    executeTrezorTaskIfCan(TASK_TRY_CONNECT_TREZOR, GetFeatures.newBuilder().build());
         refreshGui();
     }
 
@@ -352,22 +351,31 @@ public class MainActivity extends BaseActivity implements OnPromptDialogDone, On
         if (id.equals(TASK_TRY_CONNECT_TREZOR)) {
             if (res.getMsgResult().msgType == MessageType.MessageType_Features) {
                 Features features = (Features)res.getMsgResult().msg;
+                TryConnectTag tag = (TryConnectTag)res.getParam().getTag();
 
                 if (features.getBootloaderMode()) {
-                    //finish();
+                    finish();
                     startActivity(FirmwareUpgradeActivity.createIntent(this, res.getMsgResult()));
-                    if (((IntParcelable)res.getParam().getTag()).value == 0)
+                    if (!tag.canAnimateNextScreen)
                         overridePendingTransition(0, 0);
                     setDontDisconnectOnStop();
                 }
+                else if (gct.getFirmwareReleases(CommonUtils.isTrezorV2(features)).isUpdateRequired(FirmwareVersion.create(features))) {
+                    finish();
+                    startActivity(FirmwareUpgradeActivity.createIntent(this, res.getMsgResult()));
+                    if (!tag.canAnimateNextScreen)
+                        overridePendingTransition(0, 0);
+                    setDontDisconnectOnStop();
+                }
+
                 else if (!features.getInitialized()) {
                     finish();
                     startActivity(InitTrezorActivity.createIntent(this, res.getMsgResult()));
-                    if (((IntParcelable)res.getParam().getTag()).value == 0)
+                    if (!tag.canAnimateNextScreen)
                         overridePendingTransition(0, 0);
                     setDontDisconnectOnStop();
                 }
-                else {
+                else
                     setupConnectedTrezor(features);
 //                    if (this.initializedTrezor != null && (EqualsUtils.equalsCheckNull(this.initializedTrezor.getFeatures().getDeviceId(), features.getDeviceId()))) {
 //                        setupConnectedTrezor(features, initializedTrezor.getPublicKey());
@@ -382,7 +390,7 @@ public class MainActivity extends BaseActivity implements OnPromptDialogDone, On
 //                        executeTrezorTaskIfCan(id, new TrezorTaskParam(msg, new MsgWrp(features)));
 //                        refreshGui();
 //                    }
-                }
+
             }
             //else if (res.getMsgResult().msgType == MessageType.MessageType_PublicKey) {
             //    setupConnectedTrezor((Features) ((MsgWrp)res.getParam().getTag()).msg, (PublicKey)res.getMsgResult().msg);
@@ -531,22 +539,68 @@ public class MainActivity extends BaseActivity implements OnPromptDialogDone, On
         {
             progressBar.setVisibility(View.VISIBLE);
             nestedScrollView.setVisibility(View.GONE);
-            btnFirmwareUpgradeAvail.setVisibility(View.GONE);
+            btnNotification.setVisibility(View.GONE);
         }
         else {
             progressBar.setVisibility(View.GONE);
             nestedScrollView.setVisibility(View.VISIBLE);
 
             if (initializedTrezor == null) {
-                btnFirmwareUpgradeAvail.setVisibility(View.GONE);
+                btnNotification.setVisibility(View.GONE);
                 rootDisconnected.setVisibility(View.VISIBLE);
                 rootConnected.setVisibility(View.GONE);
                 getSupportActionBar().setTitle(R.string.app_name);
             }
             else {
-                Features f = initializedTrezor.getFeatures();
+                final Features f = initializedTrezor.getFeatures();
 
-                btnFirmwareUpgradeAvail.setVisibility(gct.getBundledFirmwareVersion().isNewerThan(f) ? View.VISIBLE : View.GONE);
+                if (f.getNeedsBackup()) {
+                    btnNotification.setVisibility(View.VISIBLE);
+                    btnNotification.setText(R.string.main_activity_notif_not_backed_up);
+                    btnNotification.setOnClickListener(new OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            startActivity(CreateBackupInitActivity.createIntent(v.getContext(), CommonUtils.isTrezorV2(f)));
+                            setDontDisconnectOnStop();
+                        }
+                    });
+                }
+                else if (gct.getFirmwareReleases(CommonUtils.isTrezorV2(f)).getNewest().version.isNewerThan(FirmwareVersion.create(f))) {
+                    btnNotification.setVisibility(View.VISIBLE);
+                    btnNotification.setText(R.string.firmware_upgrade_avail);
+                    btnNotification.setOnClickListener(new OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            startActivity(FirmwareUpgradeActivity.createIntent(v.getContext(), new MsgWrp(f)));
+                            setDontDisconnectOnStop();
+                        }
+                    });
+                }
+                else if (TextUtils.isEmpty(f.getLabel()) || TextUtils.equals(f.getLabel(), getString(R.string.init_trezor_device_label_default))) {
+                    btnNotification.setVisibility(View.VISIBLE);
+                    btnNotification.setText(R.string.main_activity_notif_not_named);
+                    btnNotification.setOnClickListener(new OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            startActivity(NameDeviceInitActivity.createIntent(v.getContext(), CommonUtils.isTrezorV2(f)));
+                            setDontDisconnectOnStop();
+                        }
+                    });
+                }
+                else if (!f.getPinProtection()) {
+                    btnNotification.setVisibility(View.VISIBLE);
+                    btnNotification.setText(R.string.main_activity_notif_no_pin);
+                    btnNotification.setOnClickListener(new OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            startActivity(SetupPinActivity.createIntent(v.getContext(), CommonUtils.isTrezorV2(f), f.getLabel()));
+                            setDontDisconnectOnStop();
+                        }
+                    });
+                }
+                else
+                    btnNotification.setVisibility(View.GONE);
+
                 rootDisconnected.setVisibility(View.GONE);
                 rootConnected.setVisibility(View.VISIBLE);
 
@@ -569,7 +623,7 @@ public class MainActivity extends BaseActivity implements OnPromptDialogDone, On
     }
 
     private void executeTryConnectTrezor(boolean canAnimateNextScreen) {
-        executeTrezorTaskIfCan(TASK_TRY_CONNECT_TREZOR, new TrezorTaskParam(Initialize.newBuilder().build(), new IntParcelable(canAnimateNextScreen ? 1 : 0)));
+        executeTrezorTaskIfCan(TASK_TRY_CONNECT_TREZOR, new TrezorTaskParam(Initialize.newBuilder().build(), new TryConnectTag(canAnimateNextScreen)));
     }
 
     private void executeButtonAckAndShowDialog(CharSequence dialogTitle, CharSequence dialogText, String taskId) {
@@ -618,6 +672,28 @@ public class MainActivity extends BaseActivity implements OnPromptDialogDone, On
     //
     // INNER CLASSES
     //
+
+    private static class TryConnectTag extends ApiParcelable {
+        public final boolean canAnimateNextScreen;
+
+        public TryConnectTag(boolean canAnimateNextScreen) {
+            this.canAnimateNextScreen = canAnimateNextScreen;
+        }
+
+        public TryConnectTag(ApiDataInput d) {
+            this.canAnimateNextScreen = d.readBoolean();
+        }
+
+        @Override
+        public void save(ApiDataOutput d, int flags) {
+            d.write(this.canAnimateNextScreen);
+        }
+
+        public static final ApiCreator<TryConnectTag> CREATOR = new ApiCreator<TryConnectTag>() {
+            public TryConnectTag create(ApiDataInput d) { return new TryConnectTag(d); }
+            public TryConnectTag[] newArray(int size) { return new TryConnectTag[size]; }
+        };
+    }
 
     private static class ViewHolderSwitch {
         public final View button;

@@ -11,40 +11,41 @@ import com.circlegate.liban.base.ApiBase.ApiParcelable;
 import com.circlegate.liban.base.ApiDataIO.ApiDataInput;
 import com.circlegate.liban.base.ApiDataIO.ApiDataOutput;
 import com.circlegate.liban.base.Exceptions.NotImplementedException;
+import com.circlegate.liban.task.TaskInterfaces.ITask;
 import com.satoshilabs.trezor.app.R;
 import com.satoshilabs.trezor.app.activity.base.BaseActivity;
+import com.satoshilabs.trezor.app.activity.base.BaseSetupActivity;
 import com.satoshilabs.trezor.app.common.GlobalContext;
-import com.satoshilabs.trezor.app.common.TrezorTasks.MsgWrp;
 import com.satoshilabs.trezor.app.common.TrezorTasks.TrezorError;
 import com.satoshilabs.trezor.app.common.TrezorTasks.TrezorTaskParam;
 import com.satoshilabs.trezor.app.common.TrezorTasks.TrezorTaskResult;
 import com.satoshilabs.trezor.app.style.CustomHtml;
 import com.satoshilabs.trezor.app.view.CustomActionBar;
+import com.satoshilabs.trezor.lib.protobuf.TrezorMessage.BackupDevice;
 import com.satoshilabs.trezor.lib.protobuf.TrezorMessage.ButtonAck;
 import com.satoshilabs.trezor.lib.protobuf.TrezorMessage.ButtonRequest;
+import com.satoshilabs.trezor.lib.protobuf.TrezorMessage.Failure;
 import com.satoshilabs.trezor.lib.protobuf.TrezorMessage.MessageType;
 import com.satoshilabs.trezor.lib.protobuf.TrezorType.ButtonRequestType;
 
-public class RecoverySeedSetupActivity extends BaseActivity {
+public class CreateBackupRecoverySeedActivity extends BaseSetupActivity {
     private static final String TASK_BUTTON_ACK = "TASK_BUTTON_ACK";
 
     private static final int WORDS_COUNT = 24;
 
     // Views
+    private TextView txtTitle;
     private TextView txtText;
     private TextView txtWordNumAbove;
     private TextView txtWordNum;
     private TextView txtWordNumBelow;
-
-    // Immutable members
-    private GlobalContext gct;
 
     // Saved state
     private int wordInd;
 
 
     public static Intent createIntent(Context context) {
-        return new Intent(context, RecoverySeedSetupActivity.class);
+        return setupIntent(new Intent(context, CreateBackupRecoverySeedActivity.class), false);
     }
 
 
@@ -57,26 +58,29 @@ public class RecoverySeedSetupActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON); // chceme aby zustal displej zapnuty
         super.onCreate(savedInstanceState);
-        CustomActionBar.setContentView(this, R.layout.recovery_seed_setup_activity, false);
+        setRootContentLayout(R.layout.create_backup_recovery_seed_activity);
 
+        this.txtTitle = (TextView)findViewById(R.id.txt_title);
         this.txtText = (TextView)findViewById(R.id.txt_text);
         this.txtWordNumAbove = (TextView)findViewById(R.id.txt_word_num_above);
         this.txtWordNum = (TextView)findViewById(R.id.txt_word_num);
         this.txtWordNumBelow = (TextView)findViewById(R.id.txt_word_num_below);
 
-        this.gct = GlobalContext.get();
-
         if (savedInstanceState != null)
             this.wordInd = savedInstanceState.getInt("wordInd");
-        else
-            this.wordInd = 0;
+        else {
+            this.wordInd = -1;
+        }
+
+        if (this.wordInd == -1)
+            executeTrezorTaskIfCan(TASK_BUTTON_ACK, new TrezorTaskParam(BackupDevice.newBuilder().build(), new ButtonAckTag(wordInd)));
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        refreshGui();
         executeButtonAckIfCan();
+        setDontDisconnectOnStop();
     }
 
     @Override
@@ -90,9 +94,21 @@ public class RecoverySeedSetupActivity extends BaseActivity {
         // nechceme, aby se odsud dalo vybackovat
     }
 
+
     //
     // CUSTOM CALLBACKS
     //
+
+
+    @Override
+    protected boolean canHandleButtonReqByDefAction() {
+        return false;
+    }
+
+    @Override
+    protected boolean getNoUpButton() {
+        return true;
+    }
 
     @Override
     public void onTrezorTaskCompletedSucc(String id, TrezorTaskResult res) {
@@ -106,8 +122,7 @@ public class RecoverySeedSetupActivity extends BaseActivity {
             }
             else if (res.getMsgResult().msgType == MessageType.MessageType_Success) {
                 finish();
-                startActivity(MainActivity.createIntent(this));
-                setDontDisconnectOnStop();
+                startActivityNextStep(SetupStepCompletedActivity.createIntent(this, false, SetupStepCompletedActivity.STEP_CREATE_BACKUP));
             }
             else {
                 onTrezorError(TrezorError.ERR_UNEXPECTED_RESPONSE);
@@ -126,12 +141,14 @@ public class RecoverySeedSetupActivity extends BaseActivity {
         executeTrezorTaskIfCan(TASK_BUTTON_ACK, new TrezorTaskParam(ButtonAck.newBuilder().build(), new ButtonAckTag(wordInd)));
     }
 
-    private void refreshGui() {
+    @Override
+    protected void refreshVisibleContent() {
         boolean isWritePhase = wordInd < WORDS_COUNT;
 
-        txtText.setText(isWritePhase ? R.string.recovery_seed_setup_text_write : R.string.recovery_seed_setup_text_check);
-        txtWordNumAbove.setText(isWritePhase ? R.string.recovery_seed_setup_word_num_above_write : R.string.recovery_seed_setup_word_num_above_check);
-        txtWordNumBelow.setText(isWritePhase ? R.string.recovery_seed_setup_word_num_below_write : R.string.recovery_seed_setup_word_num_below_check);
+        txtTitle.setText(isWritePhase ? R.string.create_backup_recovery_seed_title_write : R.string.create_backup_recovery_seed_title_check);
+        txtText.setText(isWritePhase ? R.string.create_backup_recovery_seed_text_write : R.string.create_backup_recovery_seed_text_check);
+        txtWordNumAbove.setText(isWritePhase ? R.string.create_backup_recovery_seed_word_num_above_write : R.string.create_backup_recovery_seed_word_num_above_check);
+        txtWordNumBelow.setText(isWritePhase ? R.string.create_backup_recovery_seed_num_below_write : R.string.create_backup_recovery_seed_word_num_below_check);
 
         int wordNum = (wordInd % WORDS_COUNT) + 1;
         int mod10 = wordNum % 10;
@@ -149,6 +166,12 @@ public class RecoverySeedSetupActivity extends BaseActivity {
             wordPostfix = "th";
 
         txtWordNum.setText(CustomHtml.fromHtmlWithCustomSpans(wordNum + CustomHtml.getRelativeTextSizeTag(wordPostfix, 0.5f)));
+    }
+
+    @Override
+    protected boolean forceDisplayContent() {
+        ITask task = getTaskFragment().getTask(TASK_BUTTON_ACK, null);
+        return task != null && task.getParam() instanceof TrezorTaskParam && ((TrezorTaskParam)task.getParam()).getMsgParam().msgType == MessageType.MessageType_ButtonAck;
     }
 
 

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    >
+
+
+    <com.circlegate.liban.view.PaddedLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:maxPaddedWidth="@dimen/max_screen_width_narrow"
+        >
+
+        <android.support.v4.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="10" />
+
+        <ImageView
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_gravity="center_horizontal"
+            app:srcCompat="@drawable/ic_check_circle_black_24dp"
+            android:scaleType="fitXY"
+            app:tint="@color/primary_dark"
+            />
+
+        <TextView
+            android:id="@+id/txt_text"
+            style="@style/TextStyleTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/form_vert_padding_small"
+            android:text="@string/create_backup_completed"
+            android:gravity="center_horizontal"
+            />
+
+        <Button
+            android:id="@+id/btn_continue"
+            style="@style/ButtonAppTheme.Primary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/line_height_normal"
+            android:text="@string/do_continue"
+            android:minWidth="180dp"
+            />
+
+        <android.support.v4.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="15" />
+
+    </com.circlegate.liban.view.PaddedLinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

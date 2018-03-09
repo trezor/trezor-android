@@ -1,5 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/btn_card_primary_normal" />
-    <item android:drawable="@drawable/list_selector_holo_dark" />
-</layer-list>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="false" >
+        <layer-list>
+            <item >
+                <shape >
+                    <solid android:color="@android:color/transparent" />
+                    <padding android:left="2dp"
+                             android:top="2dp"
+                             android:right="2dp"
+                             android:bottom="2dp" />
+                </shape>
+            </item>
+            <item>
+                <shape>
+                    <corners android:radius="2dp" />
+                    <solid android:color="@color/btn_raised_primary_disabled_bg" />
+                </shape>
+            </item>
+
+            <item android:drawable="@drawable/list_selector_holo_dark" />
+        </layer-list>
+    </item>
+
+    <item>
+        <layer-list>
+            <item android:drawable="@drawable/btn_card_shadow" />
+
+            <item>
+                <shape>
+                    <corners android:radius="2dp" />
+                    <solid android:color="@color/btn_raised_primary_bg" />
+                </shape>
+            </item>
+
+            <item android:drawable="@drawable/list_selector_holo_dark" />
+        </layer-list>
+    </item>
+</selector>

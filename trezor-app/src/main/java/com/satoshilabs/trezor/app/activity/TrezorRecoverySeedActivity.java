@@ -55,6 +55,7 @@ public class TrezorRecoverySeedActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON); // chceme aby zustal displej zapnuty
         super.onCreate(savedInstanceState);
         CustomActionBar.setContentView(this, R.layout.trezor_recovery_seed_activity, true);
 

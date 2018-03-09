@@ -19,10 +19,10 @@
         <activity android:name=".activity.MainActivity"
                   android:label="@string/app_name"
             android:theme="@style/AppTheme.NavBar"
-            android:launchMode="singleTop">
-            <!--
-             singleTask nefungovalo dobre ani na lollipop+ pri znovu otevreni beziciho tasku z launcheru (vzdy se vracelo do MainActivity...
-            DRIVE: singleTask - aby tato aktivita vzdy existovala max jedna v systemu
+            android:launchMode="standard">
+            <!-- nejak mi nefunguje ani singleTop, zatim nechavam standard, ale mozna to funguje blbe na starsich androidech?
+            DRIVE:singleTask nefungovalo dobre ani na lollipop+ pri znovu otevreni beziciho tasku z launcheru (vzdy se vracelo do MainActivity...
+            JESTE DRIVE: singleTask - aby tato aktivita vzdy existovala max jedna v systemu
             - kvuli potizim kdyz system zobrazi pri pripojeni trezoru dialog,
              kterou aplikaci chceme spusti a my uz mame zobrazenou MainActivity...
             -->
@@ -45,11 +45,29 @@
         <activity android:name=".activity.InitTrezorActivity"
                   android:label="@string/trezor_setup" />
 
+        <activity android:name=".activity.CreateBackupInitActivity"
+                  android:label="@string/create_backup_activity_title" />
+
+        <activity android:name=".activity.CreateBackupRecoverySeedActivity"
+                  android:label="@string/create_backup_activity_title" />
+
+        <activity android:name=".activity.CreateBackupRecoverySeedV2Activity"
+                  android:label="@string/create_backup_activity_title" />
+
+        <activity android:name=".activity.NameDeviceInitActivity"
+                  android:label="@string/name_device_activity_title" />
+
+        <activity android:name=".activity.NameDeviceActivity"
+                  android:label="@string/name_device_activity_title" />
+
+        <activity android:name=".activity.SetupPinActivity"
+                  android:label="@string/setup_pin_activity_title" />
+
+        <activity android:name=".activity.SetupStepCompletedActivity"
+                  android:label="" />
+
         <activity android:name=".activity.EnterPinActivity"
                   android:theme="@style/AppTheme.Dialog" />
-
-        <activity android:name=".activity.RecoverySeedSetupActivity"
-                  android:label="@string/trezor_setup" />
 
         <activity android:name=".activity.ChangeHomescreenActivity"
                   android:label="@string/main_activity_change_homescreen" />
@@ -60,6 +78,9 @@
         <activity android:name=".activity.TrezorRecoveryInitActivity"
                   android:label="@string/trezor_recovery" />
 
+        <activity android:name=".activity.TrezorRecoveryInitV2Activity"
+                  android:label="@string/trezor_recovery" />
+
         <activity android:name=".activity.TrezorRecoverySeedActivity"
                   android:label="@string/trezor_recovery"
                   android:windowSoftInputMode="stateVisible|adjustResize" />
@@ -68,7 +89,7 @@
                   android:label="@string/about_title" />
 
         <activity android:name=".activity.FirmwareUpgradeActivity"
-                  android:label="@string/firmware_upgrade_activity_title" />
+                  android:label="@string/firmware_upgrade_activity_title_update" />
 
         <meta-data
             android:name="io.fabric.ApiKey"

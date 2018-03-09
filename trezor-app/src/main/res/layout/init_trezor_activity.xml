@@ -1,20 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
-       xmlns:app="http://schemas.android.com/apk/res-auto">
-
-<!--<LinearLayout-->
-    <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:orientation="vertical">-->
-
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        style="@style/Widget.AppCompat.ProgressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        />
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/root_content"
@@ -22,88 +12,97 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:fillViewport="true"
-        android:visibility="visible"
         >
 
-        <com.circlegate.liban.view.PaddedLinearLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:maxPaddedWidth="@dimen/max_screen_width_narrow"
-            >
+            android:orientation="vertical">
 
-            <TextView
-                style="@style/TextStyleTitle"
+            <com.circlegate.liban.view.PaddedLinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/init_trezor_title"
-                />
-
-            <TextView
-                style="@style/TextStyleBody"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/init_trezor_text"
-                />
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_layout_device_label"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/form_vert_padding"
-                android:layout_marginLeft="@dimen/form_hor_padding"
-                android:layout_marginRight="@dimen/form_hor_padding"
-                android:paddingLeft="-4dp"
-                android:paddingRight="-4dp"
-                android:clipToPadding="false"
+                android:orientation="vertical"
+                android:background="@color/primary_light_bg"
+                app:maxPaddedWidth="@dimen/max_screen_width_narrow"
                 >
 
-                <EditText
-                    android:id="@+id/edit_text_device_label"
+                <TextView
+                    style="@style/TextStyleTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/init_trezor_device_label_hint"
-                    android:inputType="textCapWords"
-                    android:textColor="@color/text_primary_selector"
-                    android:text="@string/init_trezor_device_label_default"
+                    android:gravity="center_horizontal"
+                    android:text="@string/init_trezor_create_wallet_title"
                     />
 
-            </android.support.design.widget.TextInputLayout>
+                <TextView
+                    style="@style/TextStyleBody"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="@string/init_trezor_create_wallet_desc"
+                    />
 
-            <Button
-                android:id="@+id/btn_continue"
-                style="@style/ButtonAppTheme.Primary"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="@string/do_continue"
-                android:minWidth="200dp"
-                />
+                <Button
+                    android:id="@+id/btn_create_wallet"
+                    style="@style/ButtonAppTheme.Primary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/form_vert_padding"
+                    android:layout_marginBottom="@dimen/form_vert_padding_big"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/init_trezor_create_wallet_button"
+                    android:minWidth="200dp"
+                    />
 
-            <TextView
-                style="@style/TextStyleBody"
+            </com.circlegate.liban.view.PaddedLinearLayout>
+
+            <View style="@style/Divider" />
+
+            <com.circlegate.liban.view.PaddedLinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/init_trezor_restore_text"
-                android:layout_marginTop="@dimen/form_vert_padding_big"
-                />
+                android:orientation="vertical"
 
-            <Button
-                android:id="@+id/btn_trezor_recovery"
-                style="@style/ButtonAppTheme.Secondary"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/form_vert_padding_small"
-                android:text="@string/trezor_recovery"
-                android:minWidth="200dp"
-                />
+                app:maxPaddedWidth="@dimen/max_screen_width_narrow"
+                >
+
+                <TextView
+                    style="@style/TextStyleTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="@string/init_trezor_recover_wallet_title"
+                    />
+
+                <TextView
+                    style="@style/TextStyleBody"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="@string/init_trezor_recover_wallet_desc"
+                    />
+
+                <Button
+                    android:id="@+id/btn_recover_wallet"
+                    style="@style/ButtonAppTheme.Secondary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/form_vert_padding"
+                    android:layout_marginBottom="@dimen/form_vert_padding_big"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/init_trezor_recover_wallet_button"
+                    android:minWidth="200dp"
+                    />
+
+            </com.circlegate.liban.view.PaddedLinearLayout>
 
 
-        </com.circlegate.liban.view.PaddedLinearLayout>
+        </LinearLayout>
+
 
     </android.support.v4.widget.NestedScrollView>
 
-    <include layout="@layout/firmware_upgrade_button" />
+    <include layout="@layout/notification_bottom_button" />
 
-</merge>
+</LinearLayout>

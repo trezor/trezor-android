@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Button xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/btn_firmware_upgrade_avail"
+        android:id="@+id/btn_notification"
         style="@style/ButtonAppTheme.Borderless"
         android:textAllCaps="false"
         android:layout_width="match_parent"
