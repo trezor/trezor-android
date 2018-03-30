@@ -13,12 +13,14 @@ android {
         vectorDrawables.useSupportLibrary true
     }
 
-    signingConfigs {
-        release {
-            storeFile file(RELEASE_STORE_FILE)
-            keyAlias RELEASE_KEY_ALIAS
-            storePassword RELEASE_STORE_PASSWORD
-            keyPassword RELEASE_KEY_PASSWORD
+    if (project.hasProperty("RELEASE_STORE_FILE")) {
+        signingConfigs {
+            release {
+                storeFile file(RELEASE_STORE_FILE)
+                keyAlias RELEASE_KEY_ALIAS
+                storePassword RELEASE_STORE_PASSWORD
+                keyPassword RELEASE_KEY_PASSWORD
+            }
         }
     }
 
@@ -26,8 +28,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
             zipAlignEnabled true
+            if (project.hasProperty("RELEASE_STORE_FILE")) {
+                signingConfig signingConfigs.release
+            }
         }
     }
 
