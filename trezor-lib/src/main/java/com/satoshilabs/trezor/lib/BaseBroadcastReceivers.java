@@ -183,11 +183,13 @@ public class BaseBroadcastReceivers {
         @Override
         public final void onReceiveRegistered(Context context, Intent intent) {
             if (intent != null && intent.getAction().equals(ConnectivityManager.CONNECTIVITY_ACTION)) {
+                /*
                 ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
                 NetworkInfo info = manager.getActiveNetworkInfo();
                 if (info != null && info.isConnected()) {
                     onMinuteChangeOrConnected(false);
                 }
+                */
             }
             else
                 onMinuteChangeOrConnected(true);

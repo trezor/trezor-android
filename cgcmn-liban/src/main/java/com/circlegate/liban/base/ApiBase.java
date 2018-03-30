@@ -49,7 +49,7 @@ public class ApiBase {
 
     public static abstract class ApiParcelable extends ApiObject implements IApiParcelable {
         public int describeContents() {
-            return baseDescribeContents();
+            return 0;
         }
 
         public final void writeToParcel(Parcel dest, int flags) {
