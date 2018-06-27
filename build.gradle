@@ -12,9 +12,8 @@ buildscript {
 
 allprojects {
     repositories {
-
-        jcenter()
         google()
+        jcenter()
     }
 
     project.ext {

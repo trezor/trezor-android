@@ -198,6 +198,7 @@
     <string name="firmware_upgrade_factory_reset_failed">Factory reset failed!\nPlease unplug the device now</string>
     <string name="firmware_upgrade_warning_title">Warning</string>
     <string name="firmware_upgrade_warning_bootloader_desc">Your TREZOR may have already been set up. We cannot check the state of your device because it is in bootloader mode.\nIf your device has already been initialized, meaning you have a recovery seed, make sure you have it with you.</string>
+    <string name="firmware_upgrade_warning_bootloader140_desc">This update WILL ERASE the device seed.\nIf your device has already been initialized, make sure you have the paper backup of the seed with you.</string>
     <string name="firmware_upgrade_warning_initialized_desc">Your TREZOR is already set up. Before you update firmware, please make sure that you have recovery seed with you.</string>
     <string name="firmware_upgrade_i_have_recovery_seed">I have recovery seed with me</string>
     <string name="firmware_upgrade_my_trezor_is_empty">My TREZOR is empty</string>
