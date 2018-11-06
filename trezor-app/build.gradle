@@ -8,8 +8,8 @@ android {
         applicationId "io.trezor.app"
         minSdkVersion project.ext.minsdk
         targetSdkVersion project.ext.sdk
-        versionCode 16
-        versionName "2.0.2"
+        versionCode 17
+        versionName "2.0.9"
         vectorDrawables.useSupportLibrary true
     }
 

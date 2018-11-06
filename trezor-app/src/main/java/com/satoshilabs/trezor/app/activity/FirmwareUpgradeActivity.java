@@ -222,11 +222,11 @@ public class FirmwareUpgradeActivity extends BaseActivity implements OnCheckConf
                 setTitle(R.string.firmware_upgrade_activity_title_update);
 
                 final boolean needsUpdates = newestRelease.version.isNewerThan(deviceFirmVersion);
-                final boolean bootloader140 = features.hasMajorVersion() && features.hasMinorVersion() && features.hasPatchVersion() && features.getMajorVersion() == 1 && features.getMinorVersion() == 4 && features.getPatchVersion() == 0;
+                final boolean bootloader140orOlder = features.hasMajorVersion() && features.hasMinorVersion() && features.getMajorVersion() == 1 && features.getMinorVersion() <= 4;
 
                 if (needsUpdates) {
                     show(rootWarning, dividerWarning);
-                    if (bootloader140) {
+                    if (bootloader140orOlder) {
                         show(txtWarningDesc, R.string.firmware_upgrade_warning_bootloader140_desc);
                     } else {
                         show(txtWarningDesc, R.string.firmware_upgrade_warning_bootloader_desc);
@@ -253,7 +253,7 @@ public class FirmwareUpgradeActivity extends BaseActivity implements OnCheckConf
                 show(btnChangelog);
                 hide(txtUpgradeInstructionsTitle, txtUpgradeInstructionsText);
 
-                if (needsUpdates) {
+                if (needsUpdates && !bootloader140orOlder) {
                     show(rootButtons, rbtnIHaveRecoverySeedWithMe, rbtnEmptyTrezor);
                     show(btnUpdate, R.string.firmware_upgrade_update_my_device);
                 }
