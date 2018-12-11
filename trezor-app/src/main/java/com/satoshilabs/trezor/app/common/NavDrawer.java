@@ -94,7 +94,7 @@ public class NavDrawer {
         btnHelp.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://doc.satoshilabs.com/trezor-user/"));
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://wiki.trezor.io/User_manual"));
                 try {
                     activity.startActivity(intent);
                     hideDrawerOnStop = true;

@@ -39,7 +39,7 @@
     <string name="main_activity_disable_pin_prompt">Using PIN protection is highly recommended. PIN prevents unauthorized persons from stealing your bitcoins even when they get physical access to your device.</string>
     <string name="main_activity_passphrase_title">Passphrase encryption</string>
     <string name="main_activity_passphrase_text">Allows you to access new wallets, each hidden behind a particular passphrase. Your old accounts will be accessible behind an empty passphrase</string>
-    <string name="main_activity_disable_passphrase_prompt">If you disable the passphrase encryption, your current funds will not appear. You will have to enable the passphrase encryption again to see your current wallet</string> <!-- <a href="https://doc.satoshilabs.com/trezor-user/advanced_settings.html#using-passphrase-encrypted-seeds">Learn more</a> -->
+    <string name="main_activity_disable_passphrase_prompt">If you disable the passphrase encryption, your current funds will not appear. You will have to enable the passphrase encryption again to see your current wallet</string> <!-- <a href="https://wiki.trezor.io/User_manual:Security_best_practices">Learn more</a> -->
     <string name="main_activity_disable_passphrase">Disable passphrase</string>
     <string name="main_activity_device_setup">Device setup</string>
     <string name="main_activity_firmware_version">Firmware version: <b>^d^</b></string>
@@ -132,7 +132,7 @@
     <!-- XPUB -->
     <string name="xpub_activity_title">XPUBs</string>
     <string name="xpub_title">Account public keys - XPUBs</string>
-    <string name="xpub_text"><b>Be careful with your XPUBs</b>. When you give them to a third party, you allow it to see your whole transaction history. <a href="https://doc.satoshilabs.com/trezor-user/basic_settings.html#viewing-xpubs">Learn more</a></string>
+    <string name="xpub_text"><b>Be careful with your XPUBs</b>. When you give them to a third party, you allow it to see your whole transaction history. <a href="https://wiki.trezor.io/User_manual:Displaying_account_public_key_(XPUB)">Learn more</a></string>
 
     <!-- CHANGE HOMESCREEN -->
     <string name="change_homescreen_pick_custom_img">Pick custom image</string>
@@ -176,8 +176,8 @@
     <string name="firmware_upgrade_title_firmware_update">Firmware update</string>
     <string name="firmware_upgrade_device_version">Device firmware version:</string>
     <string name="firmware_upgrade_avail_version">Available version:</string>
-    <string name="firmware_upgrade_common_info_update">For full functionality and security, we recommend you keep your TREZOR updated\nFor more information about the update process, please visit the <a href="https://doc.satoshilabs.com/trezor-user/updatingfirmware.html">user manual</a></string>
-    <string name="firmware_upgrade_common_info_update_required">This is a required update, you must update your TREZOR before you continue\nFor more information about the update process, please visit the <a href="https://doc.satoshilabs.com/trezor-user/updatingfirmware.html">user manual</a></string>
+    <string name="firmware_upgrade_common_info_update">For full functionality and security, we recommend you keep your TREZOR updated\nFor more information about the update process, please visit the <a href="https://wiki.trezor.io/User_manual:Updating_the_Trezor_device_firmware">user manual</a></string>
+    <string name="firmware_upgrade_common_info_update_required">This is a required update, you must update your TREZOR before you continue\nFor more information about the update process, please visit the <a href="https://wiki.trezor.io/User_manual:Updating_the_Trezor_device_firmware">user manual</a></string>
     <string name="firmware_upgrade_common_info_clean_install">Your TREZOR is shipped without firmware installed to ensure that you can get started with the latest features right away\n\nThe authenticity of the installed firmware is always checked during device start\nIf the firmware is not correctly signed by SatoshiLabs, your TREZOR will display a warning</string>
     <string name="firmware_upgrade_instructions_title">To update the firmware:</string>
     <string name="firmware_upgrade_instructions_text">1. Disconnect TREZOR\n2. When connecting, hold both buttons pressed</string>
