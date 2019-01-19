@@ -1,9 +1,9 @@
 .DS_Store
-*.der
 *.iml
 /.gradle
 /.idea
-/local.properties
+/keystore
+local.properties
 /.idea/workspace.xml
 /.idea/libraries
 /build
