@@ -27,7 +27,7 @@
     <!-- MAIN ACTIVITY -->
     <string name="main_activity_get_started_title">Get started!</string>
     <string name="main_activity_get_started_text">Connect your TREZOR\ndevice now</string>
-    <string name="main_activity_launch_mycelium">Launch Mycelium Wallet</string>
+    <string name="main_activity_launch_webwallet">Launch Web Wallet</string>
     <string name="main_activity_show_xpubs">Show account public keys (XPUB)</string>
     <string name="main_activity_change_label">Change label</string>
     <string name="main_activity_change_label_prompt">Enter new device label:</string>

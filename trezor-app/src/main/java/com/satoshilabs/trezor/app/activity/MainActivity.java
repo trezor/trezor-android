@@ -85,7 +85,7 @@ public class MainActivity extends BaseActivity implements OnPromptDialogDone, On
     private View rootDisconnected;
     private View rootConnected;
 
-    private Button btnLaunchMycelium;
+    private Button btnLaunchWebwallet;
     private Button btnChangeLabel;
     private Button btnChangeHomescreen;
     private TextView txtSecuritySetup;
@@ -131,7 +131,7 @@ public class MainActivity extends BaseActivity implements OnPromptDialogDone, On
         this.rootDisconnected = findViewById(R.id.root_disconnected);
         this.rootConnected = findViewById(R.id.root_connected);
 
-        this.btnLaunchMycelium = (Button)findViewById(R.id.btn_launch_mycelium);
+        this.btnLaunchWebwallet = (Button)findViewById(R.id.btn_launch_webwallet);
         this.btnChangeLabel = (Button)findViewById(R.id.btn_change_label);
         this.btnChangeHomescreen = (Button)findViewById(R.id.btn_change_homescreen);
         this.txtSecuritySetup = (TextView) findViewById(R.id.txt_security_setup);
@@ -149,7 +149,7 @@ public class MainActivity extends BaseActivity implements OnPromptDialogDone, On
         this.dialogConfirmAction = (PromptDialog)getSupportFragmentManager().findFragmentByTag(DIALOG_CONFIRM_ACTION);
         this.dialogDisconnectTrezor = (PromptDialog)getSupportFragmentManager().findFragmentByTag(DIALOG_DISCONNECT_TREZOR);
 
-        btnLaunchMycelium.setText(R.string.main_activity_launch_mycelium);
+        btnLaunchWebwallet.setText(R.string.main_activity_launch_webwallet);
         btnChangeLabel.setText(R.string.main_activity_change_label);
         btnChangeHomescreen.setText(R.string.main_activity_change_homescreen);
         txtSecuritySetup.setText(R.string.main_activity_security_setup);
@@ -161,25 +161,28 @@ public class MainActivity extends BaseActivity implements OnPromptDialogDone, On
         //setupTwoLinesText(btnForgetDevice, R.string.main_activity_forget_device_title, R.string.main_activity_forget_device_text);
         setupTwoLinesText(btnWipeDevice, R.string.main_activity_wipe_device_title, R.string.main_activity_wipe_device_text);
 
-        btnLaunchMycelium.setOnClickListener(new OnClickListener() {
+        btnLaunchWebwallet.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
-                    String myceliumUri = "com.mycelium.wallet";
-                    Intent launchIntent = getPackageManager().getLaunchIntentForPackage(myceliumUri);
-                    if (launchIntent != null) {
-                        startActivity(launchIntent);
-                    }
-                    else {
+                    String urlString = "https://beta-wallet.trezor.io";
+                    String browserPackage = "com.android.chrome";
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(urlString));
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.setPackage(browserPackage);
+                    try {
+                        startActivity(intent);
+                    } catch (android.content.ActivityNotFoundException ex) {
+                        // Chrome not installed
                         try {
-                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + myceliumUri)));
+                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + browserPackage)));
                         } catch (android.content.ActivityNotFoundException anfe) {
-                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + myceliumUri)));
+                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + browserPackage)));
                         }
                     }
                 }
                 catch (Exception ex) {
-                    LogUtils.e(TAG, "btnLaunchMycelium onClick thrown exception", ex);
+                    LogUtils.e(TAG, "btnLaunchWebwallet onClick thrown exception", ex);
                     BaseError.ERR_UNKNOWN_ERROR.showToast(gct);
                 }
 //                if (initializedTrezor != null) {

@@ -1,3 +1,5 @@
+# Dockerfile based on https://github.com/ekreative/android-docker/blob/master/Dockerfile
+
 FROM openjdk:8-jdk
 
 ENV ANDROID_SDK_VER 4333796

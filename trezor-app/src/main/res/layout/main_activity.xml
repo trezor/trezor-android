@@ -96,7 +96,7 @@
                 android:orientation="vertical">
 
                 <include
-                    android:id="@+id/btn_launch_mycelium"
+                    android:id="@+id/btn_launch_webwallet"
                     layout="@layout/main_activity_button" />
 
                 <View style="@style/Divider" />
