@@ -6,6 +6,7 @@
 local.properties
 /.idea/workspace.xml
 /.idea/libraries
+/?
 /build
 /captures
 /trezor-app/trezor-app-keystore.jks
