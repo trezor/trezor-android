@@ -11,11 +11,11 @@ env:
 android:
   components:
   - tools
-  - build-tools-27.0.3
+  - build-tools-28.0.3
   - platform-tools
   - extra-android-m2repository
   - extra-google-android-support
-  - android-27
+  - android-28
   - sys-img-${ANDROID_ABI}-${ANDROID_TARGET}
   licenses:
   - 'android-sdk-preview-license-52d11cd2'
@@ -23,8 +23,8 @@ android:
   - 'google-gdk-license-.+'
 
 before_install:
-  - yes | sdkmanager 'platforms;android-27'
-  - yes | sdkmanager 'build-tools;27.0.3'
+  - yes | sdkmanager 'platforms;android-28'
+  - yes | sdkmanager 'build-tools;28.0.3'
 
 script:
   - ./gradlew lint
