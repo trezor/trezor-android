@@ -147,7 +147,7 @@
     <string name="enter_passphrase_no_match">Passphrases do not match</string>
 
     <!-- TREZOR RECOVERY INIT -->
-    <string name="trezor_recovery_init_seed_length">Number of words in you recovery seed</string>
+    <string name="trezor_recovery_init_seed_length">Number of words in your recovery seed</string>
     <string name="trezor_recovery_init_enable_pin">Enable PIN protection</string>
     <string name="trezor_recovery_init_enable_passphrase">Additional passphrase encryption</string>
     <string name="trezor_recovery_init_12_words">12 words</string>
