@@ -105,11 +105,11 @@ public class TrezorManager {
         if (usbDevice.getInterfaceCount() <= 0) {
             return false;
         }
-        // TREZOR v1
+        // Trezor v1
         if (usbDevice.getVendorId() == 0x534c) {
             return usbDevice.getProductId() == 0x0001;
         }
-        // TREZOR v2
+        // Trezor v2
         if (usbDevice.getVendorId() == 0x1209) {
             return usbDevice.getProductId() == 0x53c0 || usbDevice.getProductId() == 0x53c1;
         }
@@ -118,17 +118,17 @@ public class TrezorManager {
 
     private TrezorDevice tryGetDevice() {
         if (device == null) {
-            Timber.i(TAG, "tryGetDevice: trying to find and open connection to TREZOR");
+            Timber.i(TAG, "tryGetDevice: trying to find and open connection to Trezor");
             HashMap<String, UsbDevice> deviceList = usbManager.getDeviceList();
 
             deviceWithoutPermission = null;
 
             for (UsbDevice usbDevice : deviceList.values()) {
-                // check if the device is TREZOR
+                // check if the device is Trezor
                 if (!deviceIsTrezor(usbDevice))
                     continue;
 
-                Timber.i(TAG, "tryGetDevice: TREZOR device found");
+                Timber.i(TAG, "tryGetDevice: Trezor device found");
 
                 if (!usbManager.hasPermission(usbDevice)) {
                     if (deviceWithoutPermission == null)
@@ -180,7 +180,7 @@ public class TrezorManager {
                     }
                 }
             }
-            Timber.i(TAG, "tryGetDevice: " + (this.device == null ? "TREZOR device not found or failed to connect" : "TREZOR device successfully connected"));
+            Timber.i(TAG, "tryGetDevice: " + (this.device == null ? "Trezor device not found or failed to connect" : "Trezor device successfully connected"));
         } else
             Timber.i(TAG, "tryGetDevice: using already connected device");
         return device;

@@ -1,4 +1,4 @@
-How to bundle TREZOR firmware to TREZOR Manager APK:
+How to bundle Trezor firmware to Trezor Manager APK:
 
 * remove old firmware and put new firmware to this folder
   (trezor-android/trezor-app/src/main/assets/firmware or firmware-v2 for the new "T" model)

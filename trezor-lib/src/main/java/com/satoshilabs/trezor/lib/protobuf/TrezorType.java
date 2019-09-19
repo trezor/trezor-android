@@ -28134,7 +28134,7 @@ public final class TrezorType {
   public static final int WIRE_IN_FIELD_NUMBER = 50002;
   /**
    * <pre>
-   * message can be transmitted via wire from PC to TREZOR
+   * message can be transmitted via wire from PC to Trezor
    * </pre>
    *
    * <code>extend .google.protobuf.EnumValueOptions { ... }</code>
@@ -28149,7 +28149,7 @@ public final class TrezorType {
   public static final int WIRE_OUT_FIELD_NUMBER = 50003;
   /**
    * <pre>
-   * message can be transmitted via wire from TREZOR to PC
+   * message can be transmitted via wire from Trezor to PC
    * </pre>
    *
    * <code>extend .google.protobuf.EnumValueOptions { ... }</code>
@@ -28164,7 +28164,7 @@ public final class TrezorType {
   public static final int WIRE_DEBUG_IN_FIELD_NUMBER = 50004;
   /**
    * <pre>
-   * message can be transmitted via debug wire from PC to TREZOR
+   * message can be transmitted via debug wire from PC to Trezor
    * </pre>
    *
    * <code>extend .google.protobuf.EnumValueOptions { ... }</code>
@@ -28179,7 +28179,7 @@ public final class TrezorType {
   public static final int WIRE_DEBUG_OUT_FIELD_NUMBER = 50005;
   /**
    * <pre>
-   * message can be transmitted via debug wire from TREZOR to PC
+   * message can be transmitted via debug wire from Trezor to PC
    * </pre>
    *
    * <code>extend .google.protobuf.EnumValueOptions { ... }</code>
@@ -28194,7 +28194,7 @@ public final class TrezorType {
   public static final int WIRE_TINY_FIELD_NUMBER = 50006;
   /**
    * <pre>
-   * message is handled by TREZOR when the USB stack is in tiny mode
+   * message is handled by Trezor when the USB stack is in tiny mode
    * </pre>
    *
    * <code>extend .google.protobuf.EnumValueOptions { ... }</code>
@@ -28209,7 +28209,7 @@ public final class TrezorType {
   public static final int WIRE_BOOTLOADER_FIELD_NUMBER = 50007;
   /**
    * <pre>
-   * message is only handled by TREZOR Bootloader
+   * message is only handled by Trezor Bootloader
    * </pre>
    *
    * <code>extend .google.protobuf.EnumValueOptions { ... }</code>
