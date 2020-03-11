@@ -303,8 +303,6 @@ public class TrezorManager {
                         throw new InvalidProtocolBufferException("messageRead: too many invalid chunks");
                     continue;
                 }
-                if (b[0] != (byte) '?' || b[1] != (byte) '#' || b[2] != (byte) '#')
-                    continue;
 
                 type = MessageType.valueOf((((int)b[3] & 0xFF) << 8) + ((int)b[4] & 0xFF));
                 msg_size = (((int)b[5] & 0xFF) << 24)
