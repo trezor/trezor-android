@@ -2,12 +2,9 @@
 
 [![Build Status](https://travis-ci.org/trezor/trezor-android.svg?branch=master)](https://travis-ci.org/trezor/trezor-android) [![gitter](https://badges.gitter.im/trezor/community.svg)](https://gitter.im/trezor/community) [![](https://jitpack.io/v/trezor/trezor-android.svg)](https://jitpack.io/#trezor/trezor-android)
 
-Trezor Management App and Communication Library for Android
+Trezor Communication Library for Android
 
-## Download options
-
-* [Trezor.io](https://wallet.trezor.io/data/android/latest.apk)
-* [F-Droid](https://f-droid.org/repository/browse/?fdid=io.trezor.app)
+**Trezor Manager app is now obsolete!**
 
 ## Using the library
 
