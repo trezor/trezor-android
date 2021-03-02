@@ -30,7 +30,7 @@ dependencies {
 
 You can see what to best use for ```<current_version>``` in the jitpack badge on the top.
 
-Please consider using [gradle witness](https://github.com/WhisperSystems/gradle-witness) to improve security.
+Please consider using [checksum-dependency-plugin](https://github.com/vlsi/vlsi-release-plugins#checksum-dependency-plugin) to improve security.
 
 ## Requirements
 

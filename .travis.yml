@@ -7,6 +7,8 @@ env:
   global:
     - ANDROID_TARGET=android-15
     - ANDROID_ABI=armeabi-v7a
+    - ORG_GRADLE_PROJECT_checksumFailOn=build_finish
+    - ORG_GRADLE_PROJECT_checksumPrint=true
 
 android:
   components:
